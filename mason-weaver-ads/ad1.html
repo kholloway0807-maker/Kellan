@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mason Weaver Car Detailing - Ad 1</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .ad {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    background: linear-gradient(160deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Background glow effect */
+  .glow {
+    position: absolute;
+    width: 900px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(0, 120, 255, 0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  /* Top bar */
+  .top-bar {
+    width: 100%;
+    padding: 60px 80px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .location {
+    font-size: 22px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .badge {
+    background: #0066ff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 10px 24px;
+    text-transform: uppercase;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  }
+
+  /* Center car visual */
+  .car-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  .car-graphic {
+    width: 900px;
+    height: 420px;
+    position: relative;
+  }
+
+  /* Stylized car silhouette using CSS */
+  .car-body {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 820px;
+    height: 220px;
+  }
+
+  .car-base {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(135deg, #1c1c2e, #2d2d4e);
+    border-radius: 8px 8px 4px 4px;
+    box-shadow: 0 0 60px rgba(0,100,255,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  .car-roof {
+    position: absolute;
+    bottom: 90px;
+    left: 15%;
+    right: 15%;
+    height: 130px;
+    background: linear-gradient(135deg, #222244, #1a1a3a);
+    border-radius: 80px 80px 0 0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .car-windshield {
+    position: absolute;
+    bottom: 95px;
+    left: 28%;
+    width: 200px;
+    height: 100px;
+    background: linear-gradient(135deg, rgba(0,150,255,0.2), rgba(0,80,200,0.1));
+    border-radius: 40px 10px 0 0;
+    border: 1px solid rgba(0,150,255,0.3);
+  }
+
+  .car-rear-window {
+    position: absolute;
+    bottom: 95px;
+    right: 28%;
+    width: 160px;
+    height: 85px;
+    background: linear-gradient(135deg, rgba(0,100,200,0.15), rgba(0,60,150,0.1));
+    border-radius: 10px 30px 0 0;
+    border: 1px solid rgba(0,100,200,0.25);
+  }
+
+  /* Wheels */
+  .wheel {
+    position: absolute;
+    bottom: -18px;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #3a3a3a, #0a0a0a);
+    border: 3px solid #444;
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  }
+  .wheel::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #555, #222);
+    border: 2px solid #666;
+  }
+  .wheel-front { left: 90px; }
+  .wheel-rear { right: 90px; }
+
+  /* Shine lines */
+  .shine-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,150,255,0.6), transparent);
+  }
+  .shine-1 { width: 600px; top: 60px; left: 110px; }
+  .shine-2 { width: 400px; top: 100px; left: 180px; opacity: 0.5; }
+
+  /* Light reflection on hood */
+  .hood-shine {
+    position: absolute;
+    bottom: 80px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), rgba(0,150,255,0.6), rgba(255,255,255,0.4), transparent);
+    filter: blur(1px);
+  }
+
+  /* Ground reflection */
+  .ground-reflection {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 60px;
+    background: radial-gradient(ellipse at center, rgba(0,100,255,0.2) 0%, transparent 70%);
+    filter: blur(8px);
+  }
+
+  /* Water droplet dots */
+  .droplets {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+  .drop {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(0,120,255,0.3));
+    box-shadow: 0 0 4px rgba(0,150,255,0.4);
+  }
+
+  /* Bottom content */
+  .bottom-content {
+    width: 100%;
+    padding: 0 80px 70px;
+    z-index: 2;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,150,255,0.6), transparent);
+    margin-bottom: 50px;
+  }
+
+  .business-name {
+    font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+    font-size: 110px;
+    color: #fff;
+    letter-spacing: 6px;
+    line-height: 0.9;
+    text-shadow: 0 0 40px rgba(0,100,255,0.5);
+    margin-bottom: 30px;
+  }
+
+  .business-name span {
+    display: block;
+    font-size: 70px;
+    color: #0077ff;
+    letter-spacing: 10px;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
+  .cta-text {
+    font-size: 26px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .phone {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: #fff;
+    letter-spacing: 4px;
+    background: linear-gradient(90deg, #0055cc, #0099ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 20px rgba(0,100,255,0.5));
+  }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="glow"></div>
+
+  <div class="top-bar">
+    <div class="location">Bloomington-Normal, IL</div>
+    <div class="badge">Book Now</div>
+  </div>
+
+  <div class="car-visual">
+    <div class="car-graphic">
+      <div class="shine-line shine-1"></div>
+      <div class="shine-line shine-2"></div>
+      <div class="car-body">
+        <div class="car-roof"></div>
+        <div class="car-windshield"></div>
+        <div class="car-rear-window"></div>
+        <div class="car-base"></div>
+        <div class="hood-shine"></div>
+        <div class="wheel wheel-front"></div>
+        <div class="wheel wheel-rear"></div>
+      </div>
+      <div class="ground-reflection"></div>
+    </div>
+  </div>
+
+  <div class="bottom-content">
+    <div class="divider"></div>
+    <div class="business-name">
+      Mason Weaver<span>Car Detailing</span>
+    </div>
+    <div class="cta-row">
+      <div class="cta-text">Text or Call to Book</div>
+      <div class="phone">309-200-9509</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

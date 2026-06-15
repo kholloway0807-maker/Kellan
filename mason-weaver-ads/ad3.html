@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mason Weaver Car Detailing - Ad 3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .ad {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #050505 0%, #0d0d1a 100%);
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Radial burst from center */
+  .burst {
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 1200px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg, rgba(0,60,180,0.03) 10deg,
+      transparent 20deg, rgba(0,80,200,0.05) 30deg,
+      transparent 40deg, rgba(0,60,180,0.03) 50deg,
+      transparent 60deg, rgba(0,80,200,0.04) 70deg,
+      transparent 80deg, rgba(0,60,180,0.03) 90deg,
+      transparent 100deg, rgba(0,80,200,0.05) 110deg,
+      transparent 120deg, rgba(0,60,180,0.03) 130deg,
+      transparent 140deg, rgba(0,80,200,0.04) 150deg,
+      transparent 160deg, rgba(0,60,180,0.03) 170deg,
+      transparent 180deg, rgba(0,80,200,0.05) 190deg,
+      transparent 200deg, rgba(0,60,180,0.03) 210deg,
+      transparent 220deg, rgba(0,80,200,0.04) 230deg,
+      transparent 240deg, rgba(0,60,180,0.03) 250deg,
+      transparent 260deg, rgba(0,80,200,0.05) 270deg,
+      transparent 280deg, rgba(0,60,180,0.03) 290deg,
+      transparent 300deg, rgba(0,80,200,0.04) 310deg,
+      transparent 320deg, rgba(0,60,180,0.03) 330deg,
+      transparent 340deg, rgba(0,80,200,0.05) 350deg,
+      transparent 360deg
+    );
+  }
+
+  .center-glow {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0,80,255,0.18) 0%, transparent 65%);
+  }
+
+  /* Top banner */
+  .top-banner {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 110px;
+    background: #0055cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+
+  .banner-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  /* Main name block */
+  .name-block {
+    position: absolute;
+    top: 150px;
+    left: 0; right: 0;
+    text-align: center;
+    z-index: 3;
+    padding: 0 60px;
+  }
+
+  .name-mason {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    color: #fff;
+    letter-spacing: 10px;
+    line-height: 0.9;
+    text-shadow: 0 0 80px rgba(0,80,255,0.5);
+  }
+
+  .name-weaver {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    color: transparent;
+    -webkit-text-stroke: 2px #0066ff;
+    letter-spacing: 10px;
+    line-height: 0.9;
+    filter: drop-shadow(0 0 20px rgba(0,100,255,0.5));
+  }
+
+  .name-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: 42px;
+    font-weight: 400;
+    letter-spacing: 16px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 20px;
+    text-transform: uppercase;
+  }
+
+  /* Horizontal rule lines */
+  .hr {
+    position: absolute;
+    left: 60px; right: 60px;
+    height: 1px;
+    z-index: 3;
+  }
+  .hr-top { top: 660px; background: linear-gradient(90deg, transparent, rgba(0,150,255,0.8), transparent); }
+  .hr-bottom { top: 1180px; background: linear-gradient(90deg, transparent, rgba(0,150,255,0.8), transparent); }
+
+  /* Services list */
+  .services {
+    position: absolute;
+    top: 700px;
+    left: 0; right: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .service-item {
+    flex: 1;
+    text-align: center;
+    padding: 50px 20px;
+    border-right: 1px solid rgba(0,100,255,0.2);
+    position: relative;
+  }
+
+  .service-item:last-child { border-right: none; }
+
+  .service-icon {
+    font-size: 52px;
+    margin-bottom: 20px;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(0,150,255,0.5));
+  }
+
+  .service-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+  }
+
+  /* CTA Block */
+  .cta-block {
+    position: absolute;
+    bottom: 60px;
+    left: 0; right: 0;
+    z-index: 5;
+    text-align: center;
+    padding: 0 80px;
+  }
+
+  .cta-label {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .phone-box {
+    display: inline-block;
+    background: #0055cc;
+    padding: 28px 80px;
+    margin-bottom: 24px;
+    position: relative;
+    clip-path: polygon(16px 0%, 100% 0%, calc(100% - 16px) 100%, 0% 100%);
+  }
+
+  .phone-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 90px;
+    color: #fff;
+    letter-spacing: 6px;
+    line-height: 1;
+  }
+
+  .location-text {
+    font-size: 20px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Corner accents */
+  .corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 4;
+  }
+  .corner-tl { top: 20px; left: 20px; border-top: 2px solid #0066ff; border-left: 2px solid #0066ff; }
+  .corner-tr { top: 20px; right: 20px; border-top: 2px solid #0066ff; border-right: 2px solid #0066ff; }
+  .corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid #0066ff; border-left: 2px solid #0066ff; }
+  .corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid #0066ff; border-right: 2px solid #0066ff; }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="burst"></div>
+  <div class="center-glow"></div>
+
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="top-banner">
+    <div class="banner-text">Professional Auto Detailing</div>
+  </div>
+
+  <div class="name-block">
+    <div class="name-mason">Mason</div>
+    <div class="name-weaver">Weaver</div>
+    <div class="name-sub">Car Detailing</div>
+  </div>
+
+  <div class="hr hr-top"></div>
+
+  <div class="services">
+    <div class="service-item">
+      <span class="service-icon">✨</span>
+      <div class="service-name">Interior</div>
+      <div class="service-desc">Deep clean & polish</div>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">💧</span>
+      <div class="service-name">Exterior</div>
+      <div class="service-desc">Wash, wax & shine</div>
+    </div>
+    <div class="service-item">
+      <span class="service-icon">🚗</span>
+      <div class="service-name">Full Detail</div>
+      <div class="service-desc">Complete package</div>
+    </div>
+  </div>
+
+  <div class="hr hr-bottom"></div>
+
+  <div class="cta-block">
+    <div class="cta-label">Text or Call to Schedule</div>
+    <div class="phone-box">
+      <div class="phone-number">309-200-9509</div>
+    </div>
+    <div class="location-text">Bloomington-Normal, IL</div>
+  </div>
+</div>
+</body>
+</html>

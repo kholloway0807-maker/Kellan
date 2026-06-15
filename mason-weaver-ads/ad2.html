@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mason Weaver Car Detailing - Ad 2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .ad {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+
+  /* Diagonal split background */
+  .bg-left {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #000814 0%, #001d3d 60%, #000814 100%);
+    clip-path: polygon(0 0, 65% 0, 45% 100%, 0 100%);
+  }
+
+  .bg-right {
+    position: absolute;
+    top: 0; right: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(225deg, #000000 0%, #001233 60%, #000000 100%);
+    clip-path: polygon(65% 0, 100% 0, 100% 100%, 45% 100%);
+  }
+
+  /* Accent stripe */
+  .accent-stripe {
+    position: absolute;
+    top: 0;
+    left: 55%;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #0066ff 20%, #00aaff 50%, #0066ff 80%, transparent);
+    transform: skewX(-10deg);
+    box-shadow: 0 0 30px rgba(0,100,255,0.8), 0 0 80px rgba(0,100,255,0.3);
+  }
+
+  /* Top section */
+  .top-section {
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    right: 70px;
+    z-index: 3;
+  }
+
+  .tagline {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: #0088ff;
+    margin-bottom: 20px;
+  }
+
+  .headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 130px;
+    line-height: 0.85;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 60px rgba(0,80,255,0.4);
+  }
+
+  .headline .accent { color: #0077ff; }
+
+  /* Middle visual - water drops grid */
+  .drops-section {
+    position: absolute;
+    top: 380px;
+    left: 0; right: 0;
+    height: 580px;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .drop-grid {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    opacity: 0.6;
+  }
+
+  .drop-cell {
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.9) 0%, rgba(0,120,255,0.5) 40%, rgba(0,40,120,0.3) 100%);
+    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4), 0 1px 3px rgba(0,150,255,0.3);
+    aspect-ratio: 1;
+  }
+
+  .drop-cell.big {
+    transform: scale(1.4);
+    background: radial-gradient(circle at 30% 25%, rgba(255,255,255,1) 0%, rgba(0,150,255,0.7) 40%, rgba(0,60,180,0.4) 100%);
+    box-shadow: 0 0 10px rgba(0,150,255,0.5);
+  }
+
+  .drop-cell.small { transform: scale(0.6); opacity: 0.7; }
+
+  /* Overlay gradient on drops */
+  .drops-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(180deg,
+      rgba(10,10,10,0.7) 0%,
+      rgba(10,10,10,0.1) 30%,
+      rgba(10,10,10,0.1) 70%,
+      rgba(10,10,10,0.8) 100%
+    );
+  }
+
+  /* Center badge */
+  .center-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    text-align: center;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(0,120,255,0.5);
+    padding: 30px 50px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 60px rgba(0,80,255,0.3);
+  }
+
+  .badge-label {
+    font-size: 18px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #0088ff;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .badge-service {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: #fff;
+    letter-spacing: 4px;
+  }
+
+  /* Bottom section */
+  .bottom-section {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 50px 70px 70px;
+    z-index: 3;
+    background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, transparent 100%);
+  }
+
+  .bottom-line {
+    width: 120px;
+    height: 4px;
+    background: #0066ff;
+    margin-bottom: 35px;
+    box-shadow: 0 0 20px rgba(0,100,255,0.8);
+  }
+
+  .company-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: #fff;
+    letter-spacing: 5px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .company-sub {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    color: #0088ff;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #0066ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 0 20px rgba(0,100,255,0.4);
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-label {
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .contact-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: #fff;
+    letter-spacing: 5px;
+    line-height: 1;
+  }
+
+  .location-tag {
+    position: absolute;
+    bottom: 70px;
+    right: 70px;
+    font-size: 20px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div class="ad">
+  <div class="bg-left"></div>
+  <div class="bg-right"></div>
+  <div class="accent-stripe"></div>
+
+  <div class="top-section">
+    <div class="tagline">Premium Auto Detailing</div>
+    <div class="headline">
+      Make It<br><span class="accent">Shine.</span>
+    </div>
+  </div>
+
+  <div class="drops-section">
+    <div class="drop-grid" id="dropGrid"></div>
+    <div class="drops-overlay"></div>
+  </div>
+
+  <div class="center-badge">
+    <div class="badge-label">Serving</div>
+    <div class="badge-service">Bloomington-Normal</div>
+  </div>
+
+  <div class="bottom-section">
+    <div class="bottom-line"></div>
+    <div class="company-name">Mason Weaver</div>
+    <div class="company-sub">Car Detailing</div>
+    <div class="contact-row">
+      <div class="contact-icon">📞</div>
+      <div class="contact-info">
+        <div class="contact-label">Text or Call to Book</div>
+        <div class="contact-number">309-200-9509</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const grid = document.getElementById('dropGrid');
+  const sizes = ['big', '', '', 'small', '', 'big', 'small', '', '', 'big', 'small', ''];
+  for (let i = 0; i < 14 * 9; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'drop-cell ' + sizes[i % sizes.length];
+    grid.appendChild(cell);
+  }
+</script>
+</body>
+</html>
