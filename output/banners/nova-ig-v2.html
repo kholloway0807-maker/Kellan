@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>NOVA Instagram Ad</title>
+
+<!-- Skill recommendation: Anton + Epilogue — "Gen Z Brutal" pairing for streetwear -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Epilogue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /*
+   * Design System: NOVA Streetwear
+   * Style:  Exaggerated Minimalism (skill: styles.csv #1 match)
+   * Fonts:  Anton (display) + Epilogue (body)  — "Gen Z Brutal"
+   * Colors: #000000 bg / #FFFFFF fg / single accent #F5F5F5
+   * Rules applied: whitespace-balance, weight-hierarchy, contrast-readability,
+   *                no-emoji-icons, visual-hierarchy, typography > decoration
+   */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --color-bg:       #000000;
+    --color-fg:       #FFFFFF;
+    --color-muted:    rgba(255,255,255,0.35);
+    --color-rule:     rgba(255,255,255,0.12);
+    --font-display:   'Anton', Impact, sans-serif;
+    --font-body:      'Epilogue', system-ui, sans-serif;
+    --spacing-unit:   8px;
+  }
+
+  body {
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+  }
+
+  /* ── Canvas ── */
+  .canvas {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 72px 80px 64px;
+  }
+
+  /* ── Grain texture — subtle paper noise (skill: minimalist monochrome spec) ── */
+  .canvas::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* ══════════════════════════
+     TOP BAR
+  ══════════════════════════ */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  .brand {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+
+  .collection-tag {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 16px;
+    border-radius: 0;          /* skill: border-radius: 0px — minimalist monochrome */
+  }
+
+  /* ══════════════════════════
+     HERO HEADLINE BLOCK
+     Skill spec: clamp(3rem, 10vw, 12rem), font-weight 900
+     Anton renders as all-caps condensed — matches NOVA garment text exactly
+  ══════════════════════════ */
+  .hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--color-muted);
+  }
+
+  .headline {
+    font-family: var(--font-display);
+    font-size: 178px;
+    line-height: 0.87;
+    letter-spacing: -0.01em;
+    color: var(--color-fg);
+    text-transform: uppercase;
+    margin-bottom: 0;
+  }
+
+  /* Full-bleed horizontal rule — skill: section divider spec */
+  .h-rule {
+    width: calc(100% + 160px);
+    margin-left: -80px;
+    height: 1px;
+    background: var(--color-rule);
+    margin-top: 56px;
+    margin-bottom: 48px;
+  }
+
+  /* ══════════════════════════
+     PRODUCT ROW
+  ══════════════════════════ */
+  .product-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+  }
+
+  .product-item {
+    padding: 0 32px 0 0;
+    border-right: 1px solid var(--color-rule);
+  }
+  .product-item:first-child { padding-left: 0; }
+  .product-item:last-child  { border-right: none; padding-right: 0; padding-left: 32px; }
+  .product-item:nth-child(2) { padding-left: 32px; }
+
+  .product-slogan {
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    margin-bottom: 8px;
+    line-height: 1.05;
+  }
+
+  .product-detail {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  /* Coords — visual motif from garments */
+  .product-coords {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.2);
+    margin-top: 12px;
+  }
+
+  /* ══════════════════════════
+     BOTTOM BAR
+  ══════════════════════════ */
+  .bottom-bar {
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .bottom-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.22);
+  }
+
+  .bottom-url {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 0.04em;
+    color: var(--color-fg);
+    text-transform: lowercase;
+  }
+
+  .bottom-right {
+    text-align: right;
+  }
+
+  .cta-text {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    line-height: 2;
+  }
+
+  /* ══════════════════════════
+     LARGE BG WORD — Exaggerated Minimalism accent
+     Skill: "massive whitespace + oversized elements"
+  ══════════════════════════ */
+  .bg-word {
+    position: absolute;
+    bottom: -40px;
+    right: -20px;
+    font-family: var(--font-display);
+    font-size: 380px;
+    line-height: 1;
+    color: rgba(255,255,255,0.025);
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* Ensure content sits above bg word */
+  .canvas > *:not(.bg-word) { position: relative; z-index: 1; }
+
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <!-- Exaggerated background word — depth via typography not decoration -->
+  <div class="bg-word">NOVA</div>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="brand">N O V A</div>
+    <div class="collection-tag">2025 Collection</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Wear your mindset</div>
+
+    <div class="headline">
+      TAKE<br>THE<br>RISK.
+    </div>
+  </div>
+
+  <!-- Full-bleed divider — minimalist monochrome rule -->
+  <div class="h-rule"></div>
+
+  <!-- PRODUCT ROW -->
+  <div class="product-row">
+
+    <div class="product-item">
+      <div class="product-slogan">Take The Risk</div>
+      <div class="product-detail">Hoodie · Black</div>
+      <div class="product-coords">37.7335° N, 119.6376° W</div>
+    </div>
+
+    <div class="product-item">
+      <div class="product-slogan">Create Your Legacy</div>
+      <div class="product-detail">Crewneck · Navy</div>
+      <div class="product-coords">38.8927° N, 77.0230° W</div>
+    </div>
+
+    <div class="product-item">
+      <div class="product-slogan">Leap of Faith</div>
+      <div class="product-detail">Tee · Black</div>
+      <div class="product-coords">27.9881° N, 86.9250° E</div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <div class="bottom-left">
+      <div class="bottom-label">Shop the collection</div>
+      <div class="bottom-url">novaly.us</div>
+    </div>
+    <div class="bottom-right">
+      <div class="cta-text">
+        Limited drops.<br>Bold moves.<br>No regrets.
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
