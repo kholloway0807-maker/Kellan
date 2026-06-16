@@ -117,10 +117,8 @@ def render_car():
     wheel(806, 452, 86)
     return car
 
-car = render_car()
-# face left (front toward the text)
-car = car.transpose(Image.FLIP_LEFT_RIGHT)
-CARW = s(600)
+car = Image.open("/home/user/Kellan/_suv_cut.png").convert("RGBA")
+CARW = s(560)
 car = car.resize((CARW, int(CARW * car.height / car.width)), Image.LANCZOS)
 
 # floor reflection
@@ -128,14 +126,14 @@ refl = car.transpose(Image.FLIP_TOP_BOTTOM)
 fade = Image.new("L", refl.size, 0)
 fp = fade.load()
 for y in range(refl.height):
-    a = int(95 * (1 - y / refl.height))
+    a = int(70 * (1 - y / refl.height))
     for x in range(refl.width):
         fp[x, y] = a
 refl.putalpha(ImageChops.multiply(refl.split()[3], fade))
 
-car_x = CW - CARW + s(80)
-car_y = s(330)
-img.paste(refl, (car_x, car_y + car.height - s(30)), refl)
+car_x = CW - CARW - s(20)
+car_y = s(430)
+img.paste(refl, (car_x, car_y + car.height - s(14)), refl)
 img.paste(car, (car_x, car_y), car)
 draw = ImageDraw.Draw(img, "RGBA")
 
