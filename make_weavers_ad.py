@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Conversion-optimized before/after ad creative for Weaver's Luxury Detailing."""
-import math
-from PIL import Image, ImageDraw, ImageFont
+"""Conversion-optimized before/after ad for Weaver's Luxury Detailing.
+Realistic rendered luxury sedan (no cartoon silhouettes)."""
+import math, random
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 
 W, H = 1080, 1350
 SS = 2
 CW, CH = W * SS, H * SS
 
 img = Image.new("RGB", (CW, CH), (10, 10, 12))
-draw = ImageDraw.Draw(img, "RGBA")
 
 def s(v):
     return int(round(v * SS))
@@ -21,7 +21,6 @@ GOLD = (201, 162, 84)
 GOLD_HI = (235, 203, 122)
 WHITE = (242, 242, 244)
 GRAY = (165, 167, 173)
-DARK = (16, 16, 18)
 
 # ---------- background charcoal gradient ----------
 top, bot = (30, 30, 34), (8, 8, 10)
@@ -34,7 +33,160 @@ for y in range(CH):
 draw = ImageDraw.Draw(img, "RGBA")
 cx = CW // 2
 
-# ---------- text helpers ----------
+# =================================================================
+#  REALISTIC CAR RENDERER
+# =================================================================
+def vgrad(w, h, c0, c1):
+    g = Image.new("RGB", (1, h))
+    gp = g.load()
+    for y in range(h):
+        t = y / max(1, h - 1)
+        gp[0, y] = tuple(int(c0[i] + (c1[i] - c0[i]) * t) for i in range(3))
+    return g.resize((w, h))
+
+def render_car(variant):
+    """Return an RGBA image (880x560 display) of a sleek luxury fastback sedan."""
+    HW, HH = 1760, 1120          # hi-res working canvas
+    sx, sy = HW / 1000.0, HH / 580.0
+    def P(x, y):
+        return (x * sx, y * sy)
+    def PL(pts):
+        return [P(*p) for p in pts]
+
+    car = Image.new("RGBA", (HW, HH), (0, 0, 0, 0))
+
+    # contact shadow
+    sh = Image.new("RGBA", (HW, HH), (0, 0, 0, 0))
+    ImageDraw.Draw(sh).ellipse([P(120, 470)[0], P(0, 478)[1], P(900, 470)[0], P(0, 512)[1]],
+                               fill=(0, 0, 0, 150))
+    sh = sh.filter(ImageFilter.GaussianBlur(int(14 * sx)))
+    car = Image.alpha_composite(car, sh)
+
+    # ----- body outline (fastback luxury sedan, facing right) -----
+    body = [
+        (95, 452), (78, 392), (88, 356), (150, 322), (300, 300),
+        (372, 230), (468, 188), (600, 182), (690, 210), (742, 262),
+        (792, 286), (905, 300), (948, 320), (962, 352), (956, 404),
+        (946, 452),
+    ]
+    bmask = Image.new("L", (HW, HH), 0)
+    ImageDraw.Draw(bmask).polygon(PL(body), fill=255)
+
+    # base paint gradient
+    if variant == "after":
+        paint = vgrad(HW, HH, (66, 72, 84), (4, 5, 8))      # deep glossy black
+    else:
+        paint = vgrad(HW, HH, (124, 125, 130), (70, 70, 74))  # dull gray
+    car.paste(paint.convert("RGBA"), (0, 0), bmask)
+
+    cd = ImageDraw.Draw(car, "RGBA")
+
+    # body character line (subtle crease along the doors)
+    cd.line(PL([(150, 360), (905, 338)]), fill=(255, 255, 255, 28), width=int(3 * sx))
+    cd.line(PL([(150, 366), (905, 344)]), fill=(0, 0, 0, 60), width=int(4 * sx))
+
+    # rocker / lower shadow
+    low = Image.new("RGBA", (HW, HH), (0, 0, 0, 0))
+    ImageDraw.Draw(low).polygon(PL([(95, 452), (946, 452), (956, 404), (88, 412)]),
+                                fill=(0, 0, 0, 150))
+    low.putalpha(ImageChops.multiply(low.split()[3], bmask))
+    car = Image.alpha_composite(car, low)
+    cd = ImageDraw.Draw(car, "RGBA")
+
+    # ----- greenhouse / windows -----
+    glass_poly = [(392, 224), (470, 196), (598, 192), (676, 214), (706, 262), (372, 286)]
+    gmask = Image.new("L", (HW, HH), 0)
+    ImageDraw.Draw(gmask).polygon(PL(glass_poly), fill=255)
+    if variant == "after":
+        glass = vgrad(HW, HH, (150, 198, 226), (28, 44, 66))
+    else:
+        glass = vgrad(HW, HH, (108, 120, 132), (60, 68, 78))
+    car.paste(glass.convert("RGBA"), (0, 0), gmask)
+    cd = ImageDraw.Draw(car, "RGBA")
+    # window frame
+    cd.line(PL(glass_poly + [glass_poly[0]]), fill=(0, 0, 0, 200), width=int(4 * sx))
+    # B-pillar
+    cd.line(PL([(536, 192), (540, 286)]), fill=(10, 10, 12, 255), width=int(7 * sx))
+    if variant == "after":
+        cd.polygon(PL([(410, 222), (452, 204), (470, 250), (404, 268)]),
+                   fill=(220, 240, 255, 150))   # windshield reflection
+
+    # ----- specular gloss highlights (after) -----
+    if variant == "after":
+        spec = Image.new("RGBA", (HW, HH), (0, 0, 0, 0))
+        sd = ImageDraw.Draw(spec, "RGBA")
+        # broad soft top reflection on roof/hood
+        sd.polygon(PL([(380, 232), (700, 208), (905, 300), (905, 318), (300, 312)]),
+                   fill=(255, 255, 255, 60))
+        # warm environment reflection band across doors (gold horizon)
+        sd.polygon(PL([(150, 372), (905, 350), (905, 392), (120, 412)]),
+                   fill=(235, 203, 122, 90))
+        # crisp top edge highlight
+        sd.line(PL([(372, 232), (690, 210)]), fill=(255, 255, 255, 150), width=int(4 * sx))
+        spec = spec.filter(ImageFilter.GaussianBlur(int(5 * sx)))
+        spec.putalpha(ImageChops.multiply(spec.split()[3], bmask))
+        car = Image.alpha_composite(car, spec)
+        cd = ImageDraw.Draw(car, "RGBA")
+    else:
+        # dust / grime overlay for before
+        dust = Image.new("RGBA", (HW, HH), (0, 0, 0, 0))
+        dd = ImageDraw.Draw(dust, "RGBA")
+        random.seed(11)
+        for _ in range(900):
+            dx = random.uniform(90, 950) * sx
+            dy = random.uniform(300, 450) * sy
+            r = random.uniform(1, 4) * sx
+            dd.ellipse([dx, dy, dx + r, dy + r], fill=(150, 138, 112, random.randint(40, 110)))
+        # a couple of grime streaks
+        for sxp in (300, 520, 720):
+            dd.line([P(sxp, 320)[0], P(sxp, 320)[1], P(sxp - 18, 440)[0], P(sxp - 18, 440)[1]],
+                    fill=(120, 110, 92, 70), width=int(10 * sx))
+        dust.putalpha(ImageChops.multiply(dust.split()[3], bmask))
+        car = Image.alpha_composite(car, dust)
+        cd = ImageDraw.Draw(car, "RGBA")
+
+    # headlight & taillight
+    cd.polygon(PL([(905, 306), (948, 320), (950, 342), (905, 332)]),
+               fill=(255, 246, 214, 235) if variant == "after" else (200, 196, 180, 200))
+    cd.polygon(PL([(80, 360), (110, 352), (112, 384), (84, 392)]),
+               fill=(220, 60, 50, 230) if variant == "after" else (150, 70, 66, 200))
+
+    # ----- wheels with alloy spokes -----
+    def wheel(cxw, cyw, r, variant):
+        # tire
+        cd.ellipse([P(cxw - r, cyw - r)[0], P(cxw - r, cyw - r)[1],
+                    P(cxw + r, cyw + r)[0], P(cxw + r, cyw + r)[1]], fill=(12, 12, 14))
+        # sidewall sheen
+        cd.ellipse([P(cxw - r * .92, cyw - r * .92)[0], P(cxw - r * .92, cyw - r * .92)[1],
+                    P(cxw + r * .92, cyw + r * .92)[0], P(cxw + r * .92, cyw + r * .92)[1]],
+                   outline=(40, 40, 44), width=int(4 * sx))
+        rr = r * 0.60
+        rim_c = (208, 178, 116) if variant == "after" else (120, 120, 124)
+        cd.ellipse([P(cxw - rr, cyw - rr)[0], P(cxw - rr, cyw - rr)[1],
+                    P(cxw + rr, cyw + rr)[0], P(cxw + rr, cyw + rr)[1]],
+                   fill=(60, 62, 68) if variant == "after" else (78, 78, 82))
+        # spokes
+        cxp, cyp = P(cxw, cyw)
+        for i in range(10):
+            a = i * (2 * math.pi / 10)
+            x1 = cxp + (rr * 0.18 * sx) * math.cos(a)
+            y1 = cyp + (rr * 0.18 * sy) * math.sin(a)
+            x2 = cxp + (rr * 0.92 * sx) * math.cos(a)
+            y2 = cyp + (rr * 0.92 * sy) * math.sin(a)
+            cd.line([x1, y1, x2, y2], fill=rim_c, width=int(6 * sx))
+        # hub
+        hc = (235, 203, 122) if variant == "after" else (95, 95, 99)
+        cd.ellipse([P(cxw - r * .14, cyw - r * .14)[0], P(cxw - r * .14, cyw - r * .14)[1],
+                    P(cxw + r * .14, cyw + r * .14)[0], P(cxw + r * .14, cyw + r * .14)[1]], fill=hc)
+
+    wheel(232, 452, 86, variant)
+    wheel(806, 452, 86, variant)
+
+    return car.resize((880, 560), Image.LANCZOS)
+
+# =================================================================
+#  LAYOUT
+# =================================================================
 def centered(cx, y, txt, fnt, fill, tracking=0, shadow=None, soff=4):
     if tracking == 0:
         b = draw.textbbox((0, 0), txt, font=fnt)
@@ -52,11 +204,6 @@ def centered(cx, y, txt, fnt, fill, tracking=0, shadow=None, soff=4):
             draw.text((x + s(soff), y - btop + s(soff)), ch, font=fnt, fill=shadow)
         draw.text((x, y - btop), ch, font=fnt, fill=fill)
         x += w + tracking
-
-def left_text(x, y, txt, fnt, fill):
-    b = draw.textbbox((0, 0), txt, font=fnt)
-    draw.text((x, y - b[1]), txt, font=fnt, fill=fill)
-    return b[2] - b[0]
 
 def star5(d, ox, oy, r, fill):
     pts = []
@@ -79,62 +226,28 @@ centered(cx, s(206), "LUXURY DETAILING", font(46), GOLD, tracking=s(10))
 # ---------- BEFORE / AFTER PANEL ----------
 pad = s(50)
 ptop, pbot = s(300), s(812)
-draw.rounded_rectangle([pad, ptop, CW - pad, pbot], radius=s(20), fill=(0, 0, 0, 255))
 midx = cx
-
-# left (before) background
-draw.rounded_rectangle([pad, ptop, midx, pbot], radius=s(20), fill=(58, 58, 62, 255))
-draw.rectangle([midx - s(20), ptop, midx, pbot], fill=(58, 58, 62, 255))
-# right (after) background with radial gold glow
-for rr in range(s(360), 0, -s(8)):
-    a = int(36 * (1 - rr / s(360)))
+draw.rounded_rectangle([pad, ptop, CW - pad, pbot], radius=s(20), fill=(0, 0, 0, 255))
+draw.rounded_rectangle([pad, ptop, midx, pbot], radius=s(20), fill=(48, 49, 53, 255))
+draw.rectangle([midx - s(20), ptop, midx, pbot], fill=(48, 49, 53, 255))
+# right radial gold glow
+for rr in range(s(380), 0, -s(8)):
+    a = int(40 * (1 - rr / s(380)))
     gx, gy = midx + (CW - pad - midx) // 2, (ptop + pbot) // 2
     draw.ellipse([gx - rr, gy - rr * 0.7, gx + rr, gy + rr * 0.7], fill=(201, 162, 84, a))
 
-# ---------- car drawing ----------
-def car(d, ox, oy, scale, body, gloss=False, dusty=False, rim=(120, 122, 130)):
-    def p(x, y):
-        return (ox + x * scale, oy + y * scale)
-    # shadow
-    d.ellipse([p(-300, 118)[0], p(0, 150)[1], p(300, 118)[0], p(0, 196)[1]], fill=(0, 0, 0, 110))
-    body_poly = [p(-300, 70), p(-282, 26), p(-235, 6), p(-140, -8),
-                 p(-82, -66), p(0, -90), p(95, -86), p(168, -54),
-                 p(224, -10), p(292, 6), p(310, 34), p(310, 76), p(-300, 76)]
-    d.polygon(body_poly, fill=body)
-    glass = [p(-70, -58), p(-2, -80), p(88, -78), p(140, -52), p(112, -20), p(-54, -20)]
-    d.polygon(glass, fill=(95, 120, 140) if not gloss else (150, 205, 235))
-    if gloss:
-        d.polygon([p(-44, -56), p(-16, -66), p(2, -22), p(-36, -22)], fill=(225, 245, 255, 180))
-        # gold gloss streak
-        d.polygon([p(-280, 30), p(300, 10), p(300, 26), p(-280, 48)], fill=(235, 203, 122, 150))
-        d.polygon([p(-280, 50), p(300, 30), p(300, 38), p(-280, 62)], fill=(255, 255, 255, 70))
-    if dusty:
-        import random
-        random.seed(3)
-        for _ in range(60):
-            dx = random.uniform(-280, 290); dy = random.uniform(-50, 70)
-            d.ellipse([p(dx, dy)[0], p(dx, dy)[1], p(dx, dy)[0] + s(3), p(dx, dy)[1] + s(3)],
-                      fill=(120, 116, 105, 150))
-    # lower shade
-    d.polygon([p(-300, 60), p(310, 60), p(310, 76), p(-300, 76)], fill=(0, 0, 0, 120))
-    # wheels
-    for wxp in (-178, 190):
-        d.ellipse([p(wxp - 56, 28)[0], p(wxp - 56, 28)[1], p(wxp + 56, 28)[0], p(wxp + 56, 140)[1]],
-                  fill=(8, 8, 10))
-        d.ellipse([p(wxp - 26, 58)[0], p(wxp - 26, 58)[1], p(wxp + 26, 58)[0], p(wxp + 26, 110)[1]],
-                  fill=rim)
-        d.ellipse([p(wxp - 9, 76)[0], p(wxp - 9, 76)[1], p(wxp + 9, 76)[0], p(wxp + 9, 92)[1]],
-                  fill=(40, 40, 44))
+# paste cars
+car_before = render_car("before")
+car_after = render_car("after")
+cary = s(320)
+img.paste(car_before, (int((pad + midx) / 2 - 440), cary), car_before)
+img.paste(car_after, (int((midx + CW - pad) / 2 - 440), cary), car_after)
+draw = ImageDraw.Draw(img, "RGBA")
 
-car_y = ptop + s(250)
-# BEFORE car (dull gray, dusty)
-car(draw, (pad + midx) // 2, car_y, SS * 0.78, (92, 92, 96), gloss=False, dusty=True, rim=(96, 96, 100))
-# AFTER car (black glossy + gold shine)
+# after sparkles (gloss accents)
 acx = (midx + CW - pad) // 2
-car(draw, acx, car_y, SS * 0.78, (14, 16, 22), gloss=True, rim=(205, 175, 110))
-sparkle(draw, acx - s(70), car_y - s(70), s(22), GOLD_HI)
-sparkle(draw, acx + s(90), car_y - s(50), s(15), WHITE)
-sparkle(draw, acx + s(150), car_y - s(8), s(12), GOLD_HI)
+sparkle(draw, acx - s(80), cary // SS * 0 + s(360), s(20), GOLD_HI)
+sparkle(draw, acx + s(120), s(400), s(14), WHITE)
 
 # labels
 def tag(xc, y, txt, bg, fg):
@@ -145,22 +258,22 @@ def tag(xc, y, txt, bg, fg):
     draw.rounded_rectangle([xc - pw / 2, y, xc + pw / 2, y + ph], radius=s(20), fill=bg)
     draw.text((xc - tw / 2, y + (ph - (b[3] - b[1])) / 2 - b[1]), txt, font=f, fill=fg)
 
-tag((pad + midx) // 2, ptop + s(28), "BEFORE", (20, 20, 22, 235), GRAY)
-tag(acx, ptop + s(28), "AFTER", GOLD, (20, 20, 20))
+tag((pad + midx) // 2, ptop + s(26), "BEFORE", (18, 18, 20, 240), GRAY)
+tag(acx, ptop + s(26), "AFTER", GOLD, (20, 20, 20))
 
-# center divider + arrow circle
+# center divider + arrow
 draw.line([midx, ptop + s(8), midx, pbot - s(8)], fill=GOLD, width=s(4))
 acr = s(46)
-draw.ellipse([midx - acr, car_y - acr, midx + acr, car_y + acr], fill=GOLD)
-draw.polygon([(midx - s(14), car_y - s(18)), (midx + s(20), car_y),
-              (midx - s(14), car_y + s(18))], fill=(20, 20, 20))
+arry = (ptop + pbot) // 2
+draw.ellipse([midx - acr, arry - acr, midx + acr, arry + acr], fill=GOLD)
+draw.polygon([(midx - s(14), arry - s(18)), (midx + s(20), arry),
+              (midx - s(14), arry + s(18))], fill=(20, 20, 20))
 
-# ---------- OFFER BADGE (starburst) ----------
+# ---------- OFFER BADGE ----------
 bx, by, br = CW - pad - s(40), ptop + s(20), s(96)
 burst = []
-spikes = 16
-for i in range(spikes * 2):
-    ang = i * math.pi / spikes
+for i in range(32):
+    ang = i * math.pi / 16
     rr = br if i % 2 == 0 else br * 0.82
     burst.append((bx + rr * math.cos(ang), by + rr * math.sin(ang)))
 draw.polygon(burst, fill=(190, 40, 48))
@@ -173,12 +286,10 @@ centered(bx, by + s(40), "1ST DETAIL", font(17), WHITE)
 centered(cx, s(852), "SHOWROOM SHINE, AT YOUR DOOR", font(40), WHITE, shadow=(0, 0, 0, 140), soff=3)
 
 # ---------- STARS + social proof ----------
-sy = s(928)
-star_r = s(20)
-gap = s(50)
+sy_ = s(928); gap = s(50)
 startx = cx - (gap * 4) / 2
 for i in range(5):
-    star5(draw, startx + i * gap, sy, star_r, GOLD_HI)
+    star5(draw, startx + i * gap, sy_, s(20), GOLD_HI)
 centered(cx, s(958), "Rated 5.0  •  200+ Five-Star Local Reviews", font(26), GRAY)
 
 # ---------- location ----------
