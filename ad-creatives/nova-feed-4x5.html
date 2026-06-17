@@ -6,47 +6,46 @@
   @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
   :root{
-    --bg:#0B0B0C;          /* garment-dyed black */
-    --fg:#ECEAE5;          /* warm off-white print */
-    --muted:#8C8881;       /* warm grey */
+    --bg:#0B0B0C;
+    --fg:#ECEAE5;
+    --muted:#8C8881;
     --line:rgba(236,234,229,0.22);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{width:1080px;height:1350px;}
   body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--fg);overflow:hidden;position:relative;}
 
-  /* cinematic night-city depth (monochrome with faint warm base) */
   .cool{position:absolute;top:-22%;left:-15%;width:900px;height:900px;border-radius:50%;
     background:radial-gradient(circle at center, rgba(120,140,170,0.16) 0%, rgba(120,140,170,0) 65%);filter:blur(6px);}
   .warm{position:absolute;bottom:-26%;right:-18%;width:980px;height:980px;border-radius:50%;
-    background:radial-gradient(circle at center, rgba(196,120,70,0.18) 0%, rgba(196,120,70,0) 62%);filter:blur(8px);}
-  .vignette{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 42%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.55) 100%);}
+    background:radial-gradient(circle at center, rgba(196,120,70,0.16) 0%, rgba(196,120,70,0) 62%);filter:blur(8px);}
+  .vignette{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 42%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.55) 100%);}
   .grain{position:absolute;inset:0;opacity:0.05;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
   .frame{position:absolute;inset:46px;border:1px solid var(--line);}
 
-  .wrap{position:relative;z-index:4;height:100%;padding:108px 92px;
+  .wrap{position:relative;z-index:4;height:100%;padding:84px 92px 78px;
     display:flex;flex-direction:column;align-items:center;text-align:center;}
 
-  /* masthead */
-  .mast{font-size:52px;font-weight:500;letter-spacing:0.52em;text-indent:0.52em;text-transform:uppercase;}
-  .journey{margin-top:22px;font-size:18px;font-weight:400;letter-spacing:0.40em;text-indent:0.40em;
+  .mast{font-size:46px;font-weight:500;letter-spacing:0.52em;text-indent:0.52em;text-transform:uppercase;}
+  .journey{margin-top:18px;font-size:16px;font-weight:400;letter-spacing:0.40em;text-indent:0.40em;
     text-transform:uppercase;color:var(--muted);}
 
-  /* hero graphic (echoes the garment print) */
-  .hero{margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;align-items:center;}
-  .leap{font-size:150px;font-weight:700;letter-spacing:0.02em;line-height:0.96;text-transform:uppercase;}
-  .faith{font-family:'Cormorant',serif;font-style:italic;font-weight:500;
-    font-size:178px;line-height:0.9;margin-top:6px;}
-  .coords{margin-top:46px;font-size:24px;font-weight:400;letter-spacing:0.30em;text-indent:0.30em;color:var(--muted);}
-  .rule{width:120px;height:1px;background:var(--line);margin:40px auto 0;}
+  .hero{margin-top:20px;display:flex;flex-direction:column;align-items:center;}
+  .leap{font-size:100px;font-weight:700;letter-spacing:0.02em;line-height:0.98;text-transform:uppercase;}
+  .faith{font-family:'Cormorant',serif;font-style:italic;font-weight:500;font-size:114px;line-height:0.9;margin-top:2px;}
 
-  /* footer system */
-  .foot{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:26px;}
-  .drop{border:1px solid var(--line);padding:18px 38px;
-    font-size:23px;font-weight:500;letter-spacing:0.34em;text-indent:0.34em;text-transform:uppercase;}
-  .spec{font-size:19px;font-weight:400;letter-spacing:0.40em;text-indent:0.40em;text-transform:uppercase;color:var(--muted);}
+  /* product photo feathered into the black bg */
+  .product{margin-top:6px;width:470px;height:470px;
+    background:url('nova-tee-back.png') center/contain no-repeat;
+    -webkit-mask-image:radial-gradient(closest-side, #000 78%, transparent 100%);
+            mask-image:radial-gradient(closest-side, #000 78%, transparent 100%);}
+
+  .foot{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:22px;}
+  .drop{border:1px solid var(--line);padding:17px 36px;
+    font-size:22px;font-weight:500;letter-spacing:0.34em;text-indent:0.34em;text-transform:uppercase;}
+  .spec{font-size:18px;font-weight:400;letter-spacing:0.40em;text-indent:0.40em;text-transform:uppercase;color:var(--muted);}
 </style>
 </head>
 <body>
@@ -63,8 +62,7 @@
     <div class="hero">
       <div class="leap">Leap of</div>
       <div class="faith">Faith</div>
-      <div class="coords">27.9881&deg; N&nbsp;&nbsp;&middot;&nbsp;&nbsp;86.9250&deg; E</div>
-      <div class="rule"></div>
+      <div class="product"></div>
     </div>
 
     <div class="foot">
