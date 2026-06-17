@@ -1,0 +1,10 @@
+<section class="section"><div class="container">
+  <h1 class="collection-header__title">Order {{ order.name }}</h1>
+  <p>{{ order.created_at | date: '%B %d, %Y' }}</p>
+  <table style="width:100%;margin-top:20px;border-collapse:collapse">
+    {%- for line in order.line_items -%}
+    <tr style="border-bottom:1px solid var(--line)"><td style="padding:10px 0">{{ line.title }} × {{ line.quantity }}</td><td style="text-align:right">{{ line.final_line_price | money }}</td></tr>
+    {%- endfor -%}
+  </table>
+  <p style="text-align:right;margin-top:16px;font-size:1.2rem">Total: {{ order.total_net_amount | money }}</p>
+</div></section>

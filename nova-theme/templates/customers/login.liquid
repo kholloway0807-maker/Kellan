@@ -1,0 +1,10 @@
+<section class="section"><div class="container container--narrow">
+  <h1 class="collection-header__title">Login</h1>
+  {% form 'customer_login', class: 'newsletter-form' %}
+    {{ form.errors | default_errors }}
+    <p><input type="email" name="customer[email]" placeholder="Email" aria-label="Email"></p>
+    <p><input type="password" name="customer[password]" placeholder="Password" aria-label="Password"></p>
+    <button class="btn btn--primary" type="submit">Sign in</button>
+  {% endform %}
+  <p style="margin-top:16px"><a href="{{ routes.account_register_url }}">Create account</a></p>
+</div></section>

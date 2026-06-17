@@ -1,0 +1,40 @@
+<header class="site-header" data-header>
+  <div class="site-header__inner">
+    <button class="site-header__nav-toggle" aria-label="Menu" aria-expanded="false" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="{{ routes.root_url }}" class="site-header__logo">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 240 }}" alt="{{ shop.name }}" width="120">
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+
+    <nav class="site-header__nav" data-nav>
+      {%- for link in linklists[section.settings.menu].links -%}
+        <a href="{{ link.url }}" class="site-header__link">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="{{ routes.search_url }}" class="site-header__action" aria-label="Search">{% render 'icon-search' %}</a>
+      <a href="{{ routes.account_url }}" class="site-header__action" aria-label="Account">{% render 'icon-user' %}</a>
+      <a href="{{ routes.cart_url }}" class="site-header__action site-header__cart" aria-label="Cart">
+        {% render 'icon-cart' %}
+        <span class="site-header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

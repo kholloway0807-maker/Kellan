@@ -1,0 +1,28 @@
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span class="marquee__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        <span class="marquee__star">✦</span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "blocks": [
+    { "type": "item", "name": "Item", "settings": [ { "type": "text", "id": "text", "label": "Text", "default": "TAKE THE RISK" } ] }
+  ],
+  "max_blocks": 8,
+  "presets": [{
+    "name": "Marquee",
+    "blocks": [
+      { "type": "item", "settings": { "text": "LEAP OF FAITH" } },
+      { "type": "item", "settings": { "text": "CREATE YOUR LEGACY" } },
+      { "type": "item", "settings": { "text": "TAKE THE RISK" } }
+    ]
+  }]
+}
+{% endschema %}

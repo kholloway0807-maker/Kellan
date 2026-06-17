@@ -1,0 +1,7 @@
+<section class="section"><div class="container container--narrow" style="text-align:center">
+  <h1 class="collection-header__title">{{ shop.name }} Gift Card</h1>
+  <p style="font-size:2rem;margin:16px 0">{{ gift_card.balance | money }}</p>
+  {%- if gift_card.qr_identifier -%}{{ gift_card | payment_terms }}{%- endif -%}
+  <p style="opacity:.7">Use this code at checkout:</p>
+  <p style="font-family:monospace;font-size:1.3rem;letter-spacing:.1em">{{ gift_card.code | format_code }}</p>
+</div></section>

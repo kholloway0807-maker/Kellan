@@ -1,0 +1,61 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <p class="site-footer__logo">{{ shop.name }}</p>
+      <p class="site-footer__tagline">{{ section.settings.tagline }}</p>
+    </div>
+
+    <div class="site-footer__cols">
+      {%- for block in section.blocks -%}
+        <div class="site-footer__col" {{ block.shopify_attributes }}>
+          <h3 class="site-footer__col-title">{{ block.settings.title }}</h3>
+          <nav>
+            {%- for link in linklists[block.settings.menu].links -%}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {%- endfor -%}
+          </nav>
+        </div>
+      {%- endfor -%}
+
+      <div class="site-footer__col site-footer__newsletter">
+        <h3 class="site-footer__col-title">{{ section.settings.newsletter_title }}</h3>
+        {% form 'customer', class: 'newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-form__row">
+            <input type="email" name="contact[email]" placeholder="Email address" required aria-label="Email">
+            <button type="submit">Join</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p class="newsletter-form__success">Thanks for subscribing.</p>
+          {%- endif -%}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Wear your conviction." },
+    { "type": "text", "id": "newsletter_title", "label": "Newsletter title", "default": "Join the movement" }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu column",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [{ "name": "Footer", "blocks": [{ "type": "menu" }] }]
+}
+{% endschema %}

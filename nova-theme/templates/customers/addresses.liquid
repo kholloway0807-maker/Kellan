@@ -1,0 +1,7 @@
+<section class="section"><div class="container container--narrow">
+  <h1 class="collection-header__title">Addresses</h1>
+  <p><a href="{{ routes.account_url }}">Back to account</a></p>
+  {%- for address in customer.addresses -%}
+    <div style="padding:16px 0;border-bottom:1px solid var(--line)">{{ address | format_address }}</div>
+  {%- endfor -%}
+</div></section>

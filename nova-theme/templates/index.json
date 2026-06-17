@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "NOVA — New Drop",
+        "heading": "Take The Risk.",
+        "subheading": "Heavyweight, garment-dyed essentials built for the bold. Wear your conviction.",
+        "button_label": "Shop the collection",
+        "alignment": "center",
+        "overlay_opacity": 45
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "blocks": {
+        "b1": { "type": "item", "settings": { "text": "LEAP OF FAITH" } },
+        "b2": { "type": "item", "settings": { "text": "CREATE YOUR LEGACY" } },
+        "b3": { "type": "item", "settings": { "text": "TAKE THE RISK" } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "The Collection",
+        "heading": "Best Sellers",
+        "limit": 6,
+        "button_label": "Shop all"
+      }
+    },
+    "story": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "left",
+        "eyebrow": "Our Story",
+        "heading": "Built for the bold.",
+        "text": "<p>NOVA makes heavyweight, garment-dyed essentials with a worn-in feel and a relaxed fit. Every piece carries a message — leap, create, risk.</p>"
+      }
+    }
+  },
+  "order": ["hero", "marquee", "featured", "story"]
+}

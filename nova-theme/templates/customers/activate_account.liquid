@@ -1,0 +1,9 @@
+<section class="section"><div class="container container--narrow">
+  <h1 class="collection-header__title">Activate account</h1>
+  {% form 'activate_customer_password', class: 'newsletter-form' %}
+    {{ form.errors | default_errors }}
+    <p><input type="password" name="customer[password]" placeholder="Password"></p>
+    <p><input type="password" name="customer[password_confirmation]" placeholder="Confirm password"></p>
+    <button class="btn btn--primary" type="submit">Activate</button>
+  {% endform %}
+</div></section>
