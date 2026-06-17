@@ -1,0 +1,48 @@
+<section class="section">
+  <div class="wrap">
+    {%- if cart.item_count > 0 -%}
+      <div class="section__head"><h1 class="section__title">Your Cart</h1></div>
+      {%- form 'cart', cart -%}
+        <table class="cart-table">
+          <thead>
+            <tr><th>Product</th><th>Qty</th><th style="text-align:right;">Total</th></tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr>
+                <td>
+                  <div class="cart-item">
+                    {%- if item.image -%}<img src="{{ item.image | image_url: width: 180 }}" alt="{{ item.title | escape }}">{%- endif -%}
+                    <div>
+                      <div class="cart-item__name">{{ item.product.title | remove: 'NOVA ' }}</div>
+                      <div class="product-card__opt">{{ item.variant.title }}</div>
+                      <a href="{{ item.url_to_remove }}" style="font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--color-muted);">Remove</a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0"
+                         style="width:64px; padding:10px; background:var(--color-surface); color:var(--color-fg); border:1px solid var(--color-rule);">
+                </td>
+                <td style="text-align:right; font-variant-numeric:tabular-nums;">{{ item.final_line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+        <div class="cart-summary">
+          <button type="submit" name="update" class="btn btn--ghost">Update Cart</button>
+          <div style="display:flex; align-items:center; gap:32px; flex-wrap:wrap;">
+            <span class="cart-total">{{ cart.total_price | money }}</span>
+            <button type="submit" name="checkout" class="btn btn--solid">Checkout &rarr;</button>
+          </div>
+        </div>
+      {%- endform -%}
+    {%- else -%}
+      <div class="empty-state">
+        <h1>Cart Is<br>Empty.</h1>
+        <p>No risks taken yet. Time to change that.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--solid">Shop the Collection</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>

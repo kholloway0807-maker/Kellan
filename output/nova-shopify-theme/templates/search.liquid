@@ -1,0 +1,27 @@
+<section class="coll-head">
+  <div class="wrap">
+    <h1 class="coll-head__title">Search</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="margin-top:32px;">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="SEARCH PRODUCTS"
+             style="width:100%; max-width:520px; padding:16px; background:var(--color-surface); color:var(--color-fg); border:1px solid var(--color-rule); font-family:var(--font-body); letter-spacing:0.1em; text-transform:uppercase;">
+    </form>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <div class="coll-head__count" style="margin-bottom:40px;">{{ search.results_count }} results for "{{ search.terms }}"</div>
+        <div class="product-grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {%- render 'product-card', product: item -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="empty-state"><h1>No Results.</h1><p>Try another search.</p></div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>

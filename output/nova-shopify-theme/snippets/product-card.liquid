@@ -1,0 +1,23 @@
+{%- comment -%} Renders a NOVA product card. Param: product {%- endcomment -%}
+<a href="{{ product.url }}" class="product-card">
+  <div class="product-card__media">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 800 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="800" height="800" loading="lazy">
+    {%- else -%}
+      <img src="{{ 'product-1' | placeholder_svg_tag }}" alt="{{ product.title | escape }}">
+    {%- endif -%}
+    {%- if product.compare_at_price > product.price -%}
+      <span class="product-card__tag">Sale</span>
+    {%- endif -%}
+  </div>
+  <div class="product-card__body">
+    <span class="product-card__name">{{ product.title | remove: 'NOVA ' }}</span>
+    <span class="product-card__price">{{ product.price | money }}</span>
+  </div>
+  {%- if product.options_with_values.size > 0 -%}
+    <div class="product-card__opt">{{ product.type | default: product.options.first }}</div>
+  {%- endif -%}
+</a>

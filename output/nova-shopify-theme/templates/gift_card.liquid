@@ -1,0 +1,10 @@
+<section class="section">
+  <div class="wrap" style="text-align:center;">
+    <h1 class="section__title">Gift Card</h1>
+    <p style="color:var(--color-muted); margin:24px 0;">Value: {{ gift_card.balance | money }}</p>
+    {%- if gift_card.qr_identifier -%}
+      <img src="{{ gift_card.qr_identifier }}" alt="Gift card QR code" style="margin:0 auto;">
+    {%- endif -%}
+    <p style="margin-top:24px; font-family:var(--font-display); font-size:28px; letter-spacing:0.1em;">{{ gift_card.code | format_code }}</p>
+  </div>
+</section>

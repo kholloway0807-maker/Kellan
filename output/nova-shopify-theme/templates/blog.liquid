@@ -1,0 +1,18 @@
+<section class="coll-head">
+  <div class="wrap"><h1 class="coll-head__title">{{ blog.title }}</h1></div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="product-grid">
+      {%- for article in blog.articles -%}
+        <a href="{{ article.url }}" class="product-card">
+          {%- if article.image -%}
+            <div class="product-card__media"><img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}" loading="lazy"></div>
+          {%- endif -%}
+          <div class="product-card__body"><span class="product-card__name">{{ article.title }}</span></div>
+          <div class="product-card__opt">{{ article.published_at | date: '%b %d, %Y' }}</div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

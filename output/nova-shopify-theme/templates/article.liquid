@@ -1,0 +1,14 @@
+<section class="coll-head">
+  <div class="wrap">
+    <h1 class="coll-head__title">{{ article.title }}</h1>
+    <div class="coll-head__count">{{ article.published_at | date: '%b %d, %Y' }}{% if article.author %} &mdash; {{ article.author }}{% endif %}</div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    {%- if article.image -%}
+      <img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}" style="margin-bottom:48px; border:1px solid var(--color-rule);">
+    {%- endif -%}
+    <div class="rte" style="max-width:70ch; color:var(--color-muted); line-height:1.8;">{{ article.content }}</div>
+  </div>
+</section>

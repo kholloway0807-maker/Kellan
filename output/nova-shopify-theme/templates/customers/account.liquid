@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="wrap">
+    <div class="section__head">
+      <h1 class="section__title">Account</h1>
+      <a href="{{ routes.account_logout_url }}" class="section__label">Log out</a>
+    </div>
+    <p style="color:var(--color-muted); margin-bottom:40px;">Welcome, {{ customer.first_name | default: customer.email }}.</p>
+    <h2 class="value__title" style="margin-bottom:24px;">Order History</h2>
+    {%- if customer.orders.size > 0 -%}
+      <table class="cart-table">
+        <thead><tr><th>Order</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
+        <tbody>
+          {%- for order in customer.orders -%}
+            <tr>
+              <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+              <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+              <td>{{ order.total_price | money }}</td>
+              <td>{{ order.fulfillment_status_label }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    {%- else -%}
+      <p style="color:var(--color-muted);">No orders yet.</p>
+    {%- endif -%}
+  </div>
+</section>

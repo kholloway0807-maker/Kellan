@@ -1,0 +1,91 @@
+{%- comment -%} NOVA Product Page {%- endcomment -%}
+<div class="wrap">
+  <div class="pdp">
+
+    <!-- GALLERY -->
+    <div class="pdp__gallery">
+      <div class="pdp__main-img">
+        {%- if product.featured_image -%}
+          <img id="pdp-main" src="{{ product.featured_image | image_url: width: 1200 }}"
+               alt="{{ product.featured_image.alt | default: product.title | escape }}"
+               width="1200" height="1200">
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="pdp__thumbs">
+          {%- for image in product.images limit: 8 -%}
+            <div class="pdp__thumb" data-thumb="{{ image | image_url: width: 1200 }}">
+              <img src="{{ image | image_url: width: 300 }}" alt="{{ image.alt | escape }}" loading="lazy">
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- INFO -->
+    <div class="pdp__info">
+      <div class="pdp__vendor">{{ product.vendor }}</div>
+      <h1 class="pdp__title">{{ product.title | remove: 'NOVA ' }}</h1>
+      <div class="pdp__price">{{ product.price | money }}</div>
+
+      {%- if product.description != blank -%}
+        <div class="pdp__desc">{{ product.description | strip_html | truncatewords: 60 }}</div>
+      {%- endif -%}
+
+      {%- form 'product', product, class: 'pdp__form' -%}
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div>
+              <label class="pdp__label" for="opt-{{ forloop.index }}">{{ option.name }}</label>
+              <select class="pdp__select" id="opt-{{ forloop.index }}" name="options[{{ option.name | escape }}]" data-option-index="{{ forloop.index0 }}">
+                {%- for value in option.values -%}
+                  <option value="{{ value | escape }}">{{ value }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <select name="id" id="variant-id" hidden>
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+              {{ variant.title }} - {{ variant.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        <button type="submit" class="btn btn--solid btn--block" {% unless product.available %}disabled{% endunless %}>
+          {%- if product.available -%}Add to Cart &mdash; {{ product.price | money }}{%- else -%}Sold Out{%- endif -%}
+        </button>
+      {%- endform -%}
+
+      <div class="pdp__meta">
+        SKU AVAILABLE &bull; FREE SHIPPING OVER $75 &bull; {{ product.variants.size }} VARIANTS
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RELATED -->
+<section class="section" style="border-top:1px solid var(--color-rule);">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">More Drops</h2>
+      <span class="section__label">Keep Going</span>
+    </div>
+    <div class="product-grid">
+      {%- assign shown = 0 -%}
+      {%- for p in collections.all.products -%}
+        {%- unless p.id == product.id -%}
+          {%- if shown < 3 -%}
+            {%- render 'product-card', product: p -%}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<section class="section">
+  <div class="wrap">
+    <h1 class="section__title" style="margin-bottom:40px;">Addresses</h1>
+    {%- paginate customer.addresses by 5 -%}
+      {%- for address in customer.addresses -%}
+        <div style="border:1px solid var(--color-rule); padding:24px; margin-bottom:16px; color:var(--color-muted);">
+          {{ address | format_address }}
+        </div>
+      {%- endfor -%}
+    {%- endpaginate -%}
+    <p style="margin-top:24px;"><a href="{{ routes.account_url }}" class="section__label">&larr; Back to account</a></p>
+  </div>
+</section>

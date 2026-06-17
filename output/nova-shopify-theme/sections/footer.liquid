@@ -1,0 +1,37 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">{{ shop.name }}<br>2025</div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="{{ routes.all_products_collection_url }}">All Products</a>
+          <a href="{{ routes.collections_url }}">Collections</a>
+          <a href="{{ routes.cart_url }}">Cart</a>
+        </div>
+        <div class="footer-col">
+          <h4>Brand</h4>
+          {%- if pages.about != blank -%}<a href="{{ pages.about.url }}">About</a>{%- endif -%}
+          <a href="{{ routes.search_url }}">Search</a>
+          <a href="{{ routes.account_url }}">Account</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:{{ shop.email }}">Email</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }} &mdash; {{ shop.domain }}</span>
+      <span>WEAR YOUR MINDSET</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

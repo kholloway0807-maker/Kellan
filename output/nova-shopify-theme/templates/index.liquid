@@ -1,0 +1,80 @@
+{%- comment -%} NOVA Homepage — Feature-Rich Showcase pattern (landing.csv) {%- endcomment -%}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero__eyebrow">Wear your mindset</p>
+    <h1 class="hero__title">Take<br>the<br>Risk.</h1>
+    <p class="hero__sub">Motivational streetwear for those who move first and ask later. Limited drops. Bold moves. No regrets.</p>
+    <div class="hero__cta">
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--solid">Shop the Collection</a>
+      <a href="#featured" class="btn btn--ghost">View Drops</a>
+    </div>
+  </div>
+  <span class="hero__bgword" aria-hidden="true">{{ shop.name }}</span>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Take The Risk</span><span>&bull;</span><span>Create Your Legacy</span><span>&bull;</span><span>Leap Of Faith</span><span>&bull;</span><span>Take The Risk</span><span>&bull;</span><span>Create Your Legacy</span><span>&bull;</span><span>Leap Of Faith</span><span>&bull;</span>
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS (live from store) -->
+<section class="section" id="featured">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 class="section__title">Featured Drops</h2>
+      <span class="section__label">2025 Collection</span>
+    </div>
+
+    <div class="product-grid">
+      {%- assign featured = collections.all.products -%}
+      {%- if featured.size > 0 -%}
+        {%- for product in featured limit: 6 -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for product in all_products limit: 6 -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <div style="margin-top:56px; text-align:center;">
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost">Shop All</a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" style="border-top:1px solid var(--color-rule);">
+  <div class="wrap">
+    <div class="values">
+      <div class="value">
+        <div class="value__num">01</div>
+        <div class="value__title">Heavyweight<br>Quality</div>
+        <p class="value__text">Garment-dyed, ring-spun cotton. Structured, soft, and built to outlast trends.</p>
+      </div>
+      <div class="value">
+        <div class="value__num">02</div>
+        <div class="value__title">Statement<br>Made</div>
+        <p class="value__text">Every piece carries a mindset and the coordinates of where the leap began.</p>
+      </div>
+      <div class="value">
+        <div class="value__num">03</div>
+        <div class="value__title">Limited<br>Drops</div>
+        <p class="value__text">Small runs, bold moves. When it's gone, it's gone. Move first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="border-top:1px solid var(--color-rule); text-align:center;">
+  <div class="wrap">
+    <h2 class="section__title" style="margin-bottom:32px;">Create Your<br>Legacy.</h2>
+    <a href="{{ routes.all_products_collection_url }}" class="btn btn--solid">Shop Now &rarr;</a>
+  </div>
+</section>

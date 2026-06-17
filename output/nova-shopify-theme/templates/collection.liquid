@@ -1,0 +1,32 @@
+{%- comment -%} NOVA Collection {%- endcomment -%}
+<section class="coll-head">
+  <div class="wrap">
+    <h1 class="coll-head__title">{{ collection.title | default: 'All Products' }}</h1>
+    <div class="coll-head__count">{{ collection.products_count }} Item{% if collection.products_count != 1 %}s{% endif %}</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    {%- if collection.products.size > 0 -%}
+      {%- paginate collection.products by 12 -%}
+        <div class="product-grid">
+          {%- for product in collection.products -%}
+            {%- render 'product-card', product: product -%}
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <div style="margin-top:56px; text-align:center;">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- else -%}
+      <div class="empty-state">
+        <h1>Nothing Here<br>Yet.</h1>
+        <p>This collection is empty. Check back for the next drop.</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--solid">Shop All</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>

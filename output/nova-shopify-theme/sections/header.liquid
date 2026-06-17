@@ -1,0 +1,26 @@
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <button class="nav-toggle" aria-label="Menu" data-nav-toggle>MENU</button>
+
+    <a href="{{ routes.root_url }}" class="site-logo">{{ shop.name }}</a>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="{{ routes.root_url }}">Home</a>
+      <a href="{{ routes.all_products_collection_url }}">Shop</a>
+      <a href="{{ routes.collections_url }}">Collections</a>
+      {%- if pages.about != blank -%}<a href="{{ pages.about.url }}">About</a>{%- endif -%}
+    </nav>
+
+    <div class="header-actions">
+      <a href="{{ routes.search_url }}" aria-label="Search">Search</a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart">Cart <span class="cart-count">[{{ cart.item_count }}]</span></a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

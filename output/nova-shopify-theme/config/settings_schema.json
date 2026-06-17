@@ -1,0 +1,29 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "NOVA",
+    "theme_version": "1.0.0",
+    "theme_author": "NOVA",
+    "theme_documentation_url": "https://novaly.us",
+    "theme_support_url": "https://novaly.us"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Will be scaled down to 32 x 32px"
+      },
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "paragraph",
+        "content": "This theme uses Anton (display) + Epilogue (body), recommended by the ui-ux-pro-max design system for streetwear brands."
+      }
+    ]
+  }
+]
