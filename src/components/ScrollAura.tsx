@@ -7,9 +7,11 @@ import { useReducedMotion } from '../hooks/useReducedMotion';
  * by scroll progress so the page transitions from cool (cyan/blue) at the top
  * to warm (orange/red) at the bottom — one continuous background "journey".
  *
- * Pure CSS/transform work (no extra WebGL context), composited with `screen`
- * blending at low opacity so section content stays perfectly readable. Frozen
- * to a static state under prefers-reduced-motion.
+ * Pure CSS/transform work (no extra WebGL context). It is layered ABOVE the
+ * per-section 3D canvases but BELOW all foreground content (z between the
+ * canvas at -10 and content at 10), so it glows over the particle backdrops
+ * without ever tinting product images or text. Frozen to a static state under
+ * prefers-reduced-motion.
  */
 export function ScrollAura() {
   const ref = useRef<HTMLDivElement>(null);
@@ -44,7 +46,7 @@ export function ScrollAura() {
     <div
       ref={ref}
       aria-hidden
-      className="scroll-aura pointer-events-none fixed inset-0 z-[30]"
+      className="scroll-aura pointer-events-none fixed inset-0 z-[5]"
       style={{ ['--p' as string]: 0 }}
     >
       <span className="aura-blob aura-blob--cool" />
