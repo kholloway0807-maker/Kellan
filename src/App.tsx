@@ -1,5 +1,6 @@
 import { Navbar } from './components/Navbar';
 import { ProgressBar } from './components/ProgressBar';
+import { ScrollAura } from './components/ScrollAura';
 import { Hero } from './sections/Hero';
 import { Orb } from './sections/Orb';
 import { Performance } from './sections/Performance';
@@ -16,6 +17,7 @@ export default function App() {
 
   return (
     <div className="grain relative bg-nova-black">
+      <ScrollAura />
       <ProgressBar />
       <Navbar />
 
