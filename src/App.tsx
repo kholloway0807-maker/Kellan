@@ -4,6 +4,7 @@ import { Hero } from './sections/Hero';
 import { Orb } from './sections/Orb';
 import { Performance } from './sections/Performance';
 import { Terrain } from './sections/Terrain';
+import { Shop } from './sections/Shop';
 import { Cta } from './sections/Cta';
 import { useLenis } from './hooks/useLenis';
 import { useReducedMotion } from './hooks/useReducedMotion';
@@ -23,6 +24,7 @@ export default function App() {
         <Orb />
         <Performance />
         <Terrain />
+        <Shop />
         <Cta />
       </main>
 

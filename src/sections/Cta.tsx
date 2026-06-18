@@ -6,9 +6,9 @@ import { Reveal } from '../components/Reveal';
 import { ArrowIcon } from '../components/icons';
 
 const FOOTER = {
-  Product: ['Core', 'Edge Runtime', 'Pricing', 'Changelog'],
-  Company: ['About', 'Careers', 'Blog', 'Contact'],
-  Resources: ['Docs', 'API', 'Status', 'Security'],
+  Shop: ['Hoodies', 'Crewnecks', 'Tees', 'New Arrivals'],
+  Company: ['About', 'Lookbook', 'Stockists', 'Contact'],
+  Help: ['Shipping', 'Returns', 'Size Guide', 'Track Order'],
 };
 
 export function Cta() {
@@ -34,16 +34,16 @@ export function Cta() {
         {/* Headline + capture */}
         <div className="flex flex-1 flex-col items-center justify-center text-center">
           <Reveal>
-            <Eyebrow num="05" label="Begin" className="justify-center" />
+            <Eyebrow num="06" label="Join NOVA" className="justify-center" />
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-6 text-5xl font-semibold leading-[1.0] tracking-tight text-white sm:text-6xl md:text-7xl">
-              Build what <span className="gradient-text">comes next.</span>
+              Take the <span className="gradient-text">leap.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 max-w-lg text-base leading-relaxed text-white/65">
-              Join the teams building at the edge of what's possible. Take the risk — create
+              Get early access to drops, restocks, and new coordinates. Take the risk — create
               your legacy.
             </p>
           </Reveal>
@@ -67,7 +67,7 @@ export function Cta() {
                   className="min-w-0 flex-1 bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none"
                 />
                 <button type="submit" className="pill-primary shrink-0 text-[13px]">
-                  Get started <ArrowIcon />
+                  Notify me <ArrowIcon />
                 </button>
               </form>
             )}
@@ -84,7 +84,7 @@ export function Cta() {
                   <span className="text-sm font-semibold tracking-[0.2em] text-white">NOVA</span>
                 </div>
                 <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
-                  Systems at the intersection of data, energy, and intelligence.
+                  Premium garment-dyed apparel for those who take the risk.
                 </p>
                 <p className="mt-4 font-mono text-[11px] tracking-wider text-white/30">
                   37.7335° N, 119.6376° W
@@ -106,7 +106,7 @@ export function Cta() {
               ))}
             </div>
             <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/40 sm:flex-row">
-              <span>© {new Date().getFullYear()} NOVA Systems. All rights reserved.</span>
+              <span>© {new Date().getFullYear()} NOVA Apparel. All rights reserved.</span>
               <div className="flex gap-6">
                 <a href="#" className="transition-colors hover:text-white/80">Privacy</a>
                 <a href="#" className="transition-colors hover:text-white/80">Terms</a>

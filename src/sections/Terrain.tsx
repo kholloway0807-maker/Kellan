@@ -15,17 +15,17 @@ export function Terrain() {
     >
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <Eyebrow num="04" label="The landscape" className="justify-center" />
+          <Eyebrow num="04" label="The lookbook" className="justify-center" />
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mx-auto mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-            A terrain that <span className="gradient-text">shapes itself</span> to your data.
+            From the summit to the <span className="gradient-text">starting line.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/65">
-            Every signal reshapes the field in real time. NOVA reads the whole surface at once,
-            finding the path through complexity that no static model could.
+            Yosemite. The capital. Everest. Each NOVA piece carries the coordinates of a place
+            where the leap was worth it — terrain you can wear.
           </p>
         </Reveal>
       </div>

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 const LINKS = [
-  { label: 'Product', href: '#orb' },
-  { label: 'Solutions', href: '#performance' },
-  { label: 'Pricing', href: '#terrain' },
-  { label: 'Docs', href: '#cta' },
+  { label: 'Shop', href: '#shop' },
+  { label: 'The Craft', href: '#performance' },
+  { label: 'Lookbook', href: '#terrain' },
+  { label: 'About', href: '#orb' },
 ];
 
 /** Floating glass "pill" navbar, centered at top, with a scale/blur-in on load. */
@@ -57,11 +57,16 @@ export function Navbar() {
 
         {/* Right actions */}
         <div className="flex items-center gap-2">
-          <a href="#cta" className="hidden px-3 py-1.5 text-sm text-white/75 transition-colors hover:text-white sm:inline-block">
-            Sign in
+          <a
+            href="https://novaly.us"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden px-3 py-1.5 text-sm text-white/75 transition-colors hover:text-white sm:inline-block"
+          >
+            Store
           </a>
-          <a href="#cta" className="pill-primary text-[13px]">
-            Get started
+          <a href="#shop" className="pill-primary text-[13px]">
+            Shop now
           </a>
           <button
             aria-label="Toggle menu"

@@ -15,26 +15,26 @@ export function Orb() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
         <div className="md:col-start-1">
           <Reveal>
-            <Eyebrow num="02" label="The core engine" />
+            <Eyebrow num="02" label="The idea" />
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-              A single intelligent core, <span className="gradient-text">always in motion.</span>
+              Every piece is a <span className="gradient-text">coordinate.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-5 max-w-md text-base leading-relaxed text-white/65">
-              NOVA Core fuses real-time data streams, adaptive compute, and an energy-aware
-              runtime into one living system — reasoning continuously so your products respond
-              before the moment arrives.
+              NOVA marks the places where someone took the leap — a summit, a city, a starting
+              line. Wear the coordinates of the moment you bet on yourself, printed clean on
+              garment-dyed cotton built to last.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <ul className="mt-7 space-y-3 text-sm text-white/70">
               {[
-                'Sub-millisecond inference at the edge',
-                'Self-balancing energy and compute',
-                'Streaming context that never goes cold',
+                'Designed around a single, meaningful place',
+                'Garment-dyed for depth and a worn-in feel',
+                'Minimal back print, premium hand',
               ].map((f) => (
                 <li key={f} className="flex items-center gap-3">
                   <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-nova-cyan to-nova-red" />

@@ -4,8 +4,8 @@ import { Eyebrow } from '../components/Eyebrow';
 import { Reveal } from '../components/Reveal';
 
 const STATS = [
-  { value: '3×', label: 'faster deployment', sub: 'From commit to global edge in minutes, not days.' },
-  { value: '57%', label: 'lower cost', sub: 'Energy-aware scheduling cuts spend without throttling.' },
+  { value: '100%', label: 'ring-spun cotton', sub: 'Soft, structured, and breathable — garment-dyed for real depth of color.' },
+  { value: '∞', label: 'built to last', sub: 'Worn-in from day one and made to hold its shape wash after wash.' },
 ];
 
 export function Performance() {
@@ -19,11 +19,11 @@ export function Performance() {
     >
       <div className="mx-auto max-w-5xl text-center">
         <Reveal>
-          <Eyebrow num="03" label="Performance" className="justify-center" />
+          <Eyebrow num="03" label="The craft" className="justify-center" />
         </Reveal>
         <Reveal delay={0.05}>
           <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-            Engineered to move at the <span className="gradient-text">speed of intent.</span>
+            Made to be worn <span className="gradient-text">for years, not seasons.</span>
           </h2>
         </Reveal>
 

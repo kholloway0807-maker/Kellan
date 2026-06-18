@@ -14,21 +14,21 @@ export function Hero() {
     >
       <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
         <div className="mb-6 animate-[fadeIn_1s_ease-out]">
-          <Eyebrow num="01" label="Welcome to a new era" className="justify-center" />
+          <Eyebrow num="01" label="NOVA Apparel" className="justify-center" />
         </div>
         <h1 className="text-balance text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          Technology that <span className="gradient-text">redefines</span> the future.
+          Made for those who <span className="gradient-text">take the risk.</span>
         </h1>
         <p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-white/65 sm:text-lg">
-          We build systems at the intersection of data, energy, and intelligence — where
-          something fundamentally new comes to life.
+          Premium garment-dyed apparel marked with the coordinates worth the leap. Heavyweight,
+          worn-in, and built to outlast the moment that made it.
         </p>
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <a href="#cta" className="pill-primary text-[15px]">
-            Get started <ArrowIcon />
+          <a href="#shop" className="pill-primary text-[15px]">
+            Shop the collection <ArrowIcon />
           </a>
-          <a href="#orb" className="pill-ghost text-[15px]">
-            See how it works
+          <a href="#terrain" className="pill-ghost text-[15px]">
+            See the lookbook
           </a>
         </div>
       </div>
