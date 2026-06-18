@@ -1,0 +1,33 @@
+{%- comment -%}
+  NOVA landing page template.
+  Renders the animated NOVA experience full-screen on your own Shopify domain
+  (e.g. /pages/home) without your theme's header/footer, so it never collides
+  with the site's own navigation. It embeds the live, auto-updating build.
+
+  HOW TO USE: see INSTRUCTIONS.txt in this zip.
+{%- endcomment -%}
+{% layout none %}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050505" />
+    <title>{{ page.title | default: shop.name }}</title>
+    {%- if page.metafields.seo.description -%}
+      <meta name="description" content="{{ page.metafields.seo.description | escape }}" />
+    {%- endif -%}
+    <style>
+      html, body { margin: 0; height: 100%; background: #050505; overflow: hidden; }
+      .nova-frame { border: 0; position: fixed; inset: 0; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <iframe
+      class="nova-frame"
+      src="https://kholloway0807-maker.github.io/Kellan/"
+      title="{{ shop.name | escape }}"
+      allow="fullscreen; accelerometer; gyroscope"
+      loading="eager"
+    ></iframe>
+  </body>
+</html>

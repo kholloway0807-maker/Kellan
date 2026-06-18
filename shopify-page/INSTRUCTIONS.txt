@@ -1,0 +1,58 @@
+NOVA — Add the animated landing page to your Shopify store
+===========================================================
+
+This adds the NOVA WebGL site as a custom page on your own domain
+(e.g. https://novaly.us/pages/home). It does NOT change your current theme,
+products, cart, or checkout — it only adds one new page template.
+
+What's in this zip
+------------------
+- page.nova.liquid   The Shopify page template (full-screen, no theme header/footer)
+- INSTRUCTIONS.txt   This file
+
+
+STEP 1 — Add the template to your theme
+----------------------------------------
+1. Shopify admin → Online Store → Themes.
+2. On your current (live) theme, click the "..." button → "Edit code".
+3. In the left sidebar, find the "Templates" folder → click "Add a new template".
+4. In the dialog:
+     - "Create a new template for": choose  page
+     - Template type / file format: choose  liquid   (NOT json)
+     - Name:  nova
+   Click "Create template".  (This creates  templates/page.nova.liquid )
+5. Delete everything in the new file, then open page.nova.liquid from this zip,
+   copy ALL of its contents, and paste them in.
+6. Click "Save".
+
+
+STEP 2 — Create the page that uses it
+-------------------------------------
+1. Shopify admin → Online Store → Pages → "Add page".
+2. Title: e.g.  Home   (or  NOVA ).
+3. On the right side, under "Theme template", pick:  nova
+4. Click "Save".
+5. Click "View page" — you'll see the full animated NOVA site at
+   /pages/<your-page-handle>  (e.g. /pages/home).
+
+
+STEP 3 (optional) — Make it your storefront homepage or add to the menu
+-----------------------------------------------------------------------
+- To link it in your nav:  Online Store → Navigation → Main menu → Add menu item
+  → link it to the page you just created.
+- To make it the store's homepage, the simplest route is to add a redirect:
+  Online Store → Navigation → "View URL redirects" → Create:
+      Redirect from:  /
+      Redirect to:    /pages/home
+  (Or ask me and I can set this up for you.)
+
+
+Notes
+-----
+- The page embeds the live build hosted at:
+      https://kholloway0807-maker.github.io/Kellan/
+  Any future updates I push go live automatically — the Shopify page updates too.
+- The "Shop now" buttons inside the site already link to your live product pages
+  on novaly.us, so checkout still runs through Shopify as normal.
+- Prefer it served as native theme assets instead of an embed (no iframe)?
+  Tell me and I'll package the compiled JS/CSS as theme assets instead.
