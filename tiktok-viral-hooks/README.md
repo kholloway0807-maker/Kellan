@@ -1,0 +1,87 @@
+# tiktok-viral-hooks
+
+> **Stop guessing what makes TikToks go viral.** Every day we tear down a fresh viral video — the exact 3-second opener, the retention move that beat the algorithm, and a copy-paste script template you can ship tonight. All free, all public.
+
+**Read this in:** [English](README.md) · [中文](README.zh-CN.md)
+
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](LICENSE)
+
+## Today's top breakdown
+
+<!-- AUTO_GENERATED_FEATURED_START -->
+<a href="https://vm.tiktok.com/ZNR7Yx55w/" target="_blank"><img src="https://images.toktranscript.com/thumbnails/64672449a9aa5c567f60516dea4bb3f1c7139fc6.jpg" alt="No Money, Big Problem: Work Hard and Be Smart" width="240" align="left" /></a>
+
+**[No Money, Big Problem: Work Hard and Be Smart](./breakdowns/en/2026-06/tiktok-transcript-no-boy-friend-no-problem-no-girl-friend-no-problem-no-money-b0e9.md)** — 76.3M views
+
+[Full breakdown →](./breakdowns/en/2026-06/tiktok-transcript-no-boy-friend-no-problem-no-girl-friend-no-problem-no-money-b0e9.md)
+
+<br clear="left" />
+<!-- AUTO_GENERATED_FEATURED_END -->
+
+## What you actually get
+
+Most "TikTok tips" lists show you *what* worked. Each breakdown here shows you *why* and *how to copy it*:
+
+- **The exact 3-second opener** — quoted line-by-line, with the hook pattern named
+- **The retention move at second 7 / 14 / 21** — what kept the scroll from continuing
+- **A 2-sentence script template** — your topic plugged into a proven structure
+- **A visual map of the whole script** — Mermaid mind map, renders natively on GitHub
+- **First 60% of the transcript** — read fast, then dive into the [full version](https://toktranscript.com/) if you want it
+
+Want to tear down your own viral candidate? [Paste a TikTok URL into TokTranscript](https://toktranscript.com/?utm_source=github&utm_medium=readme&utm_campaign=hero_cta) and get this same teardown in 30 seconds — free.
+
+## Browse breakdowns
+
+### By niche
+
+<!-- AUTO_GENERATED_NICHE_START -->
+[Other](./by-niche/en/other.md) (74) · [Entertainment](./by-niche/en/entertainment.md) (50) · [Finance](./by-niche/en/finance.md) (9) · [Beauty](./by-niche/en/beauty.md) (8) · [Food](./by-niche/en/food.md) (7) · [Tech](./by-niche/en/tech.md) (3) · [Fitness](./by-niche/en/fitness.md) (2)
+<!-- AUTO_GENERATED_NICHE_END -->
+
+### By hook pattern
+
+<!-- AUTO_GENERATED_PATTERN_START -->
+[Curiosity Gap](./by-pattern/en/hook-curiosity-gap.md) (6) · [Challenge/Test](./by-pattern/en/hook-challenge-test.md) (2) · [Mystery/Curiosity Gap](./by-pattern/en/hook-mystery-curiosity-gap.md) (2) · [Unexpected Twist](./by-pattern/en/hook-unexpected-twist.md) (2) · [Rhetorical Question](./by-pattern/en/hook-rhetorical-question.md) (2) · [Challenge + Binary Choice](./by-pattern/en/hook-challenge-binary-choice.md) (2) · [Curiosity Gap With Specific Age](./by-pattern/en/hook-curiosity-gap-with-specific-age.md) (2) · [Challenge Question](./by-pattern/en/hook-challenge-question.md) (2) · [Social Proof + Curiosity Gap](./by-pattern/en/hook-social-proof-curiosity-gap.md) (2) · [Question Answer Surprise](./by-pattern/en/hook-question-answer-surprise.md) (1) · [Surprising Reveal](./by-pattern/en/hook-surprising-reveal.md) (1) · [Contradiction Hook](./by-pattern/en/hook-contradiction-hook.md) (1) · [Contrasting Setup](./by-pattern/en/hook-contrasting-setup.md) (1) · [Contrast List](./by-pattern/en/hook-contrast-list.md) (1) · [List Of Bold Proposals](./by-pattern/en/hook-list-of-bold-proposals.md) (1) · [Promise Of Transformation](./by-pattern/en/hook-promise-of-transformation.md) (1) · [Direct Address To A Specific Audience](./by-pattern/en/hook-direct-address-to-a-specific-audience.md) (1) · [Confrontational Reframe](./by-pattern/en/hook-confrontational-reframe.md) (1) · [Vulnerability + Transformation](./by-pattern/en/hook-vulnerability-transformation.md) (1) · [Conditional Promise](./by-pattern/en/hook-conditional-promise.md) (1) · [False Expectation Setup](./by-pattern/en/hook-false-expectation-setup.md) (1) · [Mystery Setup](./by-pattern/en/hook-mystery-setup.md) (1) · [Mystery/Deception Hook](./by-pattern/en/hook-mystery-deception-hook.md) (1) · [Time Urgency + Curiosity Gap](./by-pattern/en/hook-time-urgency-curiosity-gap.md) (1) · [Immediate Tension](./by-pattern/en/hook-immediate-tension.md) (1) · [Curiosity Gap + Promise](./by-pattern/en/hook-curiosity-gap-promise.md) (1) · [Question Answer Conflict](./by-pattern/en/hook-question-answer-conflict.md) (1) · [Reverse Psychology List](./by-pattern/en/hook-reverse-psychology-list.md) (1) · [Unexpected Reversal](./by-pattern/en/hook-unexpected-reversal.md) (1) · [Authority Statement](./by-pattern/en/hook-authority-statement.md) (1) · [Second Person Immersive Setup](./by-pattern/en/hook-second-person-immersive-setup.md) (1) · [Relatable Vulnerability + Unexpected Twist](./by-pattern/en/hook-relatable-vulnerability-unexpected-twist.md) (1) · [Shared Anticipation](./by-pattern/en/hook-shared-anticipation.md) (1) · [Contrasting Scenario + Direct Command](./by-pattern/en/hook-contrasting-scenario-direct-command.md) (1) · [Subverted Expectation](./by-pattern/en/hook-subverted-expectation.md) (1) · [Urgent News Alert](./by-pattern/en/hook-urgent-news-alert.md) (1) · [Scarcity + Abundance](./by-pattern/en/hook-scarcity-abundance.md) (1) · [Exaggerated Compliment](./by-pattern/en/hook-exaggerated-compliment.md) (1) · [Question Answer Mismatch](./by-pattern/en/hook-question-answer-mismatch.md) (1) · [Mystery Hook](./by-pattern/en/hook-mystery-hook.md) (1) · [Problem Agitation](./by-pattern/en/hook-problem-agitation.md) (1) · [Rhetorical Question With Emotional Framing](./by-pattern/en/hook-rhetorical-question-with-emotional-framing.md) (1) · [Personal Anecdote With Eerie Setting](./by-pattern/en/hook-personal-anecdote-with-eerie-setting.md) (1) · [Contrasting Emotion](./by-pattern/en/hook-contrasting-emotion.md) (1) · [Vulnerability & Accountability](./by-pattern/en/hook-vulnerability-accountability.md) (1) · [Apology Hook](./by-pattern/en/hook-apology-hook.md) (1) · [Compliment Hook](./by-pattern/en/hook-compliment-hook.md) (1) · [Urgency + Promise Of Significance](./by-pattern/en/hook-urgency-promise-of-significance.md) (1) · [Urgent Philosophical Revelation](./by-pattern/en/hook-urgent-philosophical-revelation.md) (1) · [Contrasting Assumption](./by-pattern/en/hook-contrasting-assumption.md) (1) · [Challenge With Stakes](./by-pattern/en/hook-challenge-with-stakes.md) (1) · [Selfish Wish Twist](./by-pattern/en/hook-selfish-wish-twist.md) (1) · [Conditional Challenge](./by-pattern/en/hook-conditional-challenge.md) (1) · [Curiosity Gap + Specificity](./by-pattern/en/hook-curiosity-gap-specificity.md) (1) · [Challenge/Reversal](./by-pattern/en/hook-challenge-reversal.md) (1) · [Anticipatory Dilemma](./by-pattern/en/hook-anticipatory-dilemma.md) (1) · [Emotional Confession](./by-pattern/en/hook-emotional-confession.md) (1) · [Conditional Cascade](./by-pattern/en/hook-conditional-cascade.md) (1) · [Contrast & Relatable Regret](./by-pattern/en/hook-contrast-relatable-regret.md) (1) · [Rhetorical Question + Personal Stake](./by-pattern/en/hook-rhetorical-question-personal-stake.md) (1) · [Rhetorical Question With Unexpected Answer](./by-pattern/en/hook-rhetorical-question-with-unexpected-answer.md) (1) · [What If + Aspirational Promise](./by-pattern/en/hook-what-if-aspirational-promise.md) (1) · [Relatable Mundane Setup With Twist](./by-pattern/en/hook-relatable-mundane-setup-with-twist.md) (1) · [Contrast Escalation](./by-pattern/en/hook-contrast-escalation.md) (1) · [Pattern: Prediction Reveal](./by-pattern/en/hook-pattern-prediction-reveal.md) (1) · [Contrarian Declaration](./by-pattern/en/hook-contrarian-declaration.md) (1) · [Unexpected Twist On A Common Metaphor](./by-pattern/en/hook-unexpected-twist-on-a-common-metaphor.md) (1) · [Regret Aversion](./by-pattern/en/hook-regret-aversion.md) (1) · [Defiance/Reversal](./by-pattern/en/hook-defiance-reversal.md) (1) · [Contrasting Absurdity](./by-pattern/en/hook-contrasting-absurdity.md) (1) · [Childhood Secret Code Setup](./by-pattern/en/hook-childhood-secret-code-setup.md) (1) · [Curiosity Gap With Promise Of Coolness](./by-pattern/en/hook-curiosity-gap-with-promise-of-coolness.md) (1) · [Regret & Urgency](./by-pattern/en/hook-regret-urgency.md) (1) · [Cost Shock + Urgency](./by-pattern/en/hook-cost-shock-urgency.md) (1) · [Rhetorical Question + Contrarian Statement](./by-pattern/en/hook-rhetorical-question-contrarian-statement.md) (1) · [Curiosity Gap With Specific Promise](./by-pattern/en/hook-curiosity-gap-with-specific-promise.md) (1) · [List Based Curiosity Gap](./by-pattern/en/hook-list-based-curiosity-gap.md) (1) · [Miscalculation / Near Own Goal](./by-pattern/en/hook-miscalculation-near-own-goal.md) (1) · [Contrast & Surprise](./by-pattern/en/hook-contrast-surprise.md) (1) · [Hypothetical Scenario](./by-pattern/en/hook-hypothetical-scenario.md) (1) · [Call And Response](./by-pattern/en/hook-call-and-response.md) (1) · [Problem Solution Promise](./by-pattern/en/hook-problem-solution-promise.md) (1) · [Imaginary Scenario](./by-pattern/en/hook-imaginary-scenario.md) (1) · [Brutal Truth Reveal](./by-pattern/en/hook-brutal-truth-reveal.md) (1) · [Visual Curiosity Gap](./by-pattern/en/hook-visual-curiosity-gap.md) (1) · [Contrarian Complaint](./by-pattern/en/hook-contrarian-complaint.md) (1) · [Hypothetical Question](./by-pattern/en/hook-hypothetical-question.md) (1) · [Shocking Revelation](./by-pattern/en/hook-shocking-revelation.md) (1) · [Curiosity Gap With Specific Oddity](./by-pattern/en/hook-curiosity-gap-with-specific-oddity.md) (1) · [Perspective Shift](./by-pattern/en/hook-perspective-shift.md) (1) · [Cautionary Reversal](./by-pattern/en/hook-cautionary-reversal.md) (1) · [Deflection And Confidence](./by-pattern/en/hook-deflection-and-confidence.md) (1) · [Accusatory Question](./by-pattern/en/hook-accusatory-question.md) (1) · [Direct Address + Time Constraint](./by-pattern/en/hook-direct-address-time-constraint.md) (1) · [Mysterious Action](./by-pattern/en/hook-mysterious-action.md) (1) · [Direct Promise](./by-pattern/en/hook-direct-promise.md) (1) · [Challenge/Knowledge Gap](./by-pattern/en/hook-challenge-knowledge-gap.md) (1) · [Immediate Conflict](./by-pattern/en/hook-immediate-conflict.md) (1) · [Rhetorical Question + Absurd Premise](./by-pattern/en/hook-rhetorical-question-absurd-premise.md) (1) · [Surprising Reveal + Emotional Confession](./by-pattern/en/hook-surprising-reveal-emotional-confession.md) (1) · [Shocking Reveal](./by-pattern/en/hook-shocking-reveal.md) (1) · [Curiosity Gap With Shocking Premise](./by-pattern/en/hook-curiosity-gap-with-shocking-premise.md) (1) · [Contrast & Paradox](./by-pattern/en/hook-contrast-paradox.md) (1) · [Repetitive Command With Escalating Absurdity](./by-pattern/en/hook-repetitive-command-with-escalating-absurdity.md) (1) · [Counterintuitive Reframe](./by-pattern/en/hook-counterintuitive-reframe.md) (1) · [Forbidden Mystery](./by-pattern/en/hook-forbidden-mystery.md) (1) · [Superlative + Specific](./by-pattern/en/hook-superlative-specific.md) (1) · [Invitation To Participate](./by-pattern/en/hook-invitation-to-participate.md) (1) · [Controversial Identity Declaration](./by-pattern/en/hook-controversial-identity-declaration.md) (1) · [Challenge/Insult Hook](./by-pattern/en/hook-challenge-insult-hook.md) (1) · [Rhetorical Question With Exotic Hook](./by-pattern/en/hook-rhetorical-question-with-exotic-hook.md) (1) · [Moral Responsibility](./by-pattern/en/hook-moral-responsibility.md) (1) · [Action Packed Play By Play](./by-pattern/en/hook-action-packed-play-by-play.md) (1) · [Rhetorical Question + Metaphor](./by-pattern/en/hook-rhetorical-question-metaphor.md) (1) · [Choice With Consequence](./by-pattern/en/hook-choice-with-consequence.md) (1) · [Character Introduction With Vivid Detail](./by-pattern/en/hook-character-introduction-with-vivid-detail.md) (1) · [Contrarian Advice](./by-pattern/en/hook-contrarian-advice.md) (1) · [Counterintuitive Statement](./by-pattern/en/hook-counterintuitive-statement.md) (1) · [Rhetorical Question + Shocking Reveal](./by-pattern/en/hook-rhetorical-question-shocking-reveal.md) (1) · [Provocative Statement](./by-pattern/en/hook-provocative-statement.md) (1) · [Rhetorical Question + Contradiction](./by-pattern/en/hook-rhetorical-question-contradiction.md) (1) · [Urgent Call To Action](./by-pattern/en/hook-urgent-call-to-action.md) (1) · [Shocking Claim](./by-pattern/en/hook-shocking-claim.md) (1) · [Reframe](./by-pattern/en/hook-reframe.md) (1) · [Shared Identity + Relatable Problem](./by-pattern/en/hook-shared-identity-relatable-problem.md) (1) · [Repetition For Emphasis](./by-pattern/en/hook-repetition-for-emphasis.md) (1) · [Hypothetical Question + Emotional Contrast](./by-pattern/en/hook-hypothetical-question-emotional-contrast.md) (1) · [Reversal Of Expectation](./by-pattern/en/hook-reversal-of-expectation.md) (1) · [Speed/Result Promise](./by-pattern/en/hook-speed-result-promise.md) (1) · [Direct Accountability](./by-pattern/en/hook-direct-accountability.md) (1) · [Problem Agitate](./by-pattern/en/hook-problem-agitate.md) (1) · [Relatable Confession](./by-pattern/en/hook-relatable-confession.md) (1) · [Direct Address With Immediate Action](./by-pattern/en/hook-direct-address-with-immediate-action.md) (1) · [Surprise Reveal](./by-pattern/en/hook-surprise-reveal.md) (1) · [Betrayal Reveal](./by-pattern/en/hook-betrayal-reveal.md) (1) · [Contradiction/Revelation](./by-pattern/en/hook-contradiction-revelation.md) (1) · [Did You Know + Specific Location + Supernatural Element](./by-pattern/en/hook-did-you-know-specific-location-supernatural-element.md) (1) · [Repetition With Escalation](./by-pattern/en/hook-repetition-with-escalation.md) (1) · [Absurd Scale](./by-pattern/en/hook-absurd-scale.md) (1) · [List Based Promise With Authority](./by-pattern/en/hook-list-based-promise-with-authority.md) (1)
+<!-- AUTO_GENERATED_PATTERN_END -->
+
+### Latest
+
+<!-- AUTO_GENERATED_LATEST_START -->
+- [No Money, Big Problem: Work Hard and Be Smart](./breakdowns/en/2026-06/tiktok-transcript-no-boy-friend-no-problem-no-girl-friend-no-problem-no-money-b0e9.md) — 76.3M views · `contrast escalation` · 2026-06-02
+- [He Tapped Back: Morse Code With Twin Brother After Accident](./breakdowns/en/2026-06/tiktok-transcript-he-tapped-back-3danimation-animationart-digitalart-ed-2eee.md) — 50.6M views · `Childhood secret code setup` · 2026-06-08
+- [10-Year-Old Daughter Pregnancy Dilemma](./breakdowns/en/2026-06/tiktok-transcript-yikessss-ce18.md) — 30.1M views · `Hypothetical Scenario` · 2026-06-14
+- [Water Vapor Squeezes Fruit Into Pure Juice Instantly](./breakdowns/en/2026-05/tiktok-transcript-goodthing-tiktok-goodthings-93ee.md) — 29.4M views · `Unexpected twist` · 2026-05-24
+- [A Love That Sees and Chooses Me](./breakdowns/en/2026-05/tiktok-transcript-a-public-witness-of-what-heaven-already-knew-7ab7.md) — 26.4M views · `Relatable vulnerability + unexpected twist` · 2026-05-27
+- [The Number One Question I Get Has the Same Answer: AG1](./breakdowns/en/2026-05/tiktok-transcript-the-number-one-question-i-get-always-has-the-same-answer-i-d-d0f4.md) — 24.3M views · `Curiosity Gap` · 2026-05-29
+- [How to Control Your Mood and Stop Reacting to Others](./breakdowns/en/2026-05/tiktok-transcript-selfworth-peace-relationships-mood-86ca.md) — 22.6M views · `Authority Statement` · 2026-05-31
+- [Night Shift Truck Driver Rules for Surviving Ravens Hollow](./breakdowns/en/2026-05/tiktok-transcript-could-you-survive-the-road-tiktokhorror-horror-horrortok-cre-5b01.md) — 18.8M views · `Second-person immersive setup` · 2026-05-25
+- [Sweetest Wedding Vows Made Me Cry While Editing](./breakdowns/en/2026-05/tiktok-transcript-i-actually-cried-editing-this-the-sweetest-vows-weddingtikto-6126.md) — 17.9M views · `conditional promise` · 2026-05-27
+- [33M Views 1.9M Reactions Winwilliam Vergin90 Greeting and...](./breakdowns/en/2026-06/tiktok-transcript-33m-views-1-9m-reactions-winwilliam-vergin90-vergin90-af36.md) — 17.1M views · `Direct address with immediate action` · 2026-06-16
+<!-- AUTO_GENERATED_LATEST_END -->
+
+## How these are made
+
+We pull the public transcript and engagement signals from [TokTranscript](https://toktranscript.com/?utm_source=github&utm_medium=readme&utm_campaign=method), then audit each video against the same 4 questions:
+
+1. **What did the first 3 seconds promise?**
+2. **What pattern interrupt at ~7s kept the viewer watching?**
+3. **Why did the algorithm pick this clip out of millions posted that day?**
+4. **What's the one-line formula a beginner can copy tonight?**
+
+The answers get rendered into the markdown you're browsing. Updated daily by a [GitHub Action](.github/workflows/daily-publish.yml).
+
+## Companion repo
+
+For a curated list of the best tools beyond just TokTranscript — analytics, hashtag research, editing, scheduling — see **[awesome-tiktok-transcripts](https://github.com/shixinzhang/awesome-tiktok-transcripts)**.
+
+## Takedown
+
+Creator and want a breakdown removed? Email [takedowns@toktranscript.com](mailto:takedowns@toktranscript.com) — processed within 24 hours.
+
+## License & contributing
+
+Content under [CC BY-NC-SA 4.0](LICENSE), code under MIT. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to submit a breakdown manually.
+
+---
+
+⭐ **Star this repo to follow the daily updates.**

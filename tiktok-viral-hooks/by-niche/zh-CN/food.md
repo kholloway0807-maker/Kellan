@@ -1,0 +1,20 @@
+# food Breakdowns
+
+> 7 viral TikTok videos in this niche, with hook analysis and mind maps.
+
+[← Back to README](../../README.md).zh-CN.md
+
+
+- [Water Vapor Squeezes Fruit Into Pure Juice Instantly](../../breakdowns/zh-CN/2026-05/tiktok-transcript-goodthing-tiktok-goodthings-93ee.md) — 29.4M views · `Unexpected twist` · 2026-05-24
+
+- [3-Ingredient Snack Recipe](../../breakdowns/zh-CN/2026-05/tiktok-transcript-salgadinho-de-s-3-ingredientes-salgadinho-receita-facil-004b.md) — 3.3M views · `Curiosity gap + promise` · 2026-05-31
+
+- [Tasty Burger Production: Marinade to Meat Grinder](../../breakdowns/zh-CN/2026-06/tiktok-transcript-movie-usa-foryou-film-tiktok-d95e.md) — 2.2M views · `Curiosity Gap` · 2026-06-13
+
+- [Unlimited Steak and Sides for 90 Minutes in Sydney](../../breakdowns/zh-CN/2026-05/tiktok-transcript-unlimited-steak-run-follow-for-best-sydney-guide-get-10-off-a4a9.md) — 1.5M views · `Scarcity + Abundance` · 2026-05-22
+
+- [Story Time: My Cake Business Secret Part 1](../../breakdowns/zh-CN/2026-06/tiktok-transcript-story-time-part-1-story-fyp-diy-foryoupage-viral-tiktok-7513.md) — 1.4M views · `Rhetorical question + shocking reveal` · 2026-06-02
+
+- [Beef Burger or Veggie Burger? Food Preference Quiz](../../breakdowns/zh-CN/2026-06/tiktok-transcript-tu-pr-f-res-quoi-tupreferes-quiz-tiktokfrance-nourriture-fr-3d22.md) — 481.9K views · `Challenge/Test` · 2026-06-03
+
+- [Slow French: Cooking Mexican Pancakes the French Way](../../breakdowns/zh-CN/2026-06/tiktok-transcript-slow-french-tu-cuisines-avec-moi-comprehensibleinput-frenchc-c3cf.md) — 304.4K views · `Invitation to participate` · 2026-06-04
