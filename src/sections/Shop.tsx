@@ -2,7 +2,15 @@ import { SceneSection } from '../components/SceneSection';
 import { Eyebrow } from '../components/Eyebrow';
 import { Reveal } from '../components/Reveal';
 import { ArrowIcon } from '../components/icons';
+import { ProductCard } from '../components/ProductCard';
 import { PRODUCTS } from '../data/products';
+
+const TRUST = [
+  { k: 'Garment-dyed', v: 'Lived-in colour from the first wear' },
+  { k: 'Heavyweight', v: '6–9.5 oz ring-spun cotton' },
+  { k: 'Ships from US', v: 'Tracked delivery in 2–4 days' },
+  { k: 'Secure checkout', v: 'Apple Pay · Shop Pay · cards' },
+];
 
 export function Shop() {
   return (
@@ -21,13 +29,13 @@ export function Shop() {
           </Reveal>
           <Reveal delay={0.05}>
             <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-              Wear your <span className="gradient-text">coordinates.</span>
+              Pick your colour. Flip the print. <span className="gradient-text">Check out in one tap.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
-              Three pieces. Three places worth the leap. Garment-dyed, heavyweight, and built to
-              outlast the moment that made them.
+              Three pieces, three places worth the leap. Choose a colourway and size below — your
+              pick lands straight in the NOVA cart, ready to check out.
             </p>
           </Reveal>
         </div>
@@ -35,38 +43,22 @@ export function Shop() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.id} delay={0.1 + i * 0.08}>
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noreferrer"
-                className="glass group block overflow-hidden rounded-3xl transition-transform duration-500 hover:-translate-y-1"
-              >
-                <div className="relative aspect-[4/5] overflow-hidden bg-black">
-                  <img
-                    src={p.image}
-                    alt={`NOVA ${p.name} — ${p.motif} back print`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <span className="absolute right-4 top-4 rounded-full bg-black/40 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
-                    {p.price}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-lg font-medium text-white">{p.name}</h3>
-                  </div>
-                  <p className="mt-1 font-mono text-[11px] tracking-wider text-white/35">{p.coords}</p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/55">{p.blurb}</p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-white/90 transition-colors group-hover:text-nova-cyan">
-                    Shop now <ArrowIcon className="transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </a>
+              <ProductCard product={p} index={i} />
             </Reveal>
           ))}
         </div>
+
+        {/* Trust / conversion rail */}
+        <Reveal delay={0.15}>
+          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] sm:grid-cols-4">
+            {TRUST.map((t) => (
+              <div key={t.k} className="bg-black/20 p-5">
+                <p className="text-sm font-medium text-white">{t.k}</p>
+                <p className="mt-1 text-xs leading-relaxed text-white/45">{t.v}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
 
         <Reveal delay={0.2}>
           <div className="mt-12 text-center">

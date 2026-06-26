@@ -3,7 +3,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     # Default branch is the one GitHub Pages is allowed to publish from.
-    branches: [claude/gallant-cori-hw0a0s, claude/nova-marketing-site-fug38m]
+    branches: [claude/gallant-cori-hw0a0s, claude/nova-marketing-site-fug38m, claude/nova-custom-website-products-elwo87]
   workflow_dispatch:
 
 # Allow the workflow to publish to GitHub Pages.
