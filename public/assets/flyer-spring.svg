@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" width="612" height="792">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B4D2E"/>
+      <stop offset="100%" stop-color="#0F2E1A"/>
+    </linearGradient>
+  </defs>
+  <rect width="612" height="792" fill="url(#bgGrad)"/>
+  <rect x="0" y="0" width="612" height="8" fill="#C9A84C"/>
+  <rect x="0" y="784" width="612" height="8" fill="#C9A84C"/>
+  <circle cx="560" cy="120" r="200" fill="#C9A84C" opacity="0.04"/>
+  <circle cx="50" cy="680" r="150" fill="#C9A84C" opacity="0.04"/>
+  <rect x="220" y="40" width="172" height="36" rx="18" fill="#C9A84C"/>
+  <text x="306" y="63" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1B4D2E" text-anchor="middle" letter-spacing="2">SPRING 2025</text>
+  <text x="306" y="140" font-family="Georgia, serif" font-size="38" font-weight="700" fill="#F9F6EF" text-anchor="middle">Spring Lawn</text>
+  <text x="306" y="185" font-family="Georgia, serif" font-size="38" font-weight="700" fill="#F9F6EF" text-anchor="middle">Package</text>
+  <text x="306" y="230" font-family="Arial, sans-serif" font-size="18" fill="#C9A84C" text-anchor="middle" letter-spacing="1">FREE First Cut Estimate</text>
+  <line x1="80" y1="255" x2="532" y2="255" stroke="#C9A84C" stroke-width="1" opacity="0.4"/>
+  <text x="306" y="300" font-family="Arial, sans-serif" font-size="14" fill="#F9F6EF" text-anchor="middle" opacity="0.8">What's included:</text>
+  <text x="140" y="335" font-family="Arial, sans-serif" font-size="15" fill="#F9F6EF">✓  Weekly / Bi-weekly Mowing</text>
+  <text x="140" y="365" font-family="Arial, sans-serif" font-size="15" fill="#F9F6EF">✓  Professional Edging</text>
+  <text x="140" y="395" font-family="Arial, sans-serif" font-size="15" fill="#F9F6EF">✓  Weed Control Treatment</text>
+  <text x="140" y="425" font-family="Arial, sans-serif" font-size="15" fill="#F9F6EF">✓  Spring Fertilization</text>
+  <text x="140" y="455" font-family="Arial, sans-serif" font-size="15" fill="#F9F6EF">✓  Lawn Aeration</text>
+  <text x="140" y="485" font-family="Arial, sans-serif" font-size="15" fill="#F9F6EF">✓  Free Estimate — No Obligation</text>
+  <line x1="80" y1="510" x2="532" y2="510" stroke="#C9A84C" stroke-width="1" opacity="0.4"/>
+  <rect x="80" y="530" width="452" height="110" rx="10" fill="#C9A84C" opacity="0.15"/>
+  <rect x="80" y="530" width="452" height="110" rx="10" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity="0.5"/>
+  <text x="306" y="570" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#F9F6EF" text-anchor="middle">Call or Text Today</text>
+  <text x="306" y="600" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#C9A84C" text-anchor="middle">(309) 555-0100</text>
+  <text x="306" y="628" font-family="Arial, sans-serif" font-size="13" fill="#F9F6EF" text-anchor="middle" opacity="0.7">kellanlawncare.com</text>
+  <text x="306" y="680" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#F9F6EF" text-anchor="middle">KELLAN HOLLOWAY LAWNCARE</text>
+  <text x="306" y="704" font-family="Arial, sans-serif" font-size="12" fill="#C9A84C" text-anchor="middle" letter-spacing="1">BLOOMINGTON-NORMAL, IL</text>
+  <text x="306" y="726" font-family="Arial, sans-serif" font-size="11" fill="#F9F6EF" text-anchor="middle" opacity="0.6">Serving McLean County · Locally Owned · Fully Insured</text>
+  <text x="306" y="756" font-family="Arial, sans-serif" font-size="10" fill="#F9F6EF" text-anchor="middle" opacity="0.4">*Free estimate offer valid for new residential customers in McLean County.</text>
+</svg>
