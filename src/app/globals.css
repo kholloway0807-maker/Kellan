@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green: #1B4D2E;
+  --green-dark: #133820;
+  --gold: #C9A84C;
+  --gold-light: #E0C57A;
+  --cream: #F9F6EF;
+  --cream-dark: #EDE9DF;
+}
+
+body {
+  color: #1a1a1a;
+  background: var(--cream);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth focus rings */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
