@@ -15,10 +15,10 @@
     <h1 class="hero-heading">{{ section.settings.heading }}</h1>
     <p class="hero-sub">{{ section.settings.subheading }}</p>
     <div class="hero-ctas">
-      <a href="{{ section.settings.cta_url }}" class="btn-light" style="padding:14px 28px;font-size:15px;">
+      <a href="#shop" class="btn-light" style="padding:14px 28px;font-size:15px;">
         {{ section.settings.cta_label }}
       </a>
-      <a href="{{ section.settings.secondary_url }}" class="btn-outline-light">
+      <a href="#craft" class="btn-outline-light">
         {{ section.settings.secondary_label }}
       </a>
     </div>
@@ -29,14 +29,12 @@
 {
   "name": "Hero",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Background image" },
-    { "type": "text",  "id": "eyebrow",         "label": "Eyebrow",           "default": "NOVA Apparel" },
-    { "type": "text",  "id": "heading",          "label": "Heading",           "default": "Made For Those Who Take The Risk." },
-    { "type": "textarea","id": "subheading",     "label": "Subheading",        "default": "Premium garment-dyed apparel. Heavyweight, worn-in from day one, and built to outlast the moment that made it." },
-    { "type": "url",   "id": "cta_url",          "label": "Primary CTA URL",   "default": "#shop" },
-    { "type": "text",  "id": "cta_label",        "label": "Primary CTA label", "default": "Shop the Collection" },
-    { "type": "url",   "id": "secondary_url",    "label": "Secondary CTA URL", "default": "#craft" },
-    { "type": "text",  "id": "secondary_label",  "label": "Secondary CTA label","default": "Our Craft" }
+    { "type": "image_picker", "id": "image",           "label": "Background image" },
+    { "type": "text",         "id": "eyebrow",         "label": "Eyebrow",            "default": "NOVA Apparel" },
+    { "type": "text",         "id": "heading",         "label": "Heading",            "default": "Made For Those Who Take The Risk." },
+    { "type": "textarea",     "id": "subheading",      "label": "Subheading",         "default": "Premium garment-dyed apparel. Heavyweight, worn-in from day one, and built to outlast the moment that made it." },
+    { "type": "text",         "id": "cta_label",       "label": "Primary CTA label",  "default": "Shop the Collection" },
+    { "type": "text",         "id": "secondary_label", "label": "Secondary CTA label","default": "Our Craft" }
   ],
   "presets": [{ "name": "Hero" }]
 }

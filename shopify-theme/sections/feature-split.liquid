@@ -34,7 +34,7 @@
           </ul>
         {%- endif -%}
 
-        <a href="{{ section.settings.cta_url }}" class="btn-primary" style="margin-top:32px;">
+        <a href="#shop" class="btn-primary" style="margin-top:32px;">
           {{ section.settings.cta_label }}
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -48,13 +48,12 @@
   "name": "Feature Split",
   "settings": [
     { "type": "image_picker", "id": "image",          "label": "Product image" },
-    { "type": "text",    "id": "eyebrow",              "label": "Eyebrow",       "default": "The Collection" },
-    { "type": "text",    "id": "heading",              "label": "Heading line 1","default": "Premium Streetwear" },
-    { "type": "text",    "id": "heading_accent",       "label": "Heading line 2 (muted)","default": "Built For The Bold." },
-    { "type": "textarea","id": "body",                 "label": "Body text",     "default": "Custom garment-dyed formula designed to give you that perfectly broken-in feel from the very first wear." },
-    { "type": "textarea","id": "checklist_raw",        "label": "Checklist items (one per line)", "default": "Heavyweight 400gsm fleece — warm without bulk\nGarment-dyed for rich, lived-in color\nRelaxed oversized fit, holds shape wash after wash" },
-    { "type": "url",     "id": "cta_url",              "label": "CTA URL",       "default": "#shop" },
-    { "type": "text",    "id": "cta_label",            "label": "CTA label",     "default": "Shop Now" }
+    { "type": "text",         "id": "eyebrow",        "label": "Eyebrow",                    "default": "The Collection" },
+    { "type": "text",         "id": "heading",        "label": "Heading line 1",             "default": "Premium Streetwear" },
+    { "type": "text",         "id": "heading_accent", "label": "Heading line 2 (muted)",     "default": "Built For The Bold." },
+    { "type": "textarea",     "id": "body",           "label": "Body text",                  "default": "Custom garment-dyed formula designed to give you that perfectly broken-in feel from the very first wear." },
+    { "type": "textarea",     "id": "checklist_raw",  "label": "Checklist items (one per line)", "default": "Heavyweight 400gsm fleece — warm without bulk\nGarment-dyed for rich, lived-in color\nRelaxed oversized fit, holds shape wash after wash" },
+    { "type": "text",         "id": "cta_label",      "label": "CTA label",                  "default": "Shop Now" }
   ],
   "presets": [{ "name": "Feature Split" }]
 }
