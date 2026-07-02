@@ -13,16 +13,16 @@
 
     <div class="products-grid">
 
-      <!-- Product 1: Take The Risk Hoodie -->
-      <a href="https://novaly.us/products/nova-take-the-risk-hoodie" class="product-card">
+      <!-- Hero card: Take The Risk Hoodie (full width, editorial split) -->
+      <a href="https://novaly.us/products/nova-take-the-risk-hoodie" class="product-card product-card--hero">
         <div class="product-img-wrap">
-          <img src="{{ 'hoodie.jpg' | asset_url }}" alt="Take The Risk Hoodie" loading="lazy">
-          <span class="product-price">$44</span>
+          <img src="{{ 'hoodie.jpg' | asset_url }}" alt="Take The Risk Hoodie" loading="eager">
         </div>
         <div class="product-info">
-          <p class="product-coords">37.7335° N, 119.6376° W</p>
+          <span class="product-coords">37.7335° N, 119.6376° W</span>
+          <span class="product-price-tag">$44</span>
           <h3 class="product-name">Take The Risk Hoodie</h3>
-          <p class="product-blurb">Garment-dyed lightweight fleece. 100% ring-spun cotton, worn-in from the first wear.</p>
+          <p class="product-blurb">Garment-dyed lightweight fleece. 100% ring-spun cotton, worn-in from the first wear. The piece that started it all.</p>
           <span class="product-cta">
             Shop Now
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -30,14 +30,14 @@
         </div>
       </a>
 
-      <!-- Product 2: Create Your Legacy Crewneck -->
+      <!-- Create Your Legacy Crewneck -->
       <a href="https://novaly.us/products/unisex-garment-dyed-sweatshirt" class="product-card">
         <div class="product-img-wrap">
           <img src="{{ 'crewneck.jpg' | asset_url }}" alt="Create Your Legacy Crewneck" loading="lazy">
           <span class="product-price">$43</span>
         </div>
         <div class="product-info">
-          <p class="product-coords">38.8927° N, -77.0230° W</p>
+          <span class="product-coords">38.8927° N, -77.0230° W</span>
           <h3 class="product-name">Create Your Legacy Crewneck</h3>
           <p class="product-blurb">Vintage-washed, relaxed fit. The soft, structured crewneck for every day.</p>
           <span class="product-cta">
@@ -47,14 +47,14 @@
         </div>
       </a>
 
-      <!-- Product 3: Leap Of Faith Tee -->
+      <!-- Leap Of Faith Tee -->
       <a href="https://novaly.us/products/unisex-garment-dyed-heavyweight-t-shirt-1" class="product-card">
         <div class="product-img-wrap">
           <img src="{{ 'tee.jpg' | asset_url }}" alt="Leap Of Faith Tee" loading="lazy">
           <span class="product-price">$28</span>
         </div>
         <div class="product-info">
-          <p class="product-coords">27.9881° N, 86.9250° E</p>
+          <span class="product-coords">27.9881° N, 86.9250° E</span>
           <h3 class="product-name">Leap Of Faith Tee</h3>
           <p class="product-blurb">Heavyweight, structured, breathable. The tee that anchors the collection.</p>
           <span class="product-cta">
@@ -65,25 +65,22 @@
       </a>
 
       <!-- Coming Soon — Drop 002 -->
-      <div class="product-card" style="cursor:default;">
-        <div class="product-img-wrap" style="background:#0A0A0A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
-          <span style="font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);">Drop 002</span>
-          <span style="font-size:2.5rem;font-weight:900;color:#fff;letter-spacing:-.03em;text-align:center;line-height:1;padding:0 24px;">
-            {{ section.settings.drop_name }}
-          </span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35);">Coming Soon</span>
+      <div class="product-card coming-soon-card" style="cursor:default;">
+        <div class="product-img-wrap" style="aspect-ratio:3/4;background:#0A0A0A;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <span style="font-size:10px;font-weight:800;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);">Drop 002</span>
+          <span style="font-size:3rem;font-weight:900;color:#fff;letter-spacing:-.04em;text-align:center;line-height:1;padding:0 24px;">{{ section.settings.drop_name }}</span>
+          <span style="font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.3);">Coming Soon</span>
         </div>
-        <div class="product-info">
-          <p class="product-coords">{{ section.settings.drop_coords }}</p>
+        <div class="product-info" style="background:#0A0A0A;border-top:1px solid rgba(255,255,255,.08);">
+          <span class="product-coords">{{ section.settings.drop_coords }}</span>
           <h3 class="product-name">{{ section.settings.drop_title }}</h3>
           <p class="product-blurb">{{ section.settings.drop_blurb }}</p>
-          <form style="margin-top:16px;display:flex;gap:8px;">
-            <input
-              type="email"
-              placeholder="Get notified"
-              style="flex:1;min-width:0;border:1.5px solid #E0DED7;border-radius:999px;padding:8px 14px;font-size:13px;outline:none;background:#fff;"
-            >
-            <button type="submit" class="btn-primary" style="padding:8px 16px;font-size:12px;flex-shrink:0;">Notify me</button>
+          <form style="margin-top:20px;display:flex;gap:8px;" onsubmit="this.innerHTML='<span style=\'color:rgba(255,255,255,.6);font-size:13px;\'>You\'re on the list ✦</span>';return false;">
+            <input type="email" placeholder="Get notified" required
+              style="flex:1;min-width:0;border:1.5px solid rgba(255,255,255,.15);border-radius:999px;padding:9px 16px;font-size:13px;outline:none;background:rgba(255,255,255,.07);color:#fff;">
+            <button type="submit" style="display:inline-flex;align-items:center;gap:6px;background:#fff;color:#0A0A0A;border:none;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:800;cursor:pointer;flex-shrink:0;">
+              Notify
+            </button>
           </form>
         </div>
       </div>
@@ -97,10 +94,7 @@
   "name": "Product Grid",
   "settings": [
     { "type": "text", "id": "heading", "label": "Section heading", "default": "Wear Your Coordinates." },
-    {
-      "type": "header",
-      "content": "Drop 002 — Coming Soon"
-    },
+    { "type": "header",   "content": "Drop 002 — Coming Soon" },
     { "type": "text",     "id": "drop_name",   "label": "Drop name",   "default": "DROP 002" },
     { "type": "text",     "id": "drop_coords", "label": "Coordinates", "default": "TBD" },
     { "type": "text",     "id": "drop_title",  "label": "Title",       "default": "Something New Is Coming." },
