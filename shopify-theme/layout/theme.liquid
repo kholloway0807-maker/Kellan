@@ -22,15 +22,15 @@
 
 <body>
 
-  {% sections 'announcement-bar' %}
-  {% sections 'header' %}
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
 
   <main id="main-content" tabindex="-1">
     {{ content_for_layout }}
   </main>
 
-  {% sections 'email-capture' %}
-  {% sections 'footer' %}
+  {% section 'email-capture' %}
+  {% section 'footer' %}
 
   {{ 'nova.js' | asset_url | script_tag }}
 </body>
