@@ -285,10 +285,10 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap; margin-bottom: 48px;
 }
 
-/* Editorial 2-up grid: first row = 1 large + 1 normal, second row = normal + coming soon */
+/* ── Product Grid ── */
 .products-grid {
   display: grid;
-  gap: 20px;
+  gap: 16px;
   grid-template-columns: 1fr 1fr;
 }
 @media(max-width: 640px) {
@@ -297,85 +297,86 @@ a { color: inherit; text-decoration: none; }
 
 /* Default card */
 .product-card {
-  border-radius: 20px; overflow: hidden;
-  background: var(--cream);
-  transition: box-shadow .3s, transform .3s;
+  border-radius: 16px; overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--border);
+  transition: box-shadow .25s, transform .25s;
   text-decoration: none; display: block; color: inherit;
-  box-shadow: 0 2px 12px -4px rgba(0,0,0,.08);
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
 }
 .product-card:hover {
-  box-shadow: 0 16px 48px -12px rgba(0,0,0,.22);
-  transform: translateY(-3px);
+  box-shadow: 0 12px 40px -8px rgba(0,0,0,.16);
+  transform: translateY(-4px);
 }
 
-/* Hero card — spans 2 columns and shows the image much taller */
+/* Hero card — full width, image left / info right */
 .product-card--hero {
   grid-column: span 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 55% 1fr;
+  min-height: 480px;
 }
 @media(max-width:640px) {
-  .product-card--hero { grid-column: span 1; grid-template-columns: 1fr; }
+  .product-card--hero { grid-column: span 1; grid-template-columns: 1fr; min-height: unset; }
 }
 .product-card--hero .product-img-wrap {
   aspect-ratio: unset;
-  min-height: 480px;
+  height: 100%;
+  background: #F5F4F0;
 }
 .product-card--hero .product-info {
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 40px 36px;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 48px 44px;
   background: var(--ink); color: #fff;
+  gap: 0;
 }
-.product-card--hero .product-coords { color: rgba(255,255,255,.4); }
-.product-card--hero .product-name { font-size: 28px; color: #fff; }
-.product-card--hero .product-blurb { color: rgba(255,255,255,.6); font-size: 14px; }
+.product-card--hero .product-coords { color: rgba(255,255,255,.38); margin-bottom: 18px; }
+.product-card--hero .product-name { font-size: 30px; color: #fff; margin-bottom: 14px; }
+.product-card--hero .product-blurb { color: rgba(255,255,255,.65); font-size: 14px; line-height: 1.7; margin-bottom: 0; }
 .product-card--hero .product-price-tag {
-  display: inline-block; background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: var(--radius-pill); padding: 4px 14px;
+  display: inline-block;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--radius-pill); padding: 5px 16px;
   font-size: 13px; font-weight: 700; color: #fff;
-  margin-bottom: 20px; width: fit-content;
+  margin-bottom: 16px; width: fit-content;
 }
-.product-card--hero .product-cta { color: #fff; margin-top: 24px; }
-.product-card--hero .product-cta:hover { opacity: .75; }
+.product-card--hero .product-cta {
+  color: #fff; margin-top: 28px;
+  border-bottom-color: rgba(255,255,255,.5);
+}
 
 /* Image wrap shared */
 .product-img-wrap {
   position: relative; aspect-ratio: 3/4;
-  overflow: hidden; background: var(--bone);
+  overflow: hidden; background: #F5F4F0;
 }
 .product-img-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform .7s cubic-bezier(.25,.46,.45,.94);
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: center;
+  padding: 12px;
+  transition: transform .6s cubic-bezier(.25,.46,.45,.94);
 }
-.product-card:hover .product-img-wrap img { transform: scale(1.06); }
-
-/* Overlay shimmer on hover */
-.product-img-wrap::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 50%);
-  opacity: 0; transition: opacity .4s;
-}
-.product-card:hover .product-img-wrap::after { opacity: 1; }
+.product-card:hover .product-img-wrap img { transform: scale(1.04); }
 
 .product-price {
-  position: absolute; top: 14px; right: 14px;
-  background: rgba(255,255,255,.95); backdrop-filter: blur(8px);
-  border-radius: var(--radius-pill); padding: 5px 14px;
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,.96); backdrop-filter: blur(8px);
+  border-radius: var(--radius-pill); padding: 5px 13px;
   font-size: 12px; font-weight: 800; color: var(--ink);
   letter-spacing: .02em;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  box-shadow: 0 1px 6px rgba(0,0,0,.1);
+  border: 1px solid var(--border);
 }
 
-.product-info { padding: 22px 22px 26px; }
+.product-info { padding: 20px 20px 24px; }
 .product-coords {
   font-family: monospace; font-size: 10px;
   letter-spacing: .12em; color: var(--muted);
   margin-bottom: 6px; display: block;
 }
 .product-name {
-  font-size: 17px; font-weight: 800;
+  font-size: 16px; font-weight: 800;
   color: var(--ink); line-height: 1.2;
   letter-spacing: -.01em;
 }
@@ -386,19 +387,21 @@ a { color: inherit; text-decoration: none; }
 .product-cta {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 13px; font-weight: 700; color: var(--ink);
-  margin-top: 18px; transition: gap .2s;
+  margin-top: 16px; transition: gap .2s;
   border-bottom: 1.5px solid var(--ink); padding-bottom: 1px;
 }
-.product-card:hover .product-cta { gap: 12px; }
+.product-card:hover .product-cta { gap: 11px; }
 
 /* Coming soon card */
+.coming-soon-card { border-color: transparent; }
 .coming-soon-card .product-img-wrap {
   aspect-ratio: 3/4;
   background: var(--ink);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center; gap: 12px;
 }
-.coming-soon-card .product-info { background: var(--ink); }
+.coming-soon-card .product-img-wrap img { display: none; }
+.coming-soon-card .product-info { background: var(--ink); padding: 20px 20px 28px; }
 .coming-soon-card .product-coords { color: rgba(255,255,255,.35); }
 .coming-soon-card .product-name { color: #fff; }
 .coming-soon-card .product-blurb { color: rgba(255,255,255,.5); }
