@@ -1,0 +1,119 @@
+<section class="product-page section-pad">
+  <div class="container">
+    <div class="product-page-grid">
+
+      <!-- Images -->
+      <div class="product-page-gallery">
+        {%- if product.featured_image -%}
+          <div class="product-page-img-wrap">
+            <img
+              src="{{ product.featured_image | image_url: width: 900 }}"
+              alt="{{ product.featured_image.alt | escape | default: product.title }}"
+              loading="eager"
+              id="product-main-img"
+            >
+          </div>
+          {%- if product.images.size > 1 -%}
+            <div class="product-page-thumbs">
+              {%- for image in product.images limit: 6 -%}
+                <button class="thumb-btn{% if forloop.first %} active{% endif %}"
+                  onclick="document.getElementById('product-main-img').src='{{ image | image_url: width: 900 }}';this.closest('.product-page-thumbs').querySelectorAll('.thumb-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">
+                  <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}">
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <!-- Info -->
+      <div class="product-page-info">
+        <span class="eyebrow">{{ product.vendor }}</span>
+        <h1 class="product-page-title">{{ product.title }}</h1>
+
+        <div class="product-page-price">
+          {%- if product.compare_at_price > product.price -%}
+            <span class="price-was">{{ product.compare_at_price | money }}</span>
+          {%- endif -%}
+          <span class="price-now">{{ product.price | money }}</span>
+        </div>
+
+        {%- form 'product', product, id: 'product-form' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
+
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="product-option">
+                <label class="option-label">{{ option.name }}</label>
+                <div class="option-values">
+                  {%- for value in option.values -%}
+                    <button type="button"
+                      class="option-btn{% if option.selected_value == value %} selected{% endif %}"
+                      data-option-index="{{ forloop.parentloop.index0 }}"
+                      data-value="{{ value | escape }}"
+                      onclick="selectOption(this)">
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <button type="submit" class="btn-primary product-page-atc" style="width:100%;justify-content:center;padding:16px 24px;font-size:15px;margin-top:8px;">
+            {%- if product.available -%}Add to Cart{%- else -%}Sold Out{%- endif -%}
+          </button>
+        {%- endform -%}
+
+        {%- if product.description != blank -%}
+          <div class="product-page-desc">{{ product.description }}</div>
+        {%- endif -%}
+
+        <div class="product-page-meta">
+          <span>Free shipping on orders over $75</span>
+          <span>Easy 30-day returns</span>
+          <span>Garment-dyed — color may vary slightly</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  var productVariants = {{ product.variants | json }};
+
+  function selectOption(btn) {
+    var idx = btn.dataset.optionIndex;
+    btn.closest('.option-values').querySelectorAll('.option-btn').forEach(function(b) {
+      b.classList.remove('selected');
+    });
+    btn.classList.add('selected');
+    updateVariant();
+  }
+
+  function updateVariant() {
+    var selected = [];
+    document.querySelectorAll('.option-values').forEach(function(group) {
+      var active = group.querySelector('.option-btn.selected');
+      if (active) selected.push(active.dataset.value);
+    });
+    var match = productVariants.find(function(v) {
+      return v.options.every(function(o, i) { return o === selected[i]; });
+    });
+    if (match) {
+      document.getElementById('variant-id').value = match.id;
+      var atc = document.querySelector('.product-page-atc');
+      atc.textContent = match.available ? 'Add to Cart' : 'Sold Out';
+      atc.disabled = !match.available;
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product Page",
+  "settings": [],
+  "presets": [{ "name": "Product Page" }]
+}
+{% endschema %}

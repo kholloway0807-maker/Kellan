@@ -406,6 +406,76 @@ a { color: inherit; text-decoration: none; }
 .coming-soon-card .product-name { color: #fff; }
 .coming-soon-card .product-blurb { color: rgba(255,255,255,.5); }
 
+/* ── Product Page ── */
+.product-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+@media(max-width:768px) {
+  .product-page-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+.product-page-img-wrap {
+  border-radius: 16px; overflow: hidden;
+  background: #F5F4F0;
+  aspect-ratio: 1/1;
+}
+.product-page-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: contain; padding: 16px;
+}
+.product-page-thumbs {
+  display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap;
+}
+.thumb-btn {
+  width: 72px; height: 72px; border-radius: 10px; overflow: hidden;
+  border: 2px solid var(--border); background: #F5F4F0;
+  cursor: pointer; padding: 0; transition: border-color .2s;
+}
+.thumb-btn img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.thumb-btn.active { border-color: var(--ink); }
+.product-page-title {
+  font-size: 32px; font-weight: 900; letter-spacing: -.02em;
+  color: var(--ink); line-height: 1.1; margin: 8px 0 16px;
+}
+.product-page-price {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
+}
+.price-now { font-size: 22px; font-weight: 800; color: var(--ink); }
+.price-was { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+.product-option { margin-bottom: 20px; }
+.option-label {
+  display: block; font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 10px;
+}
+.option-values { display: flex; flex-wrap: wrap; gap: 8px; }
+.option-btn {
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 8px 16px; font-size: 13px; font-weight: 600;
+  background: #fff; color: var(--ink); cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option-btn:hover { border-color: var(--ink); }
+.option-btn.selected { border-color: var(--ink); background: var(--ink); color: #fff; }
+.product-page-desc {
+  margin-top: 28px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 14px; line-height: 1.75; color: var(--muted);
+}
+.product-page-meta {
+  margin-top: 20px; display: flex; flex-direction: column; gap: 8px;
+}
+.product-page-meta span {
+  font-size: 12px; color: var(--muted);
+  padding-left: 16px; position: relative;
+}
+.product-page-meta span::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--ink); font-weight: 700;
+}
+
 /* ── Comparison ── */
 .comparison { background: var(--white); }
 .comparison-heading-block { text-align: center; margin-bottom: 40px; }
