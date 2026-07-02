@@ -1,50 +1,59 @@
-import { SceneSection } from '../components/SceneSection';
-import { PerformanceScene } from '../scenes/PerformanceScene';
-import { Eyebrow } from '../components/Eyebrow';
 import { Reveal } from '../components/Reveal';
 
-const STATS = [
-  { value: '100%', label: 'ring-spun cotton', sub: 'Soft, structured, and breathable — garment-dyed for real depth of color.' },
-  { value: '∞', label: 'built to last', sub: 'Worn-in from day one and made to hold its shape wash after wash.' },
+const MATERIALS = [
+  {
+    label: 'Ring-Spun Cotton',
+    sub: '100% natural',
+    desc: 'Tightly wound fibers for a softer hand-feel and stronger fabric that resists pilling.',
+  },
+  {
+    label: 'Garment Dye',
+    sub: 'Batch-dyed',
+    desc: 'Each piece is dyed after construction, giving it a unique, faded character from day one.',
+  },
+  {
+    label: 'Heavy Fleece',
+    sub: '400gsm weight',
+    desc: 'Substantial without being stiff — the kind of weight that drapes well and holds structure.',
+  },
+  {
+    label: 'Relaxed Fit',
+    sub: 'Oversized cut',
+    desc: 'Designed to be worn loose. Proportioned so it looks intentional, not just big.',
+  },
 ];
 
 export function Performance() {
   return (
-    <SceneSection
-      id="performance"
-      camera={[0, 0.5, 9]}
-      bloomIntensity={1.0}
-      scene={<PerformanceScene />}
-      fallback="radial-gradient(70% 110% at 50% 100%, rgba(34,211,238,0.2), rgba(255,91,58,0.08) 50%, rgba(5,5,5,0) 75%)"
-    >
-      <div className="mx-auto max-w-5xl text-center">
+    <section id="craft" className="bg-nova-cream section-pad">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <Eyebrow num="03" label="The craft" className="justify-center" />
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-            Made to be worn <span className="gradient-text">for years, not seasons.</span>
-          </h2>
+          <div className="text-center">
+            <p className="eyebrow mb-4">The Craft</p>
+            <h2 className="mx-auto max-w-2xl text-4xl font-bold leading-tight tracking-tight text-nova-ink sm:text-5xl">
+              Inside Our Formula
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base text-nova-muted">
+              Four material decisions that make NOVA feel different the moment you put it on.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2">
-          {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={0.1 + i * 0.08}>
-              <div className="glass group relative overflow-hidden rounded-3xl p-8 text-left">
-                <div
-                  className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-40 blur-3xl transition-opacity group-hover:opacity-70"
-                  style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.5), rgba(255,59,0,0.3))' }}
-                />
-                <div className="text-6xl font-semibold tracking-tight text-white sm:text-7xl">
-                  <span className="gradient-text">{s.value}</span>
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {MATERIALS.map((m, i) => (
+            <Reveal key={m.label} delay={0.08 * i}>
+              <div className="card p-6">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-nova-bone text-xl">
+                  {['🧵', '🎨', '🧱', '📐'][i]}
                 </div>
-                <div className="mt-2 text-lg font-medium text-white/90">{s.label}</div>
-                <p className="mt-3 text-sm leading-relaxed text-white/55">{s.sub}</p>
+                <p className="eyebrow mb-1">{m.sub}</p>
+                <h3 className="text-base font-bold text-nova-ink">{m.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-nova-muted">{m.desc}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </div>
-    </SceneSection>
+    </section>
   );
 }

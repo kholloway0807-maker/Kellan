@@ -1,44 +1,48 @@
-import { SceneSection } from '../components/SceneSection';
-import { HeroScene } from '../scenes/HeroScene';
-import { Eyebrow } from '../components/Eyebrow';
-import { ArrowIcon } from '../components/icons';
-
 export function Hero() {
   return (
-    <SceneSection
+    <section
       id="hero"
-      camera={[0, 1.2, 11]}
-      bloomIntensity={1.1}
-      scene={<HeroScene />}
-      fallback="radial-gradient(120% 80% at 50% 20%, rgba(34,211,238,0.18), rgba(255,91,58,0.06) 55%, rgba(5,5,5,0) 75%)"
+      className="relative flex min-h-[100svh] flex-col items-start justify-end overflow-hidden bg-[#0D1B2A] pt-14"
     >
-      <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-        <div className="mb-6 animate-[fadeIn_1s_ease-out]">
-          <Eyebrow num="01" label="NOVA Apparel" className="justify-center" />
-        </div>
-        <h1 className="text-balance text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          Made for those who <span className="gradient-text">take the risk.</span>
-        </h1>
-        <p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-white/65 sm:text-lg">
-          Premium garment-dyed apparel marked with the coordinates worth the leap. Heavyweight,
-          worn-in, and built to outlast the moment that made it.
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <a href="#shop" className="pill-primary text-[15px]">
-            Shop the collection <ArrowIcon />
-          </a>
-          <a href="#terrain" className="pill-ghost text-[15px]">
-            See the lookbook
-          </a>
+      {/* Background product image */}
+      <div className="absolute inset-0">
+        <img
+          src={`${import.meta.env.BASE_URL}products/hoodie.jpg`}
+          alt="NOVA Take The Risk Hoodie"
+          className="h-full w-full object-cover object-center opacity-50"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2A] via-[#0D1B2A]/60 to-[#0D1B2A]/20" />
+      </div>
+
+      {/* Content */}
+      <div className="relative mx-auto w-full max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div className="max-w-xl animate-[fadeIn_0.9s_ease-out_both]">
+          <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/60">
+            NOVA Apparel
+          </p>
+          <h1 className="text-balance text-5xl font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Made For Those<br />Who Take The Risk.
+          </h1>
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/65">
+            Premium garment-dyed apparel. Heavyweight, worn-in from day one, and built to outlast
+            the moment that made it.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#shop" className="btn-primary-dark text-[15px] px-7 py-3.5">
+              Shop the Collection
+            </a>
+            <a href="#craft" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-[15px] font-semibold text-white/80 backdrop-blur-sm transition hover:bg-white/10">
+              Our Craft
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center">
-        <div className="flex flex-col items-center gap-2 text-white/40">
-          <span className="text-[10px] uppercase tracking-eyebrow">Scroll</span>
-          <span className="h-8 w-px animate-pulse-glow bg-gradient-to-b from-white/50 to-transparent" />
-        </div>
+      {/* Scroll cue */}
+      <div className="absolute bottom-7 right-8 hidden flex-col items-center gap-2 lg:flex">
+        <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Scroll</span>
+        <span className="h-8 w-px bg-gradient-to-b from-white/50 to-transparent" />
       </div>
-    </SceneSection>
+    </section>
   );
 }
