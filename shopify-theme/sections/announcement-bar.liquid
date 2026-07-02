@@ -1,0 +1,31 @@
+{%- assign items = section.settings.items_raw | newline_to_br | split: '<br />' -%}
+
+<div class="announcement-bar">
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      {%- for i in (1..4) -%}
+        {%- for item in items -%}
+          {%- assign trimmed = item | strip -%}
+          {%- if trimmed != '' -%}
+            <span>{{ trimmed }}<span class="dot"></span></span>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "items_raw",
+      "label": "Items (one per line)",
+      "default": "Free shipping on orders $75+\nGarment-dyed. Built to last.\nShips next business day\nHeavyweight ring-spun cotton"
+    }
+  ],
+  "presets": [{ "name": "Announcement Bar" }]
+}
+{% endschema %}

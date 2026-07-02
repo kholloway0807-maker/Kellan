@@ -1,0 +1,33 @@
+<header class="site-header" role="banner">
+  <div class="nav-inner">
+    <a href="{{ routes.root_url }}" class="nav-logo">{{ shop.name }}</a>
+
+    <nav role="navigation">
+      <ul class="nav-links">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="{{ routes.root_url }}" class="nav-store-link">Store</a>
+      <a href="#shop" class="btn-primary" style="padding:8px 18px;font-size:13px;">Shop Now</a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [{ "name": "Header" }]
+}
+{% endschema %}

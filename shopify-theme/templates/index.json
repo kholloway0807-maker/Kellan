@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "trust-strip": {
+      "type": "trust-strip",
+      "settings": {}
+    },
+    "feature-split": {
+      "type": "feature-split",
+      "settings": {}
+    },
+    "craft": {
+      "type": "craft",
+      "settings": {},
+      "blocks": {
+        "mat1": { "type": "material", "settings": { "icon": "🧵", "sub": "100% natural",  "title": "Ring-Spun Cotton", "body": "Tightly wound fibers for a softer hand-feel and stronger fabric that resists pilling." } },
+        "mat2": { "type": "material", "settings": { "icon": "🎨", "sub": "Batch-dyed",     "title": "Garment Dye",     "body": "Each piece is dyed after construction, giving it a unique, faded character from day one." } },
+        "mat3": { "type": "material", "settings": { "icon": "🧱", "sub": "400gsm weight",  "title": "Heavy Fleece",    "body": "Substantial without being stiff — the kind of weight that drapes well and holds structure." } },
+        "mat4": { "type": "material", "settings": { "icon": "📐", "sub": "Oversized cut",  "title": "Relaxed Fit",     "body": "Designed to be worn loose. Proportioned so it looks intentional, not just big." } }
+      },
+      "blocks_order": ["mat1", "mat2", "mat3", "mat4"]
+    },
+    "benefits-strip": {
+      "type": "benefits-strip",
+      "settings": {}
+    },
+    "product-grid": {
+      "type": "product-grid",
+      "settings": {}
+    },
+    "comparison": {
+      "type": "comparison",
+      "settings": {},
+      "blocks": {
+        "r1": { "type": "row", "settings": { "feature": "Garment-Dyed Finish",    "col1": true,  "col2": false, "col3": false } },
+        "r2": { "type": "row", "settings": { "feature": "400gsm Heavy Fleece",    "col1": true,  "col2": false, "col3": false } },
+        "r3": { "type": "row", "settings": { "feature": "Relaxed Oversized Fit",  "col1": true,  "col2": false, "col3": true  } },
+        "r4": { "type": "row", "settings": { "feature": "Keeps Shape After Wash", "col1": true,  "col2": false, "col3": true  } },
+        "r5": { "type": "row", "settings": { "feature": "No Filler Blends",       "col1": true,  "col2": true,  "col3": false } },
+        "r6": { "type": "row", "settings": { "feature": "Under $50",              "col1": true,  "col2": true,  "col3": false } }
+      },
+      "blocks_order": ["r1", "r2", "r3", "r4", "r5", "r6"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {},
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "How does garment dyeing affect the fit?",   "answer": "Garment dyeing causes a small, intentional amount of shrinkage and relaxing of the fabric. Our sizing accounts for this — each piece is pre-washed so what you order is what you get." } },
+        "q2": { "type": "faq", "settings": { "question": "Will the color fade over time?",            "answer": "Yes — intentionally. Garment-dyed pieces develop a beautiful faded patina with wear and washing. Wash cold, inside-out to slow the fade if you prefer." } },
+        "q3": { "type": "faq", "settings": { "question": "How many pieces can I order?",              "answer": "No limits. Order as many as you want — we batch ship everything in 1–2 business days." } },
+        "q4": { "type": "faq", "settings": { "question": "How many washes does the garment last?",   "answer": "100% ring-spun cotton is built for longevity. With proper cold-wash care, these pieces hold their structure and color far beyond fast-fashion alternatives." } },
+        "q5": { "type": "faq", "settings": { "question": "What is your return policy?",              "answer": "We accept returns within 30 days of delivery on unworn, unwashed items. Email hello@novaly.us to start a return." } }
+      },
+      "blocks_order": ["q1", "q2", "q3", "q4", "q5"]
+    }
+  },
+  "order": ["hero", "trust-strip", "feature-split", "craft", "benefits-strip", "product-grid", "comparison", "faq"]
+}

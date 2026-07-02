@@ -1,0 +1,53 @@
+<footer class="site-footer">
+  <div class="container" style="padding-top:64px;padding-bottom:48px;">
+    <div class="footer-grid">
+      <div>
+        <span class="footer-brand-name">{{ shop.name }}</span>
+        <p class="footer-brand-sub">{{ section.settings.brand_desc }}</p>
+        <p class="footer-coords">{{ section.settings.coords }}</p>
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div {{ block.shopify_attributes }}>
+          <span class="footer-col-title">{{ block.settings.title }}</span>
+          <ul class="footer-links">
+            {%- for link in linklists[block.settings.menu].links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved. Powered by Shopify.</span>
+      <div class="footer-legal">
+        <a href="{{ routes.root_url }}policies/privacy-policy">Privacy Policy</a>
+        <a href="{{ routes.root_url }}policies/terms-of-service">Terms of Service</a>
+        <a href="{{ routes.root_url }}policies/refund-policy">Refund Policy</a>
+        <a href="{{ routes.root_url }}policies/shipping-policy">Shipping Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "brand_desc", "label": "Brand description", "default": "Premium garment-dyed apparel for those who take the risk." },
+    { "type": "text",     "id": "coords",     "label": "Coordinates",       "default": "37.7335° N, 119.6376° W" }
+  ],
+  "blocks": [
+    {
+      "type": "menu_column",
+      "name": "Footer Menu",
+      "settings": [
+        { "type": "text",      "id": "title", "label": "Column title", "default": "Shop" },
+        { "type": "link_list", "id": "menu",  "label": "Menu" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Footer" }]
+}
+{% endschema %}

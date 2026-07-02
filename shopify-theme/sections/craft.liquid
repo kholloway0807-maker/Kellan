@@ -1,0 +1,54 @@
+<section id="craft" class="craft section-pad">
+  <div class="container">
+    <div class="craft-heading-block">
+      <span class="eyebrow" style="display:inline-block;">{{ section.settings.eyebrow }}</span>
+      <h2 class="section-heading" style="margin:0 auto;">{{ section.settings.heading }}</h2>
+      <p class="section-sub" style="margin:16px auto 0;">{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="materials-grid">
+      {%- for block in section.blocks -%}
+        <div class="material-card" {{ block.shopify_attributes }}>
+          <div class="material-icon">{{ block.settings.icon }}</div>
+          <span class="eyebrow">{{ block.settings.sub }}</span>
+          <div class="material-title">{{ block.settings.title }}</div>
+          <p class="material-body">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Craft / Materials",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",    "label": "Eyebrow",     "default": "The Craft" },
+    { "type": "text",     "id": "heading",    "label": "Heading",     "default": "Inside Our Formula" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading",  "default": "Four material decisions that make NOVA feel different the moment you put it on." }
+  ],
+  "blocks": [
+    {
+      "type": "material",
+      "name": "Material Card",
+      "settings": [
+        { "type": "text",     "id": "icon",  "label": "Emoji icon",   "default": "🧵" },
+        { "type": "text",     "id": "sub",   "label": "Sub-label",    "default": "100% natural" },
+        { "type": "text",     "id": "title", "label": "Title",        "default": "Ring-Spun Cotton" },
+        { "type": "textarea", "id": "body",  "label": "Description",  "default": "Tightly wound fibers for a softer hand-feel and stronger fabric." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Craft",
+      "blocks": [
+        { "type": "material", "settings": { "icon": "🧵", "sub": "100% natural",   "title": "Ring-Spun Cotton", "body": "Tightly wound fibers for a softer hand-feel and stronger fabric that resists pilling." } },
+        { "type": "material", "settings": { "icon": "🎨", "sub": "Batch-dyed",      "title": "Garment Dye",     "body": "Each piece is dyed after construction, giving it a unique, faded character from day one." } },
+        { "type": "material", "settings": { "icon": "🧱", "sub": "400gsm weight",   "title": "Heavy Fleece",    "body": "Substantial without being stiff — the kind of weight that drapes well and holds structure." } },
+        { "type": "material", "settings": { "icon": "📐", "sub": "Oversized cut",   "title": "Relaxed Fit",     "body": "Designed to be worn loose. Proportioned so it looks intentional, not just big." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

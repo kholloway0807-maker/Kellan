@@ -1,0 +1,91 @@
+<section id="shop" class="shop section-pad">
+  <div class="container">
+    <div class="shop-header">
+      <div>
+        <span class="eyebrow">The Collection</span>
+        <h2 class="section-heading">{{ section.settings.heading }}</h2>
+      </div>
+      <a href="{{ section.settings.store_url }}" target="_blank" rel="noreferrer" class="btn-ghost">
+        Full Store
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div class="products-grid">
+      {%- assign collection = collections[section.settings.collection] -%}
+      {%- for product in collection.products limit: section.settings.products_to_show -%}
+        <a href="{{ product.url }}" class="product-card">
+          <div class="product-img-wrap">
+            {%- if product.featured_image -%}
+              <img
+                src="{{ product.featured_image | image_url: width: 600 }}"
+                alt="{{ product.featured_image.alt | escape }}"
+                loading="lazy"
+              >
+            {%- endif -%}
+            <span class="product-price">{{ product.price | money }}</span>
+          </div>
+          <div class="product-info">
+            {%- if product.metafields.nova.coords -%}
+              <p class="product-coords">{{ product.metafields.nova.coords }}</p>
+            {%- endif -%}
+            <h3 class="product-name">{{ product.title }}</h3>
+            <p class="product-blurb">{{ product.description | strip_html | truncate: 100 }}</p>
+            <span class="product-cta">
+              Shop Now
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </a>
+      {%- else -%}
+        {%- comment -%} Fallback: show blocks if no collection is set {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          <a href="{{ block.settings.url }}" class="product-card" {{ block.shopify_attributes }}>
+            <div class="product-img-wrap">
+              {%- if block.settings.image -%}
+                <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.name }}" loading="lazy">
+              {%- endif -%}
+              <span class="product-price">{{ block.settings.price }}</span>
+            </div>
+            <div class="product-info">
+              <p class="product-coords">{{ block.settings.coords }}</p>
+              <h3 class="product-name">{{ block.settings.name }}</h3>
+              <p class="product-blurb">{{ block.settings.blurb }}</p>
+              <span class="product-cta">
+                Shop Now
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+          </a>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    { "type": "text",        "id": "heading",          "label": "Heading",            "default": "Wear Your Coordinates." },
+    { "type": "collection",  "id": "collection",       "label": "Collection (optional)" },
+    { "type": "range",       "id": "products_to_show", "label": "Products to show", "min": 2, "max": 12, "step": 1, "default": 3 },
+    { "type": "url",         "id": "store_url",        "label": "Full store URL",     "default": "https://novaly.us" }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product (manual)",
+      "settings": [
+        { "type": "image_picker", "id": "image",   "label": "Image" },
+        { "type": "text",         "id": "name",    "label": "Name",   "default": "Take The Risk Hoodie" },
+        { "type": "text",         "id": "price",   "label": "Price",  "default": "$44" },
+        { "type": "text",         "id": "coords",  "label": "Coordinates", "default": "37.7335° N, 119.6376° W" },
+        { "type": "textarea",     "id": "blurb",   "label": "Blurb",  "default": "Garment-dyed lightweight fleece." },
+        { "type": "url",          "id": "url",     "label": "URL" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Product Grid" }]
+}
+{% endschema %}

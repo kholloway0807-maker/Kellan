@@ -1,0 +1,64 @@
+<section id="faq" class="faq section-pad">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-sticky">
+        <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        <h2 class="faq-heading">{{ section.settings.heading }}</h2>
+        <p class="faq-sub">
+          {{ section.settings.subtext }}
+          {%- if section.settings.contact_email != blank -%}
+            <a href="mailto:{{ section.settings.contact_email }}">Reach out.</a>
+          {%- endif -%}
+        </p>
+      </div>
+
+      <ul class="faq-list">
+        {%- for block in section.blocks -%}
+          <li class="faq-item" {{ block.shopify_attributes }}>
+            <button class="faq-question" aria-expanded="false">
+              {{ block.settings.question }}
+              <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer">{{ block.settings.answer }}</div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",       "label": "Eyebrow",        "default": "Got Questions?" },
+    { "type": "text",     "id": "heading",       "label": "Heading",        "default": "Frequently\nAsked\nQuestions" },
+    { "type": "textarea", "id": "subtext",       "label": "Body text",      "default": "Everything you need to know about NOVA. Can't find your answer? " },
+    { "type": "text",     "id": "contact_email", "label": "Contact email",  "default": "hello@novaly.us" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text",     "id": "question", "label": "Question", "default": "How does garment dyeing affect the fit?" },
+        { "type": "textarea", "id": "answer",   "label": "Answer",   "default": "Garment dyeing causes a small, intentional amount of shrinkage. Our sizing accounts for this." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "How does garment dyeing affect the fit?",   "answer": "Garment dyeing causes a small, intentional amount of shrinkage and relaxing of the fabric. Our sizing accounts for this — each piece is pre-washed so what you order is what you get." } },
+        { "type": "faq", "settings": { "question": "Will the color fade over time?",             "answer": "Yes — intentionally. Garment-dyed pieces develop a beautiful faded patina with wear and washing. Wash cold, inside-out to slow the fade if you prefer." } },
+        { "type": "faq", "settings": { "question": "How many pieces can I order?",               "answer": "No limits. Order as many as you want — we batch ship everything in 1–2 business days." } },
+        { "type": "faq", "settings": { "question": "How many washes does the garment last?",    "answer": "100% ring-spun cotton is built for longevity. With proper cold-wash care, these pieces hold their structure and color far beyond fast-fashion alternatives." } },
+        { "type": "faq", "settings": { "question": "What is your return policy?",               "answer": "We accept returns within 30 days of delivery on unworn, unwashed items. Email hello@novaly.us to start a return." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

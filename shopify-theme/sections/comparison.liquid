@@ -1,0 +1,72 @@
+<section class="comparison section-pad">
+  <div class="container">
+    <div class="comparison-heading-block">
+      <span class="eyebrow" style="display:inline-block;">{{ section.settings.eyebrow }}</span>
+      <h2 class="section-heading" style="margin:0 auto;">{{ section.settings.heading }}</h2>
+      <p class="section-sub" style="margin:16px auto 0;">{{ section.settings.subheading }}</p>
+    </div>
+
+    <div class="comparison-table" style="max-width:800px;margin:0 auto;">
+      <div class="comparison-head">
+        <span>Feature</span>
+        <span class="col-nova">{{ section.settings.col1 }}</span>
+        <span style="text-align:center;">{{ section.settings.col2 }}</span>
+        <span style="text-align:center;">{{ section.settings.col3 }}</span>
+      </div>
+
+      {%- for block in section.blocks -%}
+        <div class="comparison-row" {{ block.shopify_attributes }}>
+          <span class="feature">{{ block.settings.feature }}</span>
+          <span class="comparison-cell">
+            {%- if block.settings.col1 -%}<span class="check-yes">✓</span>{%- else -%}<span class="check-no">✕</span>{%- endif -%}
+          </span>
+          <span class="comparison-cell">
+            {%- if block.settings.col2 -%}<span class="check-yes">✓</span>{%- else -%}<span class="check-no">✕</span>{%- endif -%}
+          </span>
+          <span class="comparison-cell">
+            {%- if block.settings.col3 -%}<span class="check-yes">✓</span>{%- else -%}<span class="check-no">✕</span>{%- endif -%}
+          </span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comparison Table",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",    "label": "Eyebrow",      "default": "Us vs. Others" },
+    { "type": "text",     "id": "heading",    "label": "Heading",      "default": "How We Stack Up" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading",   "default": "We built NOVA to be the hoodie that actually holds up — in quality and price." },
+    { "type": "text",     "id": "col1",       "label": "Column 1 (us)","default": "NOVA" },
+    { "type": "text",     "id": "col2",       "label": "Column 2",     "default": "Fast Fashion" },
+    { "type": "text",     "id": "col3",       "label": "Column 3",     "default": "Basics Brand" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        { "type": "text",     "id": "feature", "label": "Feature",    "default": "Garment-Dyed Finish" },
+        { "type": "checkbox", "id": "col1",    "label": "Column 1",   "default": true },
+        { "type": "checkbox", "id": "col2",    "label": "Column 2",   "default": false },
+        { "type": "checkbox", "id": "col3",    "label": "Column 3",   "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table",
+      "blocks": [
+        { "type": "row", "settings": { "feature": "Garment-Dyed Finish",    "col1": true,  "col2": false, "col3": false } },
+        { "type": "row", "settings": { "feature": "400gsm Heavy Fleece",    "col1": true,  "col2": false, "col3": false } },
+        { "type": "row", "settings": { "feature": "Relaxed Oversized Fit",  "col1": true,  "col2": false, "col3": true  } },
+        { "type": "row", "settings": { "feature": "Keeps Shape After Wash", "col1": true,  "col2": false, "col3": true  } },
+        { "type": "row", "settings": { "feature": "No Filler Blends",       "col1": true,  "col2": true,  "col3": false } },
+        { "type": "row", "settings": { "feature": "Under $50",              "col1": true,  "col2": true,  "col3": false } }
+      ]
+    }
+  ]
+}
+{% endschema %}

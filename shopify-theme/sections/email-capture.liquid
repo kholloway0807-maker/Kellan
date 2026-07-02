@@ -1,0 +1,45 @@
+<section class="email-capture section-pad">
+  <div class="container">
+    <div class="email-block">
+      <span class="eyebrow" style="color:rgba(255,255,255,.45);">{{ section.settings.eyebrow }}</span>
+      <h2 class="email-heading">{{ section.settings.heading }}</h2>
+      <p class="email-sub">{{ section.settings.subtext }}</p>
+
+      <div id="nova-email-wrapper">
+        {%- form 'customer', id: 'nova-email-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="email-form">
+            <input
+              type="email"
+              name="contact[email]"
+              class="email-input"
+              placeholder="{{ section.settings.placeholder }}"
+              required
+              autocomplete="email"
+            >
+            <button type="submit" class="btn-light" style="padding:8px 20px;font-size:13px;flex-shrink:0;">
+              {{ section.settings.cta_label }}
+            </button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <span class="email-success">You're on the list — welcome to NOVA. ✦</span>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Email Capture",
+  "settings": [
+    { "type": "text",     "id": "eyebrow",     "label": "Eyebrow",      "default": "Join NOVA" },
+    { "type": "text",     "id": "heading",     "label": "Heading",      "default": "Subscribe To Our Emails" },
+    { "type": "textarea", "id": "subtext",     "label": "Subtext",      "default": "Be the first to know about new collections and exclusive offers. Take the risk — create your legacy." },
+    { "type": "text",     "id": "placeholder", "label": "Placeholder",  "default": "Email" },
+    { "type": "text",     "id": "cta_label",   "label": "CTA label",    "default": "Subscribe" }
+  ],
+  "presets": [{ "name": "Email Capture" }]
+}
+{% endschema %}
