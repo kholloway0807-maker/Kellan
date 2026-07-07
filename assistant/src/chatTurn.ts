@@ -1,5 +1,6 @@
 import { buildSystem } from "./promptBuilder.js";
 import { recall } from "./recall.js";
+import { describeCapabilities } from "./capabilities.js";
 import { MEMORY_TOOLS, executeTool, type ToolContext } from "./tools.js";
 import type { Provider } from "./provider.js";
 import type { Session } from "./session.js";
@@ -38,11 +39,16 @@ export async function runTurn(opts: TurnOptions): Promise<string> {
     );
   }
 
+  // Self-knowledge is generated from the SAME tool list handed to the
+  // model, so what it claims and what it can call never diverge.
+  const tools = MEMORY_TOOLS;
+  const capabilities = opts.capabilities ?? describeCapabilities(tools);
+
   for (let hop = 0; hop < 8; hop++) {
     const result = await provider.chat({
-      system: buildSystem({ turnCount, reminders, capabilities: opts.capabilities }),
+      system: buildSystem({ turnCount, reminders, capabilities }),
       messages: session.windowMessages(),
-      tools: MEMORY_TOOLS,
+      tools,
       onText: opts.onText,
     });
 

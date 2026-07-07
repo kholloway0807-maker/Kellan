@@ -62,6 +62,18 @@ export function buildSystem(ctx: PromptContext): SystemBlock[] {
     dynamicParts.push(ctx.reminders.join("\n"));
   }
 
+  // The seatbelt for exactly where tone slips: many turns deep, a model
+  // starts imitating its own recent replies instead of its instructions.
+  if (ctx.turnCount >= CONFIG.checkpointAfterTurns) {
+    dynamicParts.push(
+      `Personality checkpoint — this conversation is ${ctx.turnCount} turns deep, ` +
+        "where drift sets in. Before you answer, check your draft against your " +
+        "identity on two axes: length (as short as the substance allows?) and " +
+        "voice (still Kellan — no generic-assistant openers, no hedge pile-ups?). " +
+        "Fix the draft first if either is off.",
+    );
+  }
+
   return [
     { text: stableParts.join("\n\n---\n\n"), cache: true },
     { text: dynamicParts.join("\n\n"), cache: false },
