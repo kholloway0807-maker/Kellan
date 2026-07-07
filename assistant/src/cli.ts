@@ -5,8 +5,12 @@ import { pickProvider } from "./provider.js";
 import { Session } from "./session.js";
 import { runTurn } from "./chatTurn.js";
 import { extractMemories } from "./extractor.js";
+import { describeCapabilities } from "./capabilities.js";
+import { MEMORY_TOOLS } from "./tools.js";
+import { Voice } from "./voice.js";
 
 const provider = pickProvider();
+const voice = new Voice();
 
 function openSession(): Session {
   const resumable = Session.resumable();
@@ -33,7 +37,9 @@ async function main(): Promise<void> {
   const rl = readline.createInterface({ input: stdin, output: stdout });
   let session = openSession();
   console.log(
-    `${CONFIG.assistantName} (provider: ${provider.name}) — /quit, /new, /sessions, /resume <id>`,
+    `${CONFIG.assistantName} (provider: ${provider.name}, voice: ${
+      voice.available ? "on" : `off — ${voice.reason}`
+    }) — /quit, /new, /sessions, /resume <id>, /voice`,
   );
 
   const confirmForget = async (hook: string): Promise<boolean> => {
@@ -63,6 +69,11 @@ async function main(): Promise<void> {
       }
       continue;
     }
+    if (line === "/voice") {
+      if (!voice.available) console.log(`(voice unavailable: ${voice.reason})`);
+      else console.log(voice.toggle() ? "(voice on)" : "(voice off)");
+      continue;
+    }
     if (line.startsWith("/resume")) {
       const id = line.split(/\s+/)[1] ?? Session.latest()?.id;
       if (!id) {
@@ -79,14 +90,20 @@ async function main(): Promise<void> {
     }
 
     stdout.write(`${CONFIG.assistantName.toLowerCase()}> `);
-    await runTurn({
+    const replyText = await runTurn({
       provider,
       session,
       userMessage: line,
       onText: (d) => stdout.write(d),
       toolContext: { confirmForget },
+      capabilities: describeCapabilities(MEMORY_TOOLS, [
+        voice.enabled
+          ? "- Spoken replies: each answer is also read aloud (ElevenLabs); keep spoken-style brevity in mind."
+          : "- Spoken replies: currently off; text only.",
+      ]),
     });
     stdout.write("\n");
+    void voice.speak(replyText);
   }
 
   rl.close();
