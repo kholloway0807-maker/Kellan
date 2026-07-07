@@ -2,9 +2,11 @@ import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { CONFIG } from "./config.js";
 import { pickProvider, type ChatMessage } from "./provider.js";
+import { buildSystem } from "./promptBuilder.js";
 
 const provider = pickProvider();
 const history: ChatMessage[] = [];
+let turnCount = 0;
 
 async function main(): Promise<void> {
   const rl = readline.createInterface({ input: stdin, output: stdout });
@@ -16,9 +18,10 @@ async function main(): Promise<void> {
     if (line === "/quit" || line === "/exit") break;
 
     history.push({ role: "user", content: line });
+    turnCount += 1;
     stdout.write(`${CONFIG.assistantName.toLowerCase()}> `);
     const result = await provider.chat({
-      system: [{ text: `You are ${CONFIG.assistantName}, a personal assistant.`, cache: true }],
+      system: buildSystem({ turnCount }),
       messages: history,
       onText: (d) => stdout.write(d),
     });
