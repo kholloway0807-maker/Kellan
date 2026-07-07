@@ -1,0 +1,5 @@
+# Runtime state — sessions, memories, and the derived index live here.
+# Memories are personal data; they stay on the machine, not in git.
+data/
+node_modules/
+*.mp3

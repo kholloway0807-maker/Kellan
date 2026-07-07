@@ -1,0 +1,21 @@
+{
+  "name": "kellan-assistant",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Kellan — a terminal AI assistant with a durable identity, core knowledge, and file-backed memory.",
+  "scripts": {
+    "chat": "tsx src/cli.ts",
+    "lint": "tsc --noEmit",
+    "rebuild-index": "tsx src/rebuildIndex.ts",
+    "verify": "tsx scripts/verify-all.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.110.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3"
+  }
+}
