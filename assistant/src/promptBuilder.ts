@@ -1,5 +1,6 @@
 import { CONFIG } from "./config.js";
 import { mtimeCachedFile, mtimeCachedDir } from "./fsCache.js";
+import { MEMORY_GUIDANCE } from "./tools.js";
 import type { SystemBlock } from "./provider.js";
 
 const readIdentity = mtimeCachedFile(CONFIG.identityPath);
@@ -46,6 +47,8 @@ export function buildSystem(ctx: PromptContext): SystemBlock[] {
         rendered,
     );
   }
+
+  stableParts.push(MEMORY_GUIDANCE);
 
   stableParts.push(
     "# Your capabilities\n\n" +

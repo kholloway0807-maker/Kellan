@@ -2,8 +2,9 @@ import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { CONFIG } from "./config.js";
 import { pickProvider } from "./provider.js";
-import { buildSystem } from "./promptBuilder.js";
 import { Session } from "./session.js";
+import { runTurn } from "./chatTurn.js";
+import { extractMemories } from "./extractor.js";
 
 const provider = pickProvider();
 
@@ -17,6 +18,17 @@ function openSession(): Session {
   return Session.create();
 }
 
+async function endSession(session: Session): Promise<void> {
+  const report = await extractMemories(provider, session);
+  if (report.skipped) return;
+  if (report.saved.length > 0) {
+    console.log(`(remembered: ${report.saved.join(", ")})`);
+  }
+  for (const r of report.rejected) {
+    console.log(`(not saved — ${r.why}: ${r.hook})`);
+  }
+}
+
 async function main(): Promise<void> {
   const rl = readline.createInterface({ input: stdin, output: stdout });
   let session = openSession();
@@ -24,12 +36,21 @@ async function main(): Promise<void> {
     `${CONFIG.assistantName} (provider: ${provider.name}) — /quit, /new, /sessions, /resume <id>`,
   );
 
+  const confirmForget = async (hook: string): Promise<boolean> => {
+    const answer = await rl.question(`delete memory "${hook}"? [y/N] `);
+    return answer.trim().toLowerCase() === "y";
+  };
+
   for (;;) {
     const line = (await rl.question("you> ")).trim();
     if (!line) continue;
 
-    if (line === "/quit" || line === "/exit") break;
+    if (line === "/quit" || line === "/exit") {
+      await endSession(session);
+      break;
+    }
     if (line === "/new") {
+      await endSession(session);
       session = Session.create();
       console.log(`(new session ${session.id})`);
       continue;
@@ -57,17 +78,15 @@ async function main(): Promise<void> {
       continue;
     }
 
-    session.append("user", line);
-    const turnCount = session.turns.filter((t) => t.role === "user").length;
-
     stdout.write(`${CONFIG.assistantName.toLowerCase()}> `);
-    const result = await provider.chat({
-      system: buildSystem({ turnCount }),
-      messages: session.windowMessages(),
+    await runTurn({
+      provider,
+      session,
+      userMessage: line,
       onText: (d) => stdout.write(d),
+      toolContext: { confirmForget },
     });
     stdout.write("\n");
-    session.append("assistant", result.text);
   }
 
   rl.close();
