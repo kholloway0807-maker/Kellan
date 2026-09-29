@@ -83,6 +83,13 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+  /* scroll reveals are driven by JS, so the rules above do not reach them.
+     Pin every revealed block to its resting state: reduced motion gets a
+     fully static page rather than a slower animated one. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 body {
