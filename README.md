@@ -11,8 +11,8 @@ blackletter crest, St. Tropez → St. Clermont.
 
 ## Sections
 
-Hero (script wordmark) · Marquee · Collection (4 tees, size picker, bag) ·
-La Maison (story + crest) · Le Menu (the drop as a dinner menu) · The Club (email signup) · Footer
+Hero (script wordmark) · Marquee · Collection (live from Shopify, option picker, bag) ·
+La Maison (story + crest) · Le Menu (live products as a dinner menu, hidden until products exist) · The Club (email signup) · Footer
 
 ## Connecting Shopify
 
@@ -20,19 +20,16 @@ La Maison (story + crest) · Le Menu (the drop as a dinner menu) · The Club (em
    enable **Storefront API** scopes (`unauthenticated_read_product_listings`,
    `unauthenticated_write_checkouts`, `unauthenticated_read_checkouts`), install, and copy the
    **Storefront access token** (it's a public, browser-safe token).
-2. Create the products with a **Size** option (S, M, L, XL, XXL) and these handles
-   (or edit `handle` in `src/data/products.ts` to match yours):
-   - `saint-clermont-script-noir-tee`
-   - `saint-clermont-crest-noir-tee`
-   - `saint-clermont-script-creme-tee`
-   - `saint-clermont-crest-creme-tee`
+2. Add products in Shopify as usual (photos, description, price, Size/Color options) and make
+   them available to the app's sales channel. The site shows the newest products automatically.
+   To show only one collection, set `VITE_SHOPIFY_COLLECTION` to its handle.
 3. Locally: copy `.env.example` → `.env` and fill in `VITE_SHOPIFY_DOMAIN` and
    `VITE_SHOPIFY_STOREFRONT_TOKEN`.
    For GitHub Pages: add repo **Variables** `SHOPIFY_DOMAIN` and `SHOPIFY_STOREFRONT_TOKEN`.
 
-Once connected, prices and sold-out sizes come from Shopify and **Checkout** sends the bag to
-Shopify's hosted checkout. Without credentials the site runs in preview mode (bag works,
-checkout is disabled).
+Once connected, products, images, prices and sold-out options come from Shopify and **Checkout**
+sends the bag to Shopify's hosted checkout. Without credentials the collection shows a
+"Coming Soon" state pointing to the Club signup.
 
 ## Develop
 

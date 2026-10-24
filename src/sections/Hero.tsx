@@ -1,4 +1,4 @@
-import { asset } from '../data/products';
+import { asset } from '../lib/asset';
 
 export function Hero() {
   return (

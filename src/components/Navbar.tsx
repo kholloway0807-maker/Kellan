@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { asset } from '../data/products';
+import { asset } from '../lib/asset';
 import { useCart } from './Cart';
 
 const LINKS = [
@@ -10,7 +10,9 @@ const LINKS = [
 ];
 
 export function Navbar() {
-  const { count, setOpen } = useCart();
+  const { count, setOpen, products } = useCart();
+  // Le Menu only renders once the store has products.
+  const links = products.length ? LINKS : LINKS.filter((l) => l.href !== '#menu');
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
 
@@ -34,7 +36,7 @@ export function Navbar() {
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {LINKS.map((l) => (
+          {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -68,7 +70,7 @@ export function Navbar() {
 
       {menu && (
         <div className="border-t border-sc-line px-4 pb-6 md:hidden">
-          {LINKS.map((l) => (
+          {links.map((l) => (
             <a
               key={l.href}
               href={l.href}

@@ -32,6 +32,7 @@ jobs:
           # Set these under repo Settings → Secrets and variables → Actions → Variables.
           VITE_SHOPIFY_DOMAIN: ${{ vars.SHOPIFY_DOMAIN }}
           VITE_SHOPIFY_STOREFRONT_TOKEN: ${{ vars.SHOPIFY_STOREFRONT_TOKEN }}
+          VITE_SHOPIFY_COLLECTION: ${{ vars.SHOPIFY_COLLECTION }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -1,5 +1,5 @@
 import { Reveal } from '../components/Reveal';
-import { asset } from '../data/products';
+import { asset } from '../lib/asset';
 
 const TENETS = [
   { n: 'I', title: 'Arrive late', text: 'The best tables fill after ten. The clothes are cut for the hours after.' },

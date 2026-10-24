@@ -1,27 +1,32 @@
 import { Reveal } from '../components/Reveal';
-import { PRODUCTS } from '../data/products';
 import { useCart } from '../components/Cart';
+import { formatPrice } from '../lib/shopify';
 
-/** The collection presented as a printed dinner menu card. */
+const COURSES = ['Apéritif', 'Entrée', 'Plat Principal', 'Fromage', 'Dessert', 'Digestif'];
+
+/** The live collection presented as a printed dinner menu card. */
 export function Menu() {
-  const { priceOf } = useCart();
+  const { products } = useCart();
+  if (products.length === 0) return null;
+
   return (
     <section id="menu" className="scroll-mt-20 px-4 py-24 sm:px-8 md:py-32">
       <Reveal className="mx-auto max-w-2xl border border-sc-cream/30 p-2">
         <div className="border border-sc-cream/20 px-6 py-14 text-center sm:px-14">
           <p className="eyebrow">Ce soir</p>
           <h2 className="mt-4 font-gothic text-5xl sm:text-6xl">Le Menu</h2>
-          <p className="mt-3 font-serif text-lg italic text-sc-stone">Collection No. 01 — Été</p>
           <div className="mx-auto my-10 h-px w-24 bg-sc-cream/40" />
 
           <ol className="space-y-10">
-            {PRODUCTS.map((p) => (
+            {products.slice(0, COURSES.length).map((p, i) => (
               <li key={p.id}>
-                <p className="text-[10px] uppercase tracking-[0.4em] text-sc-stone">{p.course}</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-sc-stone">{COURSES[i]}</p>
                 <a href="#collection" className="mt-2 block font-serif text-2xl transition-colors hover:text-sc-stone sm:text-3xl">
-                  {p.name}
+                  {p.title}
                 </a>
-                <p className="mx-auto mt-1 max-w-sm font-serif italic text-sc-stone">${priceOf(p)}</p>
+                {p.variants[0] && (
+                  <p className="mt-1 font-serif italic text-sc-stone">{formatPrice(p.variants[0].price, p.currency)}</p>
+                )}
               </li>
             ))}
           </ol>

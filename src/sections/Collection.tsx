@@ -1,88 +1,125 @@
 import { useState } from 'react';
 import { Reveal } from '../components/Reveal';
-import { TeeMockup } from '../components/TeeMockup';
 import { useCart } from '../components/Cart';
-import { PRODUCTS, Product, SIZES, Size } from '../data/products';
+import { Product, formatPrice } from '../lib/shopify';
+import { asset } from '../lib/asset';
 
 function ProductCard({ product }: { product: Product }) {
-  const { add, priceOf, inStock } = useCart();
-  const [size, setSize] = useState<Size>('M');
-  const available = inStock(product, size);
+  const { add } = useCart();
+  // Preselect the first in-stock variant's options.
+  const initial = (product.variants.find((v) => v.available) ?? product.variants[0])?.options ?? {};
+  const [selected, setSelected] = useState<Record<string, string>>(initial);
+
+  const variant = product.variants.find((v) => product.options.every((o) => v.options[o.name] === selected[o.name]));
+  const isAvailable = (name: string, value: string) =>
+    product.variants.some(
+      (v) => v.available && v.options[name] === value && product.options.every((o) => o.name === name || v.options[o.name] === selected[o.name])
+    );
+  const image = variant?.image ?? product.image?.url;
 
   return (
     <article className="group flex h-full flex-col">
-      <div
-        className={`relative flex aspect-[4/5] items-center justify-center overflow-hidden border border-sc-line ${
-          product.colorway === 'noir' ? 'bg-sc-ink' : 'bg-[#1b1a18]'
-        }`}
-      >
-        <TeeMockup
-          print={product.print}
-          colorway={product.colorway}
-          className="w-[78%] transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-        />
-        <span className="absolute left-4 top-4 text-[10px] uppercase tracking-[0.3em] text-sc-stone">{product.course}</span>
+      <div className="relative aspect-[4/5] overflow-hidden border border-sc-line bg-sc-ink">
+        {image ? (
+          <img
+            src={image}
+            alt={product.image?.alt ?? product.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          />
+        ) : (
+          <img src={asset('brand/crest-256.png')} alt="" className="absolute inset-0 m-auto w-24 opacity-40" />
+        )}
       </div>
 
       <div className="mt-5 flex items-baseline justify-between gap-4">
-        <h3 className="font-serif text-2xl leading-tight">{product.name}</h3>
-        <span className="font-serif text-xl">${priceOf(product)}</span>
+        <h3 className="font-serif text-2xl leading-tight">{product.title}</h3>
+        {variant && <span className="font-serif text-xl">{formatPrice(variant.price, product.currency)}</span>}
       </div>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-sc-stone">{product.blurb}</p>
+      <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-sc-stone">{product.description}</p>
 
-      <fieldset className="mt-5">
-        <legend className="sr-only">Size for {product.name}</legend>
-        <div className="flex flex-wrap gap-2">
-          {SIZES.map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => setSize(s)}
-              aria-pressed={size === s}
-              className={`h-11 min-w-[44px] cursor-pointer border px-3 text-xs tracking-widest transition-colors duration-200 ${
-                size === s ? 'border-sc-cream bg-sc-cream text-sc-black' : 'border-sc-line text-sc-stone hover:border-sc-cream/60 hover:text-sc-cream'
-              }`}
-            >
-              <span className={inStock(product, s) ? '' : 'line-through opacity-50'}>{s}</span>
-            </button>
-          ))}
-        </div>
-      </fieldset>
+      {product.options.map((opt) => (
+        <fieldset key={opt.name} className="mt-5">
+          <legend className="eyebrow mb-2">{opt.name}</legend>
+          <div className="flex flex-wrap gap-2">
+            {opt.values.map((val) => {
+              const on = selected[opt.name] === val;
+              return (
+                <button
+                  key={val}
+                  type="button"
+                  onClick={() => setSelected((s) => ({ ...s, [opt.name]: val }))}
+                  aria-pressed={on}
+                  className={`h-11 min-w-[44px] cursor-pointer border px-3 text-xs tracking-widest transition-colors duration-200 ${
+                    on ? 'border-sc-cream bg-sc-cream text-sc-black' : 'border-sc-line text-sc-stone hover:border-sc-cream/60 hover:text-sc-cream'
+                  }`}
+                >
+                  <span className={isAvailable(opt.name, val) ? '' : 'line-through opacity-50'}>{val}</span>
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+      ))}
 
       <button
-        onClick={() => add(product, size)}
-        disabled={!available}
+        onClick={() => variant && add(product, variant)}
+        disabled={!variant?.available}
         className="btn-ghost mt-5 w-full disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {available ? `Add to bag — ${size}` : `Sold out — ${size}`}
+        {variant?.available ? 'Add to bag' : 'Sold out'}
       </button>
     </article>
   );
 }
 
+function ComingSoon() {
+  return (
+    <div className="mt-16 flex flex-col items-center border border-sc-line px-6 py-20 text-center">
+      <img src={asset('brand/crest-256.png')} alt="" className="h-20 w-20" />
+      <p className="mt-8 font-gothic text-4xl">Coming Soon</p>
+      <p className="mt-4 max-w-sm text-sm leading-relaxed text-sc-stone">
+        The first collection is being set. Members get the first seat when it drops.
+      </p>
+      <a href="#club" className="btn-cream mt-8">Join the Club</a>
+    </div>
+  );
+}
+
 export function Collection() {
+  const { products, status } = useCart();
+
   return (
     <section id="collection" className="mx-auto max-w-7xl scroll-mt-20 px-4 py-24 sm:px-8 md:py-32">
       <Reveal className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div>
-          <p className="eyebrow">Drop 01</p>
+          <p className="eyebrow">The Collection</p>
           <h2 className="mt-4 font-serif text-5xl leading-[1.05] sm:text-6xl">
             Dressed for <em className="italic">the long table.</em>
           </h2>
         </div>
         <p className="max-w-sm text-sm leading-relaxed text-sc-stone">
-          Four heavyweight tees in noir and crème. Cut boxy, printed with the script and the seal — made to be worn
-          from the first course to the last call.
+          Made to be worn from the first course to the last call.
         </p>
       </Reveal>
 
-      <div className="mt-16 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
-        {PRODUCTS.map((p, i) => (
-          <Reveal key={p.id} delay={i * 0.08} className="h-full">
-            <ProductCard product={p} />
-          </Reveal>
-        ))}
-      </div>
+      {status === 'loading' ? (
+        <div className="mt-16 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-4" aria-busy="true" aria-label="Loading collection">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="aspect-[4/5] animate-pulse border border-sc-line bg-sc-ink" />
+          ))}
+        </div>
+      ) : products.length === 0 ? (
+        <ComingSoon />
+      ) : (
+        <div className="mt-16 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
+          {products.map((p, i) => (
+            <Reveal key={p.id} delay={(i % 4) * 0.08} className="h-full">
+              <ProductCard product={p} />
+            </Reveal>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

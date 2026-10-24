@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useCart } from './Cart';
-import { TeeMockup } from './TeeMockup';
+import { formatPrice, shopifyEnabled } from '../lib/shopify';
 
 export function CartDrawer() {
-  const { lines, subtotal, open, setOpen, remove, priceOf, checkout } = useCart();
+  const { lines, subtotal, currency, open, setOpen, remove, checkout } = useCart();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
   const onCheckout = async () => {
-    if (!checkout) return;
     setBusy(true);
     setError('');
     try {
@@ -57,19 +56,19 @@ export function CartDrawer() {
             <p className="py-16 text-center font-serif text-xl italic text-sc-stone">Your table is still being set.</p>
           ) : (
             lines.map((l) => (
-              <div key={`${l.product.id}-${l.size}`} className="flex gap-4 border-b border-sc-line py-5">
-                <div className="w-20 shrink-0 bg-sc-black p-2">
-                  <TeeMockup print={l.product.print} colorway={l.product.colorway} className="w-full" />
+              <div key={l.variantId} className="flex gap-4 border-b border-sc-line py-5">
+                <div className="aspect-[4/5] w-20 shrink-0 overflow-hidden bg-sc-black">
+                  {l.image && <img src={l.image} alt="" className="h-full w-full object-cover" />}
                 </div>
                 <div className="flex flex-1 flex-col">
-                  <p className="font-serif text-lg leading-tight">{l.product.name}</p>
+                  <p className="font-serif text-lg leading-tight">{l.title}</p>
                   <p className="mt-1 text-xs tracking-widest text-sc-stone">
-                    SIZE {l.size} · QTY {l.qty}
+                    {l.variantTitle && `${l.variantTitle.toUpperCase()} · `}QTY {l.qty}
                   </p>
                   <div className="mt-auto flex items-center justify-between pt-2">
-                    <span className="text-sm">${priceOf(l.product) * l.qty}</span>
+                    <span className="text-sm">{formatPrice(l.price * l.qty, l.currency)}</span>
                     <button
-                      onClick={() => remove(l.product.id, l.size)}
+                      onClick={() => remove(l.variantId)}
                       className="cursor-pointer text-[11px] uppercase tracking-[0.2em] text-sc-stone underline-offset-4 hover:text-sc-cream hover:underline"
                     >
                       Remove
@@ -84,9 +83,9 @@ export function CartDrawer() {
         <div className="border-t border-sc-line px-6 py-6">
           <div className="flex items-baseline justify-between">
             <span className="eyebrow">Subtotal</span>
-            <span className="font-serif text-2xl">${subtotal}</span>
+            <span className="font-serif text-2xl">{formatPrice(subtotal, currency)}</span>
           </div>
-          {checkout ? (
+          {shopifyEnabled ? (
             <button
               onClick={onCheckout}
               disabled={busy || lines.length === 0}
@@ -97,7 +96,7 @@ export function CartDrawer() {
           ) : (
             <>
               <button disabled className="btn-cream mt-5 w-full cursor-not-allowed opacity-60">
-                Checkout opens with Drop 01
+                Checkout opens soon
               </button>
               <p className="mt-3 text-center text-xs text-sc-stone">Join the Club below for first access.</p>
             </>

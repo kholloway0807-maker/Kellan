@@ -1,103 +1,108 @@
 import { ReactNode, createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { PRODUCTS, Product, Size } from '../data/products';
-import { VariantMap, createCheckout, fetchVariants, shopifyEnabled } from '../lib/shopify';
+import { Product, Variant, createCheckout, fetchProducts, shopifyEnabled } from '../lib/shopify';
 
 export interface CartLine {
-  product: Product;
-  size: Size;
+  variantId: string;
+  title: string;
+  /** Variant label, e.g. "M" or "Black / M". Empty for single-variant products. */
+  variantTitle: string;
+  price: number;
+  currency: string;
+  image?: string;
   qty: number;
 }
 
+type CatalogStatus = 'disabled' | 'loading' | 'ready' | 'error';
+
 interface CartState {
+  products: Product[];
+  status: CatalogStatus;
   lines: CartLine[];
   count: number;
   subtotal: number;
+  currency: string;
   open: boolean;
   setOpen: (open: boolean) => void;
-  add: (product: Product, size: Size) => void;
-  remove: (id: string, size: Size) => void;
-  /** Live Shopify price when connected, catalogue fallback otherwise. */
-  priceOf: (product: Product) => number;
-  /** False only when Shopify reports the size sold out (or missing). */
-  inStock: (product: Product, size: Size) => boolean;
-  /** Sends the bag to Shopify checkout. Undefined in preview mode. */
-  checkout?: () => Promise<void>;
+  add: (product: Product, variant: Variant) => void;
+  remove: (variantId: string) => void;
+  checkout: () => Promise<void>;
 }
 
 const CartContext = createContext<CartState | null>(null);
-const STORAGE_KEY = 'sc-bag';
+const STORAGE_KEY = 'sc-bag-v2';
 
 function loadBag(): CartLine[] {
   try {
-    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') as { id: string; size: Size; qty: number }[];
-    return raw.flatMap((l) => {
-      const product = PRODUCTS.find((p) => p.id === l.id);
-      return product ? [{ product, size: l.size, qty: l.qty }] : [];
-    });
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]') as CartLine[];
   } catch {
     return [];
   }
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [status, setStatus] = useState<CatalogStatus>(shopifyEnabled ? 'loading' : 'disabled');
   const [lines, setLines] = useState<CartLine[]>(loadBag);
   const [open, setOpen] = useState(false);
-  const [variants, setVariants] = useState<VariantMap | null>(null);
 
   useEffect(() => {
     if (!shopifyEnabled) return;
-    fetchVariants(PRODUCTS.map((p) => p.handle))
-      .then(setVariants)
-      .catch((err) => console.error('Shopify variants failed to load', err));
+    fetchProducts()
+      .then((p) => {
+        setProducts(p);
+        setStatus('ready');
+      })
+      .catch((err) => {
+        console.error('Shopify products failed to load', err);
+        setStatus('error');
+      });
   }, []);
 
   useEffect(() => {
     try {
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(lines.map((l) => ({ id: l.product.id, size: l.size, qty: l.qty })))
-      );
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
     } catch {
       /* storage unavailable — bag just won't persist */
     }
   }, [lines]);
 
-  const value = useMemo<CartState>(() => {
-    const variant = (product: Product, size: Size) => variants?.[product.handle]?.[size];
-    const priceOf = (product: Product) =>
-      Object.values(variants?.[product.handle] ?? {})[0]?.price ?? product.price;
-
-    return {
+  const value = useMemo<CartState>(
+    () => ({
+      products,
+      status,
       lines,
       count: lines.reduce((n, l) => n + l.qty, 0),
-      subtotal: lines.reduce((n, l) => n + l.qty * priceOf(l.product), 0),
+      subtotal: lines.reduce((n, l) => n + l.qty * l.price, 0),
+      currency: lines[0]?.currency ?? 'USD',
       open,
       setOpen,
-      add: (product, size) => {
+      add: (product, variant) => {
         setLines((prev) => {
-          const hit = prev.find((l) => l.product.id === product.id && l.size === size);
-          return hit
-            ? prev.map((l) => (l === hit ? { ...l, qty: l.qty + 1 } : l))
-            : [...prev, { product, size, qty: 1 }];
+          const hit = prev.find((l) => l.variantId === variant.id);
+          if (hit) return prev.map((l) => (l === hit ? { ...l, qty: l.qty + 1 } : l));
+          return [
+            ...prev,
+            {
+              variantId: variant.id,
+              title: product.title,
+              variantTitle: product.options.length ? variant.title : '',
+              price: variant.price,
+              currency: product.currency,
+              image: variant.image ?? product.image?.url,
+              qty: 1,
+            },
+          ];
         });
         setOpen(true);
       },
-      remove: (id, size) => setLines((prev) => prev.filter((l) => !(l.product.id === id && l.size === size))),
-      priceOf,
-      inStock: (product, size) => !variants || variant(product, size)?.available === true,
-      checkout:
-        shopifyEnabled && variants
-          ? async () => {
-              const cartLines = lines.map((l) => {
-                const v = variant(l.product, l.size);
-                if (!v) throw new Error(`${l.product.name} in ${l.size} is unavailable`);
-                return { merchandiseId: v.id, quantity: l.qty };
-              });
-              window.location.href = await createCheckout(cartLines);
-            }
-          : undefined,
-    };
-  }, [lines, open, variants]);
+      remove: (variantId) => setLines((prev) => prev.filter((l) => l.variantId !== variantId)),
+      checkout: async () => {
+        const url = await createCheckout(lines.map((l) => ({ merchandiseId: l.variantId, quantity: l.qty })));
+        window.location.href = url;
+      },
+    }),
+    [products, status, lines, open]
+  );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

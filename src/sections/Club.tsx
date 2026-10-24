@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { Reveal } from '../components/Reveal';
-import { asset } from '../data/products';
+import { asset } from '../lib/asset';
 
 export function Club() {
   const [email, setEmail] = useState('');
@@ -75,7 +75,6 @@ export function Footer() {
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-[11px] uppercase tracking-[0.3em] text-sc-stone">
           <a href="#collection" className="hover:text-sc-cream">Collection</a>
           <a href="#maison" className="hover:text-sc-cream">La Maison</a>
-          <a href="#menu" className="hover:text-sc-cream">Le Menu</a>
           <a href="#club" className="hover:text-sc-cream">The Club</a>
           <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-sc-cream">Instagram</a>
         </nav>
