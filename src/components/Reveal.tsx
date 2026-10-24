@@ -30,7 +30,7 @@ export function Reveal({ children, delay = 0, y = 28, className = '', as = 'div'
     const ctx = gsap.context(() => {
       gsap.fromTo(
         el,
-        { autoAlpha: 0, y, filter: 'blur(8px)' },
+        { autoAlpha: 0, y, filter: 'blur(6px)' },
         {
           autoAlpha: 1,
           y: 0,

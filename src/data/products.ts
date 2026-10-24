@@ -1,49 +1,66 @@
-// Product catalogue mirrored from the NOVA Shopify store (novaly.us).
-// Images are the back-print designs cropped from the brand lookbook.
+// Drop 01 catalogue. Prices are fallbacks; live prices, stock and variant IDs
+// come from Shopify by `handle` when the store is connected (see lib/shopify.ts).
+
+export type Print = 'script' | 'crest';
+export type Colorway = 'noir' | 'creme';
 
 export interface Product {
   id: string;
+  /** Shopify product handle (the URL slug of the product in your store). */
+  handle: string;
   name: string;
-  motif: string; // the design phrase
-  price: string;
-  coords: string;
-  image: string;
-  /** Live Shopify product page. */
-  href: string;
+  /** Menu-style course label used in the "Le Menu" section. */
+  course: string;
+  print: Print;
+  colorway: Colorway;
+  price: number;
   blurb: string;
 }
 
-const STORE = 'https://novaly.us/products';
-
 export const PRODUCTS: Product[] = [
   {
-    id: 'hoodie',
-    name: 'Take The Risk Hoodie',
-    motif: 'TAKE THE RISK',
-    price: '$44',
-    coords: '37.7335° N, 119.6376° W',
-    image: `${import.meta.env.BASE_URL}products/hoodie.jpg`,
-    href: `${STORE}/nova-take-the-risk-hoodie`,
-    blurb: 'Garment-dyed lightweight fleece. 100% ring-spun cotton, worn-in from the first wear.',
+    id: 'script-noir',
+    handle: 'saint-clermont-script-noir-tee',
+    name: 'Script Tee — Noir',
+    course: 'Entrée',
+    print: 'script',
+    colorway: 'noir',
+    price: 48,
+    blurb: 'Distressed Saint. Clermont script across the chest. 280gsm heavyweight cotton, boxy cut.',
   },
   {
-    id: 'crewneck',
-    name: 'Create Your Legacy Crewneck',
-    motif: 'CREATE YOUR LEGACY',
-    price: '$43',
-    coords: '38.8927° N, -77.0230° W',
-    image: `${import.meta.env.BASE_URL}products/crewneck.jpg`,
-    href: `${STORE}/unisex-garment-dyed-sweatshirt`,
-    blurb: 'Vintage-washed, relaxed fit. The soft, structured crewneck for every day.',
+    id: 'crest-noir',
+    handle: 'saint-clermont-crest-noir-tee',
+    name: 'Crest Tee — Noir',
+    course: 'Plat Principal',
+    print: 'crest',
+    colorway: 'noir',
+    price: 48,
+    blurb: 'The SC Dinner Club seal, printed large. Garment-dyed black, dropped shoulder.',
   },
   {
-    id: 'tee',
-    name: 'Leap Of Faith Tee',
-    motif: 'LEAP OF FAITH',
-    price: '$28',
-    coords: '27.9881° N, 86.9250° E',
-    image: `${import.meta.env.BASE_URL}products/tee.jpg`,
-    href: `${STORE}/unisex-garment-dyed-heavyweight-t-shirt-1`,
-    blurb: 'Heavyweight, structured, breathable. The tee that anchors the collection.',
+    id: 'script-creme',
+    handle: 'saint-clermont-script-creme-tee',
+    name: 'Script Tee — Crème',
+    course: 'Fromage',
+    print: 'script',
+    colorway: 'creme',
+    price: 48,
+    blurb: 'Bone-cream ground, black script. Made for linen trousers and long lunches.',
+  },
+  {
+    id: 'crest-creme',
+    handle: 'saint-clermont-crest-creme-tee',
+    name: 'Crest Tee — Crème',
+    course: 'Dessert',
+    print: 'crest',
+    colorway: 'creme',
+    price: 48,
+    blurb: 'The seal in ink black on cream. Heavyweight, pre-shrunk, softened with every wash.',
   },
 ];
+
+export const SIZES = ['S', 'M', 'L', 'XL', 'XXL'] as const;
+export type Size = (typeof SIZES)[number];
+
+export const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;

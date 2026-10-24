@@ -1,12 +1,12 @@
+import { CartProvider } from './components/Cart';
+import { CartDrawer } from './components/CartDrawer';
 import { Navbar } from './components/Navbar';
-import { ProgressBar } from './components/ProgressBar';
-import { ScrollAura } from './components/ScrollAura';
 import { Hero } from './sections/Hero';
-import { Orb } from './sections/Orb';
-import { Performance } from './sections/Performance';
-import { Terrain } from './sections/Terrain';
-import { Shop } from './sections/Shop';
-import { Cta } from './sections/Cta';
+import { Marquee } from './sections/Marquee';
+import { Collection } from './sections/Collection';
+import { Maison } from './sections/Maison';
+import { Menu } from './sections/Menu';
+import { Club, Footer } from './sections/Club';
 import { useLenis } from './hooks/useLenis';
 import { useReducedMotion } from './hooks/useReducedMotion';
 
@@ -16,28 +16,20 @@ export default function App() {
   useLenis(!reduced);
 
   return (
-    <div className="grain relative bg-nova-black">
-      <ScrollAura />
-      <ProgressBar />
-      <Navbar />
-
-      <main>
-        <Hero />
-        <Orb />
-        <Performance />
-        <Terrain />
-        <Shop />
-        <Cta />
-      </main>
-
-      {/* soft vignette to seat the scenes in the near-black ground */}
-      <div
-        className="pointer-events-none fixed inset-0 z-40"
-        style={{
-          background:
-            'radial-gradient(120% 120% at 50% 50%, rgba(5,5,5,0) 55%, rgba(5,5,5,0.55) 100%)',
-        }}
-      />
-    </div>
+    <CartProvider>
+      <div className="grain relative min-h-screen bg-sc-black">
+        <Navbar />
+        <main>
+          <Hero />
+          <Marquee />
+          <Collection />
+          <Maison />
+          <Menu />
+          <Club />
+        </main>
+        <Footer />
+        <CartDrawer />
+      </div>
+    </CartProvider>
   );
 }

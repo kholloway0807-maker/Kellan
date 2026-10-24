@@ -1,44 +1,44 @@
-import { SceneSection } from '../components/SceneSection';
-import { HeroScene } from '../scenes/HeroScene';
-import { Eyebrow } from '../components/Eyebrow';
-import { ArrowIcon } from '../components/icons';
+import { asset } from '../data/products';
 
 export function Hero() {
   return (
-    <SceneSection
-      id="hero"
-      camera={[0, 1.2, 11]}
-      bloomIntensity={1.1}
-      scene={<HeroScene />}
-      fallback="radial-gradient(120% 80% at 50% 20%, rgba(34,211,238,0.18), rgba(255,91,58,0.06) 55%, rgba(5,5,5,0) 75%)"
-    >
-      <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-        <div className="mb-6 animate-[fadeIn_1s_ease-out]">
-          <Eyebrow num="01" label="NOVA Apparel" className="justify-center" />
-        </div>
-        <h1 className="text-balance text-5xl font-semibold leading-[0.98] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[5.5rem]">
-          Made for those who <span className="gradient-text">take the risk.</span>
-        </h1>
-        <p className="mt-7 max-w-2xl text-pretty text-base leading-relaxed text-white/65 sm:text-lg">
-          Premium garment-dyed apparel marked with the coordinates worth the leap. Heavyweight,
-          worn-in, and built to outlast the moment that made it.
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row">
-          <a href="#shop" className="pill-primary text-[15px]">
-            Shop the collection <ArrowIcon />
-          </a>
-          <a href="#terrain" className="pill-ghost text-[15px]">
-            See the lookbook
-          </a>
-        </div>
+    <section id="top" className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-4 pt-20">
+      {/* oversized crest rings, turning slowly behind the wordmark */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[150vw] max-w-[1100px] -translate-x-1/2 -translate-y-1/2 sm:w-[90vw]">
+        <div className="spin-slow absolute inset-0 rounded-full border border-sc-line" />
+        <div className="absolute inset-[3%] rounded-full border border-sc-line/50" />
+        <div className="absolute inset-[18%] rounded-full border border-sc-line/40" />
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-8 flex justify-center">
-        <div className="flex flex-col items-center gap-2 text-white/40">
-          <span className="text-[10px] uppercase tracking-eyebrow">Scroll</span>
-          <span className="h-8 w-px animate-pulse-glow bg-gradient-to-b from-white/50 to-transparent" />
-        </div>
+      <p className="eyebrow relative animate-[fadeUp_1s_ease-out_both]">Drop 01 · Collection d'Été</p>
+
+      <h1 className="relative mt-8 w-full max-w-4xl animate-[fadeUp_1.2s_0.15s_ease-out_both]">
+        <span className="sr-only">Saint. Clermont</span>
+        <img
+          src={asset('brand/wordmark.webp')}
+          alt=""
+          width={1600}
+          height={340}
+          className="w-full mix-blend-screen"
+        />
+      </h1>
+
+      <p className="relative mt-4 font-gothic text-3xl sm:text-4xl animate-[fadeUp_1.2s_0.3s_ease-out_both]">Dinner Club</p>
+      <div className="relative mt-6 flex items-center gap-4 text-[11px] font-medium uppercase tracking-[0.4em] text-sc-stone animate-[fadeUp_1.2s_0.45s_ease-out_both]">
+        <span>St. Tropez</span>
+        <span className="h-1.5 w-1.5 rotate-45 bg-sc-cream" aria-hidden />
+        <span>St. Clermont</span>
       </div>
-    </SceneSection>
+
+      <div className="relative mt-12 flex flex-col gap-3 sm:flex-row animate-[fadeUp_1.2s_0.6s_ease-out_both]">
+        <a href="#collection" className="btn-cream">Shop the collection</a>
+        <a href="#club" className="btn-ghost">Reserve a seat</a>
+      </div>
+
+      <a href="#collection" className="absolute bottom-8 flex flex-col items-center gap-3 text-sc-stone" aria-label="Scroll to collection">
+        <span className="text-[10px] uppercase tracking-[0.4em]">Scroll</span>
+        <span className="h-10 w-px bg-gradient-to-b from-sc-cream/60 to-transparent" />
+      </a>
+    </section>
   );
 }

@@ -4,32 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        nova: {
-          black: '#050505',
-          ink: '#0a0a0c',
-          blue: '#3B82F6',
-          cyan: '#22D3EE',
-          orange: '#FF5E3A',
-          red: '#FF3B00',
+        sc: {
+          black: '#0A0A0A',
+          ink: '#121211',
+          cream: '#F0EDE6',
+          stone: '#B9B4A9',
+          line: 'rgba(240,237,230,0.14)',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Cormorant', 'Georgia', 'serif'],
+        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+        gothic: ['UnifrakturMaguntia', 'Cormorant', 'serif'],
       },
       letterSpacing: {
         eyebrow: '0.35em',
       },
-      backdropBlur: {
-        xs: '2px',
-      },
       animation: {
-        'spin-slow': 'spin 18s linear infinite',
-        'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+        marquee: 'marquee 40s linear infinite',
       },
       keyframes: {
-        pulseGlow: {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
       },
     },

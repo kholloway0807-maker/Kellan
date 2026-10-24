@@ -1,55 +1,43 @@
-# NOVA — Marketing Site
+# Saint. Clermont — Dinner Club
 
-A single-page, dark-mode, motion-heavy marketing site for the fictional deep-tech
-company **NOVA**. Every section is a full-viewport WebGL scene with its own
-particle animation, tied together with scroll-driven entrances and smooth scrolling.
+Headless Shopify storefront for **Saint. Clermont Clothing**. Black and cream,
+blackletter crest, St. Tropez → St. Clermont.
 
 ## Stack
 
-- **React + Vite + TypeScript**
-- **Tailwind CSS** for styling (glassmorphism, brand gradient, dark mode)
-- **Three.js** via **@react-three/fiber** + **@react-three/drei**
-- **@react-three/postprocessing** for bloom/glow
-- **GSAP + ScrollTrigger** for scroll-driven reveals
-- **Lenis** for smooth scrolling
+- React + Vite + TypeScript, Tailwind CSS
+- GSAP ScrollTrigger reveals + Lenis smooth scroll (off under `prefers-reduced-motion`)
+- Shopify **Storefront API** for live prices, stock and checkout
 
-All motion respects `prefers-reduced-motion`: scenes fall back to static
-gradients and smooth scroll / scroll animations are disabled.
+## Sections
 
-## Scenes
+Hero (script wordmark) · Marquee · Collection (4 tees, size picker, bag) ·
+La Maison (story + crest) · Le Menu (the drop as a dinner menu) · The Club (email signup) · Footer
 
-| # | Section      | Animation                                                            |
-|---|--------------|----------------------------------------------------------------------|
-| 1 | Navbar       | Floating glass pill, blur/scale-in on load                           |
-| 2 | Hero         | Starfield + morphing ribbon "river" of particles, cursor parallax    |
-| 3 | Orb          | Torus + core point shells with plasma filament rings, bloom          |
-| 4 | Performance  | Vertical particle vortex/fountain + glass stat cards                 |
-| 5 | Terrain      | Rippling dot-wave dune grid, drifting camera                         |
-| 6 | CTA / Footer | Particles converging into an hourglass + email capture + footer      |
+## Connecting Shopify
 
-## Performance
+1. In Shopify admin: **Settings → Apps and sales channels → Develop apps → Create an app**,
+   enable **Storefront API** scopes (`unauthenticated_read_product_listings`,
+   `unauthenticated_write_checkouts`, `unauthenticated_read_checkouts`), install, and copy the
+   **Storefront access token** (it's a public, browser-safe token).
+2. Create the products with a **Size** option (S, M, L, XL, XXL) and these handles
+   (or edit `handle` in `src/data/products.ts` to match yours):
+   - `saint-clermont-script-noir-tee`
+   - `saint-clermont-crest-noir-tee`
+   - `saint-clermont-script-creme-tee`
+   - `saint-clermont-crest-creme-tee`
+3. Locally: copy `.env.example` → `.env` and fill in `VITE_SHOPIFY_DOMAIN` and
+   `VITE_SHOPIFY_STOREFRONT_TOKEN`.
+   For GitHub Pages: add repo **Variables** `SHOPIFY_DOMAIN` and `SHOPIFY_STOREFRONT_TOKEN`.
 
-- All visuals use a single `THREE.Points` buffer per cloud (no per-particle meshes).
-- Particle counts and DPR scale down by device tier (mobile / tablet / desktop).
-- Each scene's WebGL canvas is mounted only when scrolled near the viewport
-  (`IntersectionObserver`), so at most a couple of contexts are live at once.
+Once connected, prices and sold-out sizes come from Shopify and **Checkout** sends the bag to
+Shopify's hosted checkout. Without credentials the site runs in preview mode (bag works,
+checkout is disabled).
 
 ## Develop
 
 ```bash
 npm install
-npm run dev      # start the dev server
-npm run build    # typecheck + production build
-npm run preview  # preview the production build
-```
-
-## Structure
-
-```
-src/
-  components/   Navbar, ProgressBar, Reveal, Eyebrow, SceneSection, icons
-  scenes/       HeroScene, OrbScene, PerformanceScene, TerrainScene, CtaScene, Starfield
-  sections/     Section overlays composing copy + the matching scene
-  hooks/        useLenis, useReducedMotion, useDeviceTier, useInView
-  lib/          palette (brand gradient helpers)
+npm run dev
+npm run build
 ```

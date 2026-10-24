@@ -3,7 +3,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     # Default branch is the one GitHub Pages is allowed to publish from.
-    branches: [claude/gallant-cori-hw0a0s, claude/nova-marketing-site-fug38m]
+    branches: [claude/great-archimedes-dvq0uo]
   workflow_dispatch:
 
 # Allow the workflow to publish to GitHub Pages.
@@ -28,6 +28,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Set these under repo Settings → Secrets and variables → Actions → Variables.
+          VITE_SHOPIFY_DOMAIN: ${{ vars.SHOPIFY_DOMAIN }}
+          VITE_SHOPIFY_STOREFRONT_TOKEN: ${{ vars.SHOPIFY_STOREFRONT_TOKEN }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
